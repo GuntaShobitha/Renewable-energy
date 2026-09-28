@@ -114,34 +114,40 @@
             <button type="button" class="auth-tab-btn" data-auth-type="commercial">Commercial Telemetry</button>
           </div>
 
-          <form data-ajax-form data-success-msg="Authenticating credentials... Redirecting to telemetry dashboard.">
+          <form id="loginForm" novalidate>
             <div class="form-group">
-              <label class="form-label" id="authRoleLabel">Residential System Account / Email</label>
-              <input type="text" required placeholder="client@stacklyenergy.com" class="form-input">
+              <label class="form-label" id="authRoleLabel" for="loginEmail">Email Address</label>
+              <input type="email" id="loginEmail" required placeholder="you@example.com" class="form-input" autocomplete="email">
             </div>
 
             <div class="form-group">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <label class="form-label" style="margin-bottom: 0;">Password</label>
+                <label class="form-label" style="margin-bottom: 0;" for="loginPassword">Password</label>
                 <a href="#" style="font-size: 0.75rem; color: var(--color-accent); font-weight: 700;">Forgot Password?</a>
               </div>
-              <input type="password" required placeholder="••••••••••••" class="form-input">
+              <input type="password" id="loginPassword" required minlength="4" placeholder="Any password works (min 4 chars)" class="form-input" autocomplete="current-password">
             </div>
+
+            <div id="loginError" role="alert" style="display: none; margin-bottom: 18px; padding: 12px 16px; border-radius: var(--radius-md); background-color: rgba(31, 138, 76, 0.10); border: 1px solid var(--accent-20); color: var(--color-dark); font-size: 0.84rem; font-weight: 600;"></div>
 
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
               <label style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; cursor: pointer; color: var(--dark-80);">
-                <input type="checkbox" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
+                <input type="checkbox" id="loginRemember" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
                 <span>Stay signed in for 30 days</span>
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">
-              <span>Sign In To Portal</span>
+            <button type="submit" id="loginBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">
+              <span id="loginBtnText">Sign In To Portal</span>
               <span class="material-symbols-outlined">arrow_forward</span>
             </button>
 
             <div style="text-align: center; font-size: 0.82rem; color: var(--dark-65);">
               New system installation? <a href="contact.html" style="color: var(--color-accent); font-weight: 700;">Activate System Telemetry</a>
+            </div>
+
+            <div style="margin-top: 18px; padding: 12px 16px; border-radius: var(--radius-md); background-color: var(--dark-04); border: 1px dashed var(--dark-20); font-size: 0.76rem; color: var(--dark-65); line-height: 1.55;">
+              <strong style="color: var(--color-dark);">Demo access:</strong> sign in with <em>any</em> email and any password (min 4 chars). Use an email starting with <strong style="color: var(--color-accent);">admin</strong> (e.g. <code>admin@stacklyenergy.com</code> / <code>admin123</code>) to open the Admin Dashboard.
             </div>
           </form>
         </div>
@@ -210,6 +216,7 @@
     </div>
   </footer>
 
+  <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

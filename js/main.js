@@ -149,19 +149,19 @@ const solutionsData = {
     title: 'RESIDENTIAL SOLAR & STORAGE',
     tag: 'Homeowners • High Autonomy',
     desc: 'Bespoke rooftop photovoltaic arrays integrated with high-density lithium-iron-phosphate (LFP) storage. Gain up to 98% grid independence, reduce electric bills to minimum connection fees, and keep essential loads running during blackout events.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=800&q=55'
+    image: 'img/proj-residential.webp'
   },
   commercial: {
     title: 'COMMERCIAL & INDUSTRIAL MICROGRIDS',
     tag: 'Enterprise • Demand Shaving',
     desc: 'Megawatt-scale rooftop and ground installations with smart power electronics. Designed to eliminate expensive peak demand utility surcharges, provide industrial backup, and achieve corporate ESG sustainability mandates with verified carbon offsets.',
-    image: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?fm=webp&fit=crop&w=800&q=55'
+    image: 'img/hero-home.webp'
   },
   community: {
     title: 'COMMUNITY & SHARED MICRO-STORAGE',
     tag: 'Co-ops • Distributed Grid',
     desc: 'Shared clean energy networks and wind-solar hybrid infrastructure engineered for suburban cooperatives, rural districts, and apartment complexes, enabling clean power access without requiring individual roof ownership.',
-    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?fm=webp&fit=crop&w=800&q=55'
+    image: 'img/svc-wind.webp'
   }
 };
 
@@ -373,11 +373,76 @@ function initAuthTabs() {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const role = btn.getAttribute('data-auth-type');
-      if (role === 'commercial') {
-        roleLabel.textContent = 'Commercial Microgrid Fleet ID / Portal';
-      } else {
-        roleLabel.textContent = 'Residential System Account / Email';
-      }
+      roleLabel.textContent = role === 'commercial'
+        ? 'Commercial Microgrid Fleet ID / Portal'
+        : 'Residential System Account / Email';
     });
   });
+}
+
+/* ==========================================================================
+   11. BOOTSTRAP AUTH WIRING (defined in js/auth.js)
+   ========================================================================== */
+// Login page boot only — dashboards boot themselves inside js/dashboard.js
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof initAuthPage === 'function') initAuthPage();
+});
+
+/* ==========================================================================
+   12. LOGIN PAGE HANDLER (uses StacklyAuth from js/auth.js)
+   ========================================================================== */
+function initAuthPage() {
+  // Only run on the login page (guards against dashboard pages that also load main.js)
+  if (!document.getElementById('loginForm')) return;
+  const form = document.getElementById('loginForm');
+  if (!form || typeof StacklyAuth === 'undefined') return;
+
+  const errorBox = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  const btnText = document.getElementById('loginBtnText');
+
+  // Already signed in? Skip straight to the right dashboard.
+  const existing = StacklyAuth.currentSession();
+  if (existing) {
+    window.location.replace(existing.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html');
+    return;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorBox.style.display = 'none';
+
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const remember = document.getElementById('loginRemember').checked;
+
+    btn.disabled = true;
+    btnText.textContent = 'Authenticating…';
+
+    // Simulated network latency for a real-app feel
+    setTimeout(() => {
+      const result = StacklyAuth.login(email, password, remember);
+      if (!result.ok) {
+        errorBox.textContent = result.error;
+        errorBox.style.display = 'block';
+        btn.disabled = false;
+        btnText.textContent = 'Sign In To Portal';
+        return;
+      }
+      btnText.textContent = 'Success — opening dashboard…';
+      const dest = result.session.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+      setTimeout(() => { window.location.href = dest; }, 600);
+    }, 700);
+  });
+}
+
+/* ==========================================================================
+   13. DASHBOARD BOOTSTRAPS (bodies live in js/dashboard.js)
+   ========================================================================== */
+function initDashboard() {
+  if (typeof window.initUserDashboard === 'function') window.initUserDashboard();
+}
+
+function initAdminDashboard() {
+  if (typeof window.initAdminDashboardPage === 'function') window.initAdminDashboardPage();
 }

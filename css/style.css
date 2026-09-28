@@ -2605,7 +2605,7 @@ ul, ol {
   z-index: -1;
   background-image:
     linear-gradient(180deg, rgba(11, 43, 28, 0.55) 0%, rgba(11, 43, 28, 0.75) 100%),
-    url('https://images.unsplash.com/photo-1509391365360-2e959784a276?fm=webp&fit=crop&w=800&q=55');
+    url('../img/svc-solar.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

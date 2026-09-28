@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Energy Dashboard — Stackly Energy</title>
+  <meta name="description" content="Live solar telemetry, devices, analytics, billing and support for your Stackly renewable energy system.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="dash-shell" id="userDashboardRoot">
+
+    <!-- TOP BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="dash-menu-toggle" id="dashMenuToggle" aria-label="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button>
+        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+        <div class="dash-topbar-title">Stackly Energy<small>Client Portal</small></div>
+      </div>
+      <div class="dash-topbar-actions">
+        <span class="dash-live-pill"><span class="live-dot"></span>Live</span>
+        <div class="dash-user-chip">
+          <div><div class="u-name" id="dashUserName">—</div><div class="u-role" id="dashUserRole">—</div></div>
+          <div class="dash-avatar" id="dashAvatar">?</div>
+        </div>
+        <button type="button" class="dash-btn sm" data-logout style="background:transparent; border-color:var(--cream-30); color:var(--bg-primary);"><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
+      </div>
+    </header>
+
+    <div class="dash-frame">
+      <!-- SIDEBAR -->
+      <aside class="dash-sidebar" id="dashSidebar">
+        <div class="dash-sidebar-label">Overview</div>
+        <button class="dash-nav-item active" data-panel="ud-home"><span class="material-symbols-outlined">dashboard</span> Overview</button>
+        <button class="dash-nav-item" data-panel="ud-telemetry"><span class="material-symbols-outlined">monitoring</span> Live Telemetry</button>
+
+        <div class="dash-sidebar-label">Manage</div>
+        <button class="dash-nav-item" data-panel="ud-devices"><span class="material-symbols-outlined">memory</span> Devices</button>
+        <button class="dash-nav-item" data-panel="ud-analytics"><span class="material-symbols-outlined">insert_chart</span> Analytics</button>
+
+        <div class="dash-sidebar-label">Account</div>
+        <button class="dash-nav-item" data-panel="ud-billing"><span class="material-symbols-outlined">receipt_long</span> Billing</button>
+        <button class="dash-nav-item" data-panel="ud-profile"><span class="material-symbols-outlined">person</span> Profile</button>
+        <button class="dash-nav-item" data-panel="ud-support"><span class="material-symbols-outlined">support_agent</span> Support<span class="nav-count" id="udTicketCount">0</span></button>
+
+        <div class="dash-sidebar-foot">© 2026 Stackly Energy<br>Telemetry simulated locally.</div>
+      </aside>
+      <div class="dash-backdrop" id="dashBackdrop"></div>
+
+      <!-- CONTENT -->
+      <main class="dash-content">
+
+        <div class="maintenance-banner" id="maintenanceBanner">
+          <span class="material-symbols-outlined">engineering</span>
+          <span>Scheduled maintenance active — telemetry may lag.</span>
+        </div>
+
+        <!-- ======== PANEL: OVERVIEW ======== -->
+        <section class="dash-panel active" id="ud-home">
+          <div class="dash-hero">
+            <div>
+              <h1 id="udHello">Welcome back</h1>
+              <p>Your renewable system is streaming live. Use the sidebar to explore every section.</p>
+            </div>
+            <div class="dash-hero-actions">
+              <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a>
+              <button class="dash-btn primary" data-goto="ud-support"><span class="material-symbols-outlined" style="font-size:18px;">support_agent</span> Get Support</button>
+            </div>
+          </div>
+
+          <!-- 3.1 status metrics -->
+          <div class="dash-section">
+            <div class="dash-section-head">
+              <h2><span class="material-symbols-outlined">insights</span> System Status</h2>
+              <span class="sub">Updated <span id="udUpdated">—</span></span>
+            </div>
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="m-label">Generating Now</div><div class="m-value accent" id="udPower">—</div><div class="m-delta"><span class="material-symbols-outlined">wb_sunny</span><span id="udStatus">—</span></div></div>
+              <div class="dash-metric"><div class="m-label">Battery</div><div class="m-value" id="udBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div id="udSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
+              <div class="dash-metric"><div class="m-label">Grid Exchange</div><div class="m-value" id="udGrid">—</div><div class="m-delta"><span class="material-symbols-outlined">electric_meter</span>+ export • − import</div></div>
+              <div class="dash-metric"><div class="m-label">CO₂ Avoided Today</div><div class="m-value" id="udCo2">—</div><div class="m-delta"><span class="material-symbols-outlined">eco</span>vs. grid baseline</div></div>
+            </div>
+          </div>
+
+          <!-- 3.2 today chart -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">ssid_chart</span> Today's Flow</h2><span class="sub">Rolling live window</span></div>
+            <div class="chart-card">
+              <canvas id="udChart" height="220"></canvas>
+              <div class="chart-legend"><span><i></i>Production</span><span><i class="alt"></i>Consumption</span></div>
+            </div>
+          </div>
+
+          <!-- 3.3 quick actions -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">bolt</span> Quick Actions</h2></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="dash-btn primary" data-goto="ud-telemetry"><span class="material-symbols-outlined" style="font-size:18px;">monitoring</span> Open Telemetry</button>
+              <button class="dash-btn" data-goto="ud-billing"><span class="material-symbols-outlined" style="font-size:18px;">receipt_long</span> View Billing</button>
+              <button class="dash-btn" data-goto="ud-analytics"><span class="material-symbols-outlined" style="font-size:18px;">insert_chart</span> See Analytics</button>
+              <button class="dash-btn" data-goto="ud-devices"><span class="material-symbols-outlined" style="font-size:18px;">memory</span> Device Health</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: LIVE TELEMETRY ======== -->
+        <section class="dash-panel" id="ud-telemetry">
+          <div class="dash-hero"><div><h1>Live Telemetry</h1><p>Real-time production, storage and grid data — refreshed every 2 seconds.</p></div></div>
+
+          <!-- 3.1 power flow -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">electric_bolt</span> Power Flow</h2><span class="sub">Updated <span id="udTelUpdated">—</span></span></div>
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="m-label">Production</div><div class="m-value accent" id="udTelPower">—</div><div class="m-delta"><span class="material-symbols-outlined">solar_power</span>Array output</div></div>
+              <div class="dash-metric"><div class="m-label">Consumption</div><div class="m-value" id="udTelLoad">—</div><div class="m-delta"><span class="material-symbols-outlined">power</span>Home load</div></div>
+              <div class="dash-metric"><div class="m-label">Battery SoC</div><div class="m-value" id="udTelBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div id="udTelSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
+              <div class="dash-metric"><div class="m-label">Grid</div><div class="m-value" id="udTelGrid">—</div><div class="m-delta"><span class="material-symbols-outlined">electric_meter</span>+ export • − import</div></div>
+              <div class="dash-metric"><div class="m-label">Autonomy</div><div class="m-value" id="udTelAutonomy">—</div><div class="m-delta"><span class="material-symbols-outlined">shield</span>Self-sufficiency</div></div>
+            </div>
+          </div>
+
+          <!-- 3.2 big chart -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">monitoring</span> Production vs Consumption</h2><span class="dash-badge badge-open"><span class="live-dot"></span>STREAMING</span></div>
+            <div class="chart-card">
+              <canvas id="udTelChart" height="240"></canvas>
+              <div class="chart-legend"><span><i></i>Production</span><span><i class="alt"></i>Consumption</span></div>
+            </div>
+          </div>
+
+          <!-- 3.3 cumulative -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">stacked_line_chart</span> Cumulative Today</h2></div>
+            <div style="display:flex; gap:28px; flex-wrap:wrap; font-size:0.88rem;">
+              <span>Generated: <strong id="udGenerated" style="color:var(--color-dark);">— kWh</strong></span>
+              <span>Exported: <strong id="udExported" style="color:var(--color-dark);">— kWh</strong></span>
+              <span>Site ID: <strong id="udSiteId" style="color:var(--color-dark);">—</strong></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: DEVICES ======== -->
+        <section class="dash-panel" id="ud-devices">
+          <div class="dash-hero"><div><h1>Device Fleet</h1><p>Every monitored component at your site with live status and readings.</p></div></div>
+
+          <!-- 3.1 table -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">memory</span> Installed Hardware</h2><span class="sub" id="udDeviceCount">—</span></div>
+            <div style="overflow-x:auto;">
+              <table class="dash-table">
+                <thead><tr><th>Device ID</th><th>Name</th><th>Type</th><th>Status</th><th>Reading</th></tr></thead>
+                <tbody id="udDeviceTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 3.2 alerts -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">warning</span> Active Alerts</h2></div>
+            <div id="udDeviceAlerts"></div>
+          </div>
+
+          <!-- 3.3 diagnostics -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">build</span> Diagnostics</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">verified</span><div><div class="l-title">Firmware integrity</div><div class="l-sub">Last verified today</div></div></div><span class="l-end accent">Pass</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">thermostat</span><div><div class="l-title">Thermal scan</div><div class="l-sub">Drone IR sweep — weekly</div></div></div><span class="l-end accent">Nominal</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">electrical_services</span><div><div class="l-title">Ground-fault test</div><div class="l-sub">Automatic monthly</div></div></div><span class="l-end accent">Pass</span></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: ANALYTICS ======== -->
+        <section class="dash-panel" id="ud-analytics">
+          <div class="dash-hero"><div><h1>Analytics</h1><p>Historical generation, savings trend and environmental impact.</p></div></div>
+
+          <!-- 3.1 history chart -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">calendar_month</span> 14-Day Generation History</h2></div>
+            <div class="chart-card"><canvas id="udHistChart" height="220"></canvas><div class="chart-legend"><span><i></i>Daily energy (kWh)</span></div></div>
+          </div>
+
+          <!-- 3.2 savings -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">savings</span> Savings Breakdown</h2></div>
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="m-label">This Month</div><div class="m-value accent" id="udSaveMonth">—</div><div class="m-delta"><span class="material-symbols-outlined">trending_up</span>vs. utility bill</div></div>
+              <div class="dash-metric"><div class="m-label">This Year</div><div class="m-value" id="udSaveYear">—</div><div class="m-delta"><span class="material-symbols-outlined">trending_up</span>Year to date</div></div>
+              <div class="dash-metric"><div class="m-label">Lifetime</div><div class="m-value" id="udSaveLife">—</div><div class="m-delta"><span class="material-symbols-outlined">all_inclusive</span>Since install</div></div>
+            </div>
+          </div>
+
+          <!-- 3.3 impact -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">forest</span> Environmental Impact</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">co2</span><div><div class="l-title">CO₂ avoided (lifetime)</div><div class="l-sub">EPA equivalency factors</div></div></div><span class="l-end accent" id="udImpactCo2">—</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">park</span><div><div class="l-title">Trees equivalent</div><div class="l-sub">42 kg CO₂ / tree / yr</div></div></div><span class="l-end accent" id="udImpactTrees">—</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">directions_car</span><div><div class="l-title">Car km avoided</div><div class="l-sub">120 g CO₂ / km</div></div></div><span class="l-end accent" id="udImpactKm">—</span></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: BILLING ======== -->
+        <section class="dash-panel" id="ud-billing">
+          <div class="dash-hero"><div><h1>Billing &amp; Plans</h1><p>Your plan, invoice history and payment method.</p></div></div>
+
+          <!-- 3.1 plan -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">workspace_premium</span> Current Plan</h2><span class="dash-badge badge-open">ACTIVE</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap;">
+              <div>
+                <div style="font-family:var(--font-display); font-weight:800; font-size:1.25rem;" id="udPlanName">—</div>
+                <div style="font-size:0.82rem; color:var(--dark-65);" id="udPlanDesc">—</div>
+              </div>
+              <div style="font-family:var(--font-display); font-weight:800; font-size:1.5rem;" id="udPlanPrice">—</div>
+            </div>
+          </div>
+
+          <!-- 3.2 invoices -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">receipt_long</span> Invoice History</h2></div>
+            <div id="udInvoiceList"></div>
+          </div>
+
+          <!-- 3.3 payment -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">credit_card</span> Payment Method</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">credit_card</span><div><div class="l-title">Visa •••• 4291</div><div class="l-sub">Expires 09/2029</div></div></div><span class="l-end">Default</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">account_balance</span><div><div class="l-title">Auto-pay enabled</div><div class="l-sub">Charged on the 1st</div></div></div><span class="l-end accent">On</span></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: PROFILE ======== -->
+        <section class="dash-panel" id="ud-profile">
+          <div class="dash-hero"><div><h1>My Profile</h1><p>Manage your identity, site and security settings.</p></div></div>
+
+          <!-- 3.1 account -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">badge</span> Account</h2></div>
+            <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+              <div class="dash-avatar" style="width:72px; height:72px; font-size:1.6rem;" id="udProfileAvatar">?</div>
+              <div>
+                <div style="font-family:var(--font-display); font-weight:800; font-size:1.2rem;" id="udProfileName">—</div>
+                <div style="font-size:0.84rem; color:var(--dark-65);" id="udProfileEmail">—</div>
+                <span class="dash-badge badge-user" style="margin-top:8px;" id="udProfileRole">USER</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3.2 site -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">location_on</span> System &amp; Site</h2></div>
+            <div class="field-row">
+              <div class="field-group"><label class="dash-label">Site ID</label><input class="dash-input" id="udProfileSite" readonly></div>
+              <div class="field-group"><label class="dash-label">System Plan</label><input class="dash-input" id="udProfilePlan" readonly></div>
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label class="dash-label">Commissioned</label><input class="dash-input" value="March 2026" readonly></div>
+              <div class="field-group"><label class="dash-label">Warranty</label><input class="dash-input" value="25-year output bond" readonly></div>
+            </div>
+          </div>
+
+          <!-- 3.3 security -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">lock</span> Security</h2></div>
+            <form id="udPasswordForm">
+              <div class="field-row">
+                <div class="field-group"><label class="dash-label">New password</label><input class="dash-input" type="password" id="udNewPass" placeholder="Any value (demo)"></div>
+                <div class="field-group"><label class="dash-label">Confirm password</label><input class="dash-input" type="password" id="udNewPass2" placeholder="Any value (demo)"></div>
+              </div>
+              <button type="submit" class="dash-btn primary"><span class="material-symbols-outlined" style="font-size:18px;">save</span> Update Password</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: SUPPORT ======== -->
+        <section class="dash-panel" id="ud-support">
+          <div class="dash-hero"><div><h1>Support Center</h1><p>Tickets reach the admin team instantly and sync both ways in real time.</p></div></div>
+
+          <!-- 3.1 new ticket -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">edit_note</span> New Ticket</h2></div>
+            <form id="ticketForm">
+              <div class="field-group"><label class="dash-label">Subject</label><input class="dash-input" id="ticketSubject" required placeholder="e.g. Inverter showing amber light"></div>
+              <div class="field-group"><label class="dash-label">Message</label><textarea class="dash-textarea" id="ticketMessage" rows="4" required placeholder="Describe the issue — include error codes"></textarea></div>
+              <button type="submit" class="dash-btn primary"><span class="material-symbols-outlined" style="font-size:18px;">send</span> Submit Ticket</button>
+            </form>
+          </div>
+
+          <!-- 3.2 my tickets -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">confirmation_number</span> My Tickets</h2><span class="sub" id="udTicketSub">—</span></div>
+            <div id="udTicketList"></div>
+          </div>
+
+          <!-- 3.3 channels -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">contact_phone</span> Other Channels</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">mail</span><div><div class="l-title">Email support</div><div class="l-sub" id="udSupportEmail">support@stacklyenergy.com</div></div></div><span class="l-end">24h</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">call</span><div><div class="l-title">Priority line</div><div class="l-sub">+91 (800) 246-8800</div></div></div><span class="l-end accent">Commercial</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">chat</span><div><div class="l-title">Emergency outage</div><div class="l-sub">Automatic escalation</div></div></div><span class="l-end accent">Instant</span></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="dash-toast" id="dashToast"><span class="material-symbols-outlined">check_circle</span><span id="dashToastMsg"></span></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

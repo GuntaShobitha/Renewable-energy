@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Control Center — Stackly Energy</title>
+  <meta name="description" content="Admin control center: fleet telemetry, regions, user management, support queue and platform settings.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="dash-shell" id="adminDashboardRoot">
+
+    <!-- TOP BAR -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="dash-menu-toggle" id="dashMenuToggle" aria-label="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button>
+        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+        <div class="dash-topbar-title">Stackly Energy<small>Admin Control Center</small></div>
+      </div>
+      <div class="dash-topbar-actions">
+        <span class="dash-live-pill"><span class="live-dot"></span>Fleet Sync</span>
+        <div class="dash-user-chip">
+          <div><div class="u-name" id="dashUserName">—</div><div class="u-role" id="dashUserRole">—</div></div>
+          <div class="dash-avatar" id="dashAvatar">?</div>
+        </div>
+        <button type="button" class="dash-btn sm" data-logout style="background:transparent; border-color:var(--cream-30); color:var(--bg-primary);"><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
+      </div>
+    </header>
+
+    <div class="dash-frame">
+      <!-- SIDEBAR -->
+      <aside class="dash-sidebar" id="dashSidebar">
+        <div class="dash-sidebar-label">Operations</div>
+        <button class="dash-nav-item active" data-panel="ad-overview"><span class="material-symbols-outlined">dashboard</span> Fleet Overview</button>
+        <button class="dash-nav-item" data-panel="ad-regions"><span class="material-symbols-outlined">map</span> Regions</button>
+
+        <div class="dash-sidebar-label">Administration</div>
+        <button class="dash-nav-item" data-panel="ad-users"><span class="material-symbols-outlined">manage_accounts</span> Users</button>
+        <button class="dash-nav-item" data-panel="ad-tickets"><span class="material-symbols-outlined">confirmation_number</span> Support Queue<span class="nav-count" id="adTicketCount">0</span></button>
+
+        <div class="dash-sidebar-label">System</div>
+        <button class="dash-nav-item" data-panel="ad-settings"><span class="material-symbols-outlined">tune</span> Platform Settings</button>
+
+        <div class="dash-sidebar-foot">Signed in as administrator.<br><a href="user-dashboard.html" style="color:var(--color-accent); font-weight:700;">Open client portal →</a></div>
+      </aside>
+      <div class="dash-backdrop" id="dashBackdrop"></div>
+
+      <!-- CONTENT -->
+      <main class="dash-content">
+
+        <div class="maintenance-banner" id="maintenanceBanner">
+          <span class="material-symbols-outlined">engineering</span>
+          <span>Maintenance mode is ON — clients see a banner on their portal.</span>
+        </div>
+
+        <!-- ======== PANEL: FLEET OVERVIEW ======== -->
+        <section class="dash-panel active" id="ad-overview">
+          <div class="dash-hero">
+            <div>
+              <h1>Fleet Control Center</h1>
+              <p>Live operational picture of every installed site — synced across all sessions.</p>
+            </div>
+            <div class="dash-hero-actions">
+              <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a>
+              <button class="dash-btn primary" data-goto="ad-users"><span class="material-symbols-outlined" style="font-size:18px;">manage_accounts</span> Manage Users</button>
+            </div>
+          </div>
+
+          <!-- 3.1 live metrics -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">monitoring</span> Live Fleet Telemetry</h2><span class="sub">Updated <span id="adFleetUpdated">—</span></span></div>
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="m-label">Fleet Output Now</div><div class="m-value accent" id="adFleetPower">—</div><div class="m-delta"><span class="material-symbols-outlined">wb_sunny</span><span id="adFleetStatus">—</span></div></div>
+              <div class="dash-metric"><div class="m-label">Energy Today</div><div class="m-value" id="adEnergyToday">—</div><div class="m-delta"><span class="material-symbols-outlined">bolt</span>All sites</div></div>
+              <div class="dash-metric"><div class="m-label">Registered Users</div><div class="m-value" id="adUsers">—</div><div class="m-delta"><span class="material-symbols-outlined">group</span>All portals</div></div>
+              <div class="dash-metric"><div class="m-label">Sessions Online</div><div class="m-value" id="adSessions">—</div><div class="m-delta"><span class="material-symbols-outlined">wifi</span>Live now</div></div>
+              <div class="dash-metric"><div class="m-label">Open Tickets</div><div class="m-value" id="adOpenTickets">—</div><div class="m-delta"><span class="material-symbols-outlined">confirmation_number</span>Awaiting response</div></div>
+            </div>
+          </div>
+
+          <!-- 3.2 fleet chart -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">ssid_chart</span> Fleet Production vs Load</h2><span class="dash-badge badge-open"><span class="live-dot"></span>STREAMING</span></div>
+            <div class="chart-card">
+              <canvas id="adChart" height="240"></canvas>
+              <div class="chart-legend"><span><i></i>Production</span><span><i class="alt"></i>Consumption</span></div>
+            </div>
+          </div>
+
+          <!-- 3.3 site alerts -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">warning</span> Site Alerts</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">wind_power</span><div><div class="l-title">Willow Valley — turbine yaw service</div><div class="l-sub">Crew dispatched • ETA today</div></div></div><span class="l-end">In progress</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">update</span><div><div class="l-title">Harbor Logistics — inverter firmware</div><div class="l-sub">v4.2.1 rollout • 06:12</div></div></div><span class="l-end accent">Complete</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">bolt</span><div><div class="l-title">Grid export curtailment — South Belt</div><div class="l-sub">Utility request • 2h window</div></div></div><span class="l-end">Active</span></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: REGIONS ======== -->
+        <section class="dash-panel" id="ad-regions">
+          <div class="dash-hero"><div><h1>Regions</h1><p>Site distribution and output across service territories.</p></div></div>
+
+          <!-- 3.1 region table -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">map</span> Territory Status</h2><span class="sub">5 regions</span></div>
+            <div style="overflow-x:auto;">
+              <table class="dash-table">
+                <thead><tr><th>Region</th><th>Sites</th><th>Output</th><th>Status</th></tr></thead>
+                <tbody id="adRegionTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 3.2 capacity chart -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">bar_chart</span> Installed Capacity by Region (MW)</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">North District</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:78%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">48.2 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Harbor Commercial Zone</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:92%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">61.7 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Willow Valley Co-op</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:34%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">12.4 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">South Residential Belt</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:71%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">44.9 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">East Industrial Park</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:52%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">27.3 MW</span></div>
+          </div>
+
+          <!-- 3.3 field crews -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">engineering</span> Field Crews</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">groups</span><div><div class="l-title">Crew A — North District</div><div class="l-sub">2 sites queued</div></div></div><span class="l-end accent">En route</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">groups</span><div><div class="l-title">Crew B — Harbor Zone</div><div class="l-sub">Inverter swap • STK-7741</div></div></div><span class="l-end accent">On site</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">groups</span><div><div class="l-title">Crew C — Willow Valley</div><div class="l-sub">Turbine yaw service</div></div></div><span class="l-end">Scheduled</span></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: USERS ======== -->
+        <section class="dash-panel" id="ad-users">
+          <div class="dash-hero"><div><h1>User Management</h1><p>Roles, status and account details — changes sync to client tabs instantly.</p></div></div>
+
+          <!-- 3.1 users table -->
+          <div class="dash-section">
+            <div class="dash-section-head">
+              <h2><span class="material-symbols-outlined">group</span> All Accounts</h2>
+              <span class="sub" id="adUserCount">—</span>
+            </div>
+            <div class="field-group" style="max-width:320px;">
+              <input type="search" id="adUserSearch" class="dash-input" placeholder="Search name, email or plan…">
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="dash-table">
+                <thead><tr><th>User</th><th>Role</th><th>Plan</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
+                <tbody id="adUserTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 3.2 role guide -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">admin_panel_settings</span> Role Permissions</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="dash-badge badge-admin">Admin</span><div><div class="l-title">Full control center</div><div class="l-sub">Fleet, users, tickets, platform settings</div></div></div></div>
+            <div class="dash-list-row"><div class="l-main"><span class="dash-badge badge-user">User</span><div><div class="l-title">Client portal</div><div class="l-sub">Own telemetry, devices, billing, tickets</div></div></div></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">block</span><div><div class="l-title">Suspended</div><div class="l-sub">Login blocked — client sees a live notice</div></div></div></div>
+          </div>
+
+          <!-- 3.3 sync tip -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">sync</span> Real-Time Sync</h2></div>
+            <div class="modal-user-preview" style="margin-bottom:0;">Open the <a href="user-dashboard.html" style="color:var(--color-accent); font-weight:700;">client portal</a> in a second tab — suspensions, role changes and profile edits sync instantly in both directions.</div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: SUPPORT QUEUE ======== -->
+        <section class="dash-panel" id="ad-tickets">
+          <div class="dash-hero"><div><h1>Support Queue</h1><p>Client tickets arrive here in real time. Reply and resolve — clients see it instantly.</p></div></div>
+
+          <!-- 3.1 incoming tickets -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">confirmation_number</span> Incoming Tickets</h2><span class="sub" id="adTicketsSub">—</span></div>
+            <div id="adTicketList" style="max-height:520px; overflow:auto;"></div>
+          </div>
+
+          <!-- 3.2 SLA targets -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">timer</span> Response Targets</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">emergency</span><div><div class="l-title">Emergency outage</div><div class="l-sub">Automatic escalation</div></div></div><span class="l-end accent">15 min</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">priority_high</span><div><div class="l-title">High priority</div><div class="l-sub">Commercial accounts</div></div></div><span class="l-end accent">2 h</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">low_priority</span><div><div class="l-title">Standard</div><div class="l-sub">Residential accounts</div></div></div><span class="l-end">24 h</span></div>
+          </div>
+
+          <!-- 3.3 canned replies -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">quickreply</span> Canned Replies</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">content_copy</span><div><div class="l-title">Inverter restart</div><div class="l-sub">Standard reboot procedure</div></div></div><button class="dash-btn sm" type="button" data-copy="Inverter restart: please power-cycle the DC isolator, wait 60 seconds and re-engage. If the amber light persists, we will log a service visit.">Copy</button></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">content_copy</span><div><div class="l-title">Service visit booked</div><div class="l-sub">Crew dispatch confirmation</div></div></div><button class="dash-btn sm" type="button" data-copy="Service visit booked: a certified technician is scheduled within 48 hours. You'll receive a tracking link by email.">Copy</button></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">content_copy</span><div><div class="l-title">Grid outage notice</div><div class="l-sub">Utility-side interruption</div></div></div><button class="dash-btn sm" type="button" data-copy="Grid outage notice: your utility has reported an interruption. Your battery is covering essential loads — no action needed.">Copy</button></div>
+          </div>
+        </section>
+
+        <!-- ======== PANEL: PLATFORM SETTINGS ======== -->
+        <section class="dash-panel" id="ad-settings">
+          <div class="dash-hero"><div><h1>Platform Settings</h1><p>Changes apply live to every open client portal.</p></div></div>
+
+          <!-- 3.1 form -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">tune</span> Configuration</h2></div>
+            <form id="adminSettingsForm">
+              <div class="field-group">
+                <label class="dash-label" for="setSupportEmail">Support Email (shown to clients)</label>
+                <input class="dash-input" type="email" id="setSupportEmail" required placeholder="support@stacklyenergy.com">
+              </div>
+              <div class="field-group">
+                <label class="dash-label" for="setInterval">Telemetry Refresh Rate</label>
+                <select class="dash-select" id="setInterval">
+                  <option value="1000">1 second (high frequency)</option>
+                  <option value="2000">2 seconds (standard)</option>
+                  <option value="5000">5 seconds (low bandwidth)</option>
+                </select>
+              </div>
+              <div class="field-group" style="display:flex; align-items:center; gap:10px;">
+                <input type="checkbox" id="setMaintenance" style="width:18px; height:18px; accent-color:var(--color-accent); cursor:pointer;">
+                <label for="setMaintenance" style="font-size:0.86rem; font-weight:600; cursor:pointer;">Enable maintenance banner on client portals</label>
+              </div>
+              <button type="submit" class="dash-btn primary"><span class="material-symbols-outlined" style="font-size:18px;">save</span> Save Settings</button>
+            </form>
+          </div>
+
+          <!-- 3.2 sync tip -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">sync</span> Real-Time Sync</h2></div>
+            <div class="modal-user-preview" style="margin-bottom:0;">Open the <a href="user-dashboard.html" style="color:var(--color-accent); font-weight:700;">client portal</a> in a second browser tab. Tickets, suspensions, role changes and this maintenance banner sync instantly in both directions.</div>
+          </div>
+
+          <!-- 3.3 support contact -->
+          <div class="dash-section">
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">contact_mail</span> Support Contact</h2></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">mail</span><div><div class="l-title">Active support email</div><div class="l-sub">Shown on the client support page</div></div></div><span class="l-end accent" id="adSupportEmail">—</span></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- USER DETAIL MODAL -->
+  <div class="modal-backdrop" id="userModal">
+    <div class="modal-card">
+      <h3>User Details</h3>
+      <div class="modal-user-preview" id="modalUserPreview"></div>
+      <div class="field-group">
+        <label class="dash-label" for="modalRoleSelect">Account Role</label>
+        <select class="dash-select" id="modalRoleSelect">
+          <option value="user">User — client portal access</option>
+          <option value="admin">Admin — full control center</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="dash-btn" id="modalCloseBtn">Cancel</button>
+        <button type="button" class="dash-btn primary" id="modalSaveBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-toast" id="dashToast"><span class="material-symbols-outlined">check_circle</span><span id="dashToastMsg"></span></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
