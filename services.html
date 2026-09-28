@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Solutions — Stackly Energy</title>
+  <meta name="description" content="Explore Stackly Energy's engineered renewable systems: Solar Arrays, Wind Turbines, Battery Storage, and Commercial Microgrids.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- STICKY NAVBAR -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="logo">
+          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="login.html" class="nav-login">Login</a>
+          <a href="contact.html" class="btn btn-primary btn-sm">
+            <span>Get a Quote</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <a href="index.html" class="logo" style="margin-bottom: 36px;">
+        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+      </a>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link active">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-bottom" style="margin-top: 32px;">
+      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
+      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
+    </div>
+  </aside>
+
+  <!-- PAGE HERO -->
+  <section class="section page-hero section-cream">
+    <div class="container">
+      <div class="page-hero-inner fade-in-up">
+        <div class="eyebrow">Comprehensive Engineering</div>
+        <h1 class="display-1" style="margin-bottom: 24px;">Systems Engineered For Maximum Yield</h1>
+        <p class="lead-text">
+          Stackly delivers integrated renewable energy hardware and software. Every component is selected for durability, architectural coherence, and 25-year guaranteed power generation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SYSTEM SIZING CALCULATOR -->
+  <section class="section section-cream" style="padding-top: 40px;">
+    <div class="container">
+      <div class="calc-card fade-in-up">
+        <div class="calc-grid">
+          <div>
+            <div class="eyebrow eyebrow-dark">Interactive Solar Estimator</div>
+            <h2 class="heading-3 text-cream" style="margin-bottom: 16px;">Estimate Your System Size & Payback</h2>
+            <p class="body-muted" style="margin-bottom: 32px;">
+              Adjust your monthly electric expense to model the recommended kilowatt rating, annual utility savings, and avoided emissions.
+            </p>
+
+            <!-- Property Type Selector -->
+            <div class="calc-input-group">
+              <label class="calc-label">Property Classification</label>
+              <div class="calc-radio-group">
+                <button type="button" class="calc-radio-btn calc-prop-btn active" data-multiplier="1.0">Residential Home</button>
+                <button type="button" class="calc-radio-btn calc-prop-btn" data-multiplier="2.8">Commercial Facility</button>
+              </div>
+            </div>
+
+            <!-- Slider -->
+            <div class="calc-input-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <label class="calc-label" style="margin-bottom: 0;">Average Monthly Power Bill</label>
+                <span class="calc-val-badge" id="calcBillVal">$250</span>
+              </div>
+              <div class="calc-range-wrapper">
+                <input type="range" class="calc-slider" id="calcBillSlider" min="80" max="1500" step="10" value="250">
+              </div>
+            </div>
+          </div>
+
+          <!-- Calculated Output Box -->
+          <div class="calc-results-box">
+            <div class="calc-res-item">
+              <div class="res-num" id="calcResSystemSize">9.6 kW</div>
+              <div class="res-label">Recommended Array Capacity</div>
+            </div>
+            <div class="calc-res-item">
+              <div class="res-num" id="calcResAnnualSavings">$2,640</div>
+              <div class="res-label">Estimated First-Year Energy Savings</div>
+            </div>
+            <div class="calc-res-item">
+              <div class="res-num" id="calcResOffsetCo2">13.0 Tons</div>
+              <div class="res-label">Annual Greenhouse Gas Offset</div>
+            </div>
+            <a href="contact.html" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
+              <span>Lock In Custom Proposal</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE SERVICE BREAKDOWN -->
+  <section class="section section-cream">
+    <div class="container">
+      
+      <!-- 01 Solar Arrays Detailed -->
+      <div class="hero-grid" style="margin-bottom: clamp(60px, 8vw, 100px);">
+        <div class="hero-content fade-in-up">
+          <div class="eyebrow">Service 01 • Generation</div>
+          <h2 class="display-2" style="margin-bottom: 20px;">Photovoltaic Solar Arrays</h2>
+          <p class="lead-text" style="margin-bottom: 24px;">
+            We engineer premium rooftop, ground-mounted, and architectural solar carport systems. Using bifacial monocrystalline cells with up to 22.8% module efficiency, our arrays capture ambient reflected light from below while presenting a clean, low-profile silhouette.
+          </p>
+          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>All-black concealed mounting hardware with zero roof-membrane leaks</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Enphase IQ8 / SolarEdge micro-inverters with module-level MPPT</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>25-year linear degradation warranty retaining 87.4% output at year 25</span>
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline-dark">Request Solar Consultation</a>
+        </div>
+        <div class="hero-image-frame fade-in-up delay-1">
+          <img src="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80" alt="Photovoltaic solar installation">
+        </div>
+      </div>
+
+      <!-- 02 Battery Storage Detailed (Inverted Layout) -->
+      <div class="hero-grid" style="margin-bottom: clamp(60px, 8vw, 100px);">
+        <div class="hero-image-frame fade-in-up">
+          <img src="https://images.unsplash.com/photo-1558441719-8b489c63f7d1?auto=format&fit=crop&w=1200&q=80" alt="Lithium iron phosphate battery energy storage system">
+        </div>
+        <div class="hero-content fade-in-up delay-1">
+          <div class="eyebrow">Service 02 • Resilience</div>
+          <h2 class="display-2" style="margin-bottom: 20px;">Battery Energy Storage</h2>
+          <p class="lead-text" style="margin-bottom: 24px;">
+            Energy independence requires dependable storage. Our modular Lithium Iron Phosphate (LiFePO4) storage systems feature thermal runaway protection, zero cobalt chemistry, and sub-10 millisecond automatic islanding during utility grid collapse.
+          </p>
+          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Intelligent time-of-use arbitration to automatically dodge peak utility pricing</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Expandable from 10 kWh residential modules up to multi-megawatt commercial units</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>10,000+ cycle design life with 15-year comprehensive battery warranty</span>
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline-dark">Configure Battery Storage</a>
+        </div>
+      </div>
+
+      <!-- 03 Wind & Consulting Detailed -->
+      <div class="hero-grid">
+        <div class="hero-content fade-in-up">
+          <div class="eyebrow">Service 03 • Kinetic & Advisory</div>
+          <h2 class="display-2" style="margin-bottom: 20px;">Wind & Microgrid Advisory</h2>
+          <p class="lead-text" style="margin-bottom: 24px;">
+            For agricultural, commercial, and coastal parcels with sustained wind speeds, we engineer aerodynamic vertical and horizontal axis micro-turbines. Combined with our deep grid interconnection consulting, we turn raw land into high-yield clean power generators.
+          </p>
+          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Acoustically damped blade geometry operating below 45 dB</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Complete turnkey utility interconnection and tax equity structuring</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
+              <span>Autonomous storm feathering and active electronic yaw controls</span>
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">
+            <span>Speak With An Engineer</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="hero-image-frame fade-in-up delay-1">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80" alt="Wind energy installation">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section final-cta-section">
+    <div class="final-cta-bg">
+      <img src="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80" alt="Clean solar energy">
+    </div>
+    <div class="container">
+      <div class="final-cta-content fade-in-up">
+        <div class="eyebrow eyebrow-dark">Custom Engineering Proposal</div>
+        <h2 class="display-1 text-cream final-cta-title">Ready to power your future?</h2>
+        <p class="lead-text final-cta-desc">
+          Schedule an engineering review. Our NABCEP certified designers will analyze your site and prepare a detailed, zero-obligation proposal.
+        </p>
+        <a href="contact.html" class="btn btn-primary">
+          <span>Start Your Free Quote</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+            <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          </a>
+          <p class="footer-desc">
+            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+            <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html" class="footer-link">Solar Arrays</a></li>
+            <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
+            <li><a href="services.html" class="footer-link">Battery Storage</a></li>
+            <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><span>hello@stacklyenergy.com</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span><span>+91 (800) 246-8800</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span><span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Energy. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="login.html">Client Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

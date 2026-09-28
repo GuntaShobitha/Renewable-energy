@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer & Commercial Portal — Stackly Energy</title>
+  <meta name="description" content="Access live telemetry, micro-inverter generation data, and billing history for your Stackly renewable energy system.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- STICKY NAVBAR -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="logo">
+          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="login.html" class="nav-login" style="background-color: var(--color-dark); color: var(--bg-primary);">Login</a>
+          <a href="contact.html" class="btn btn-primary btn-sm">
+            <span>Get a Quote</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <a href="index.html" class="logo" style="margin-bottom: 36px;">
+        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+      </a>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-bottom" style="margin-top: 32px;">
+      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
+      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
+    </div>
+  </aside>
+
+  <!-- AUTHENTICATION HERO & PORTAL -->
+  <main class="auth-wrapper section-cream">
+    <div class="container" style="max-width: 1100px;">
+      <div class="solutions-grid" style="align-items: center; margin-top: 0;">
+        
+        <!-- Left: Telemetry Dashboard Teaser -->
+        <div class="fade-in-up">
+          <div class="eyebrow">Cloud Telemetry & Management</div>
+          <h1 class="display-2" style="margin-bottom: 20px;">Real-Time Clean Energy Portal</h1>
+          <p class="lead-text" style="margin-bottom: 32px;">
+            Access module-level performance diagnostics, battery state-of-charge, grid feed-in tariffs, and billing invoices anytime.
+          </p>
+
+          <!-- Mock Live Status Box -->
+          <div style="background-color: var(--color-dark); color: var(--bg-primary); border-radius: var(--radius-xl); padding: 28px; border: 1px solid var(--cream-15); box-shadow: 0 24px 48px rgba(11, 43, 28, 0.15);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--cream-10); padding-bottom: 14px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="live-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); display: inline-block;"></span>
+                <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent);">Live System Status</span>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--cream-60);">Site ID: #STK-8492</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div style="background-color: rgba(245, 242, 232, 0.05); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-08);">
+                <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--color-accent);">7.8 kW</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream-80); margin-top: 4px;">Instant Generation</div>
+              </div>
+              <div style="background-color: rgba(245, 242, 232, 0.05); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-08);">
+                <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--bg-primary);">94%</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream-80); margin-top: 4px;">Battery Storage LFP</div>
+              </div>
+              <div style="background-color: rgba(245, 242, 232, 0.05); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-08);">
+                <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--color-accent);">+2.4 kW</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream-80); margin-top: 4px;">Grid Export Surplus</div>
+              </div>
+              <div style="background-color: rgba(245, 242, 232, 0.05); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-08);">
+                <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--bg-primary);">44.8 kg</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream-80); margin-top: 4px;">CO₂ Avoided Today</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Login Form Card -->
+        <div class="auth-card fade-in-up delay-1">
+          <div class="auth-tabs">
+            <button type="button" class="auth-tab-btn active" data-auth-type="residential">Residential Portal</button>
+            <button type="button" class="auth-tab-btn" data-auth-type="commercial">Commercial Telemetry</button>
+          </div>
+
+          <form data-ajax-form data-success-msg="Authenticating credentials... Redirecting to telemetry dashboard.">
+            <div class="form-group">
+              <label class="form-label" id="authRoleLabel">Residential System Account / Email</label>
+              <input type="text" required placeholder="client@stacklyenergy.com" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label class="form-label" style="margin-bottom: 0;">Password</label>
+                <a href="#" style="font-size: 0.75rem; color: var(--color-accent); font-weight: 700;">Forgot Password?</a>
+              </div>
+              <input type="password" required placeholder="••••••••••••" class="form-input">
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; cursor: pointer; color: var(--dark-80);">
+                <input type="checkbox" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
+                <span>Stay signed in for 30 days</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">
+              <span>Sign In To Portal</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+
+            <div style="text-align: center; font-size: 0.82rem; color: var(--dark-65);">
+              New system installation? <a href="contact.html" style="color: var(--color-accent); font-weight: 700;">Activate System Telemetry</a>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+            <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          </a>
+          <p class="footer-desc">
+            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+            <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html" class="footer-link">Solar Arrays</a></li>
+            <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
+            <li><a href="services.html" class="footer-link">Battery Storage</a></li>
+            <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><span>hello@stacklyenergy.com</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span><span>+91 (800) 246-8800</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span><span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Energy. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="login.html">Client Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
