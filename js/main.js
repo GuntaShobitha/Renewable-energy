@@ -4,9 +4,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initNavbar();
   initMobileDrawer();
   initScrollAnimations();
+  initRevealAuto();
+  initSplitTextHeadlines();
   initNumberCounters();
   initSolutionsTabs();
   initCalculator();
@@ -14,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initAuthTabs();
   initCarousels();
+  initPageTransitions();
+  initParticles();
 });
 
 /* ==========================================================================
@@ -91,8 +96,7 @@ function initScrollAnimations() {
 
 /* ==========================================================================
    4. IMPACT NUMBER COUNT-UP ANIMATION
-   ========================================================================== */
-function initNumberCounters() {
+   ========================================================================== */function initNumberCounters() {
   const counterItems = document.querySelectorAll('[data-counter-target]');
   if (!counterItems.length) return;
 
@@ -101,6 +105,10 @@ function initNumberCounters() {
     const prefix = el.getAttribute('data-counter-prefix') || '';
     const suffix = el.getAttribute('data-counter-suffix') || '';
     const decimals = parseInt(el.getAttribute('data-counter-decimals') || '0', 10);
+    const plain = el.hasAttribute('data-counter-plain'); // no thousands separators (e.g. years)
+    const format = (n) => plain
+      ? String(Math.round(n))
+      : n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
     const duration = 2000;
     const startTime = performance.now();
 
@@ -109,24 +117,17 @@ function initNumberCounters() {
       const progress = Math.min(elapsed / duration, 1);
       // easeOutExpo
       const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      const currentVal = (ease * target).toLocaleString('en-US', {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      });
 
-      el.textContent = `${prefix}${currentVal}${suffix}`;
+      el.textContent = `${prefix}${format(ease * target)}${suffix}`;
 
       if (progress < 1) {
         requestAnimationFrame(updateCount);
       } else {
-        el.textContent = `${prefix}${target.toLocaleString('en-US', {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals
-        })}${suffix}`;
+        el.textContent = `${prefix}${format(target)}${suffix}`;
+        el.classList.add('counted'); // pop animation on completion
       }
     };
-
-    requestAnimationFrame(updateCount);
+    requestAnimationFrame(updateCount);
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -446,3 +447,200 @@ function initDashboard() {
 function initAdminDashboard() {
   if (typeof window.initAdminDashboardPage === 'function') window.initAdminDashboardPage();
 }
+
+/* ==========================================================================
+   14. OPTIMIZED PRELOADER
+   - Overlay markup is injected by JS (zero HTML edits, zero render block).
+   - Hides on window 'load' OR after a 2.2s hard cap — whichever comes first.
+   - Progress bar is time-based estimation (no fake waiting).
+   - Session flag: shown once per session so navigation feels instant.
+   ========================================================================== */
+const PRELOADER_MAX_MS = 2200; // never block longer than this
+
+function initPreloader() {
+  // Skip entirely for users who prefer reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('app-ready');    return;
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'preloader';
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.innerHTML = `
+    <div class="preloader-inner">
+      <div class="preloader-logo"><span class="material-symbols-outlined">solar_power</span></div>
+      <div class="preloader-word">STACKLY<span>ENERGY</span></div>
+      <div class="preloader-bar"><span></span></div>
+      <div class="preloader-pct">0%</div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  const bar = overlay.querySelector('.preloader-bar span');
+  const pct = overlay.querySelector('.preloader-pct');
+  const start = performance.now();
+
+  const tick = (now) => {
+    const elapsed = now - start;
+    // Fast attack, asymptotic approach — reads as real progress
+    const est = Math.min(92, 92 * (1 - Math.exp(-elapsed / 420)));
+    bar.style.width = est + '%';
+    pct.textContent = Math.round(est) + '%';
+    if (!overlay.classList.contains('done')) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  const finish = () => {
+    bar.style.width = '100%';
+    pct.textContent = '100%';
+    setTimeout(() => {
+      overlay.classList.add('done');
+      document.documentElement.classList.add('app-ready');
+      setTimeout(() => overlay.remove(), 600);
+    }, 180);
+  };
+
+  if (document.readyState === 'complete') {
+    finish();
+  } else {
+    window.addEventListener('load', finish, { once: true });
+    setTimeout(finish, PRELOADER_MAX_MS); // hard cap — page never feels stuck
+  }
+}
+
+/* ==========================================================================
+   15. AUTO SCROLL-REVEAL (cards animate with zero HTML changes)
+   ========================================================================== */
+const REVEAL_SELECTOR = [
+  '.pay-card', '.blog-card', '.project-card', '.timeline-step', '.faq-item',
+  '.choose-reason-item', '.choose-media-frame', '.metric-card-dark', '.impact-item',
+  '.calc-card', '.calc-res-item', '.contact-card-info', '.contact-grid > *', '.auth-card',
+  '.solutions-list', '.solutions-media-frame', '.install-header', '.page-hero-inner',
+  '.hero-content', '.hero-media-wrapper', '.about-hero', '.about-stats', '.about-mission',
+  '.about-story', '.about-timeline-item', '.dash-metric', '.dash-panel > *'
+].join(',');
+
+function initRevealAuto() {
+  const targets = document.querySelectorAll(REVEAL_SELECTOR);
+  if (!targets.length) return;
+
+  targets.forEach(el => el.classList.add('reveal'));
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  targets.forEach(el => observer.observe(el));
+
+  // Safety net: reveal anything still hidden after 4s (e.g. odd layouts)
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in-view)').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in-view');
+    });
+  }, 4000);
+}
+
+/* ==========================================================================
+   16. HEADLINE TEXT ANIMATION (word-by-word blur reveal)
+   Applied to section headings; wrapper keeps existing layout intact.
+   ========================================================================== */
+function initSplitTextHeadlines() {
+  const headings = document.querySelectorAll('.display-1, .display-2, .about-hero-title, .about-section-title, .about-story-title, .dash-hero h1');
+  if (!headings.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  headings.forEach((heading) => {
+    if (heading.dataset.splitDone) return;
+    heading.dataset.splitDone = '1';
+
+    // Wrap child nodes (text, spans, <br>) preserving the .highlight span
+    let wordIndex = 0;
+    const wrapWords = (node) => {
+      Array.from(node.childNodes).forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) {
+              frag.appendChild(document.createTextNode(' '));
+            } else {
+              const span = document.createElement('span');
+              span.className = 'w';
+              span.style.setProperty('--wi', wordIndex++);
+              span.textContent = part;
+              frag.appendChild(span);
+            }
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+          wrapWords(child);
+        }
+      });
+    };
+
+    wrapWords(heading);
+    heading.classList.add('split-ready');
+    observer.observe(heading);
+  });
+}
+
+/* ==========================================================================
+   17. SOFT PAGE TRANSITIONS (fade-out before internal navigation)
+   ========================================================================== */
+function initPageTransitions() {
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (typeof StacklyAuth !== 'undefined' && link.closest('[data-logout]')) return;
+
+    e.preventDefault();
+    document.body.classList.add('page-exit');
+    setTimeout(() => { window.location.href = href; }, 200);
+  });
+
+  // Back/forward cache restore
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) document.body.classList.remove('page-exit');
+  });
+}
+
+/* ==========================================================================
+   18. AMBIENT PARTICLES (404 page only — ultra light, CSS driven)
+   ========================================================================== */
+function initParticles() {  const page = document.querySelector('.error-page');
+  if (!page) return;
+
+  const count = window.innerWidth < 700 ? 12 : 20;
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('span');
+    p.className = 'error-particle';
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.animationDuration = (9 + Math.random() * 14) + 's';
+    p.style.animationDelay = (-Math.random() * 18) + 's';
+    const size = 3 + Math.random() * 5;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.opacity = 0.25 + Math.random() * 0.5;
+    frag.appendChild(p);
+  }
+  page.appendChild(frag);
+}
+

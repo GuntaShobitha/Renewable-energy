@@ -5,19 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us — Stackly Energy</title>
   <meta name="description" content="Learn about Stackly Energy's heritage, our in-house engineering team, and our commitment to architectural renewable power.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
-<body>
+<body class="page-home">
 
   <!-- STICKY NAVBAR -->
-  <header class="site-header">
+ <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
+        <!-- Left: Logo -->
         <a href="index.html" class="logo">
-          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          <div class="logo-mark">
+            <span class="material-symbols-outlined">solar_power</span>
+          </div>
+          <div class="logo-text">
+            <span>STACKLY</span>
+            <span>ENERGY</span>
+          </div>
         </a>
 
+        <!-- Center: Links -->
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="services.html" class="nav-link">Services</a></li>
@@ -26,6 +38,7 @@
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
 
+        <!-- Right: Actions -->
         <div class="nav-actions">
           <a href="login.html" class="nav-login">Login</a>
           <a href="contact.html" class="btn btn-primary btn-sm">
@@ -34,8 +47,11 @@
           </a>
         </div>
 
+        <!-- Mobile Hamburger Toggle -->
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
     </div>
@@ -64,53 +80,150 @@
   </aside>
 
   <!-- PAGE HERO -->
-  <section class="section page-hero section-cream">
-    <div class="container">
-      <div class="page-hero-inner fade-in-up">
-        <div class="eyebrow">Our Philosophy</div>
-        <h1 class="display-1" style="margin-bottom: 24px;">Architects of a Zero-Carbon Grid</h1>
-        <p class="lead-text">
-          Stackly was founded on a simple premise: renewable energy should be engineered with architectural reverence and built to operate autonomously for decades, not sold as a generic commodity.
+
+
+
+
+<section class="about-section">
+  <div class="about-container">
+
+    <!-- HERO -->
+    <div class="about-hero">
+      <div class="about-hero-content">
+        <div class="about-eyebrow">ABOUT STACKLY ENERGY</div>
+
+        <h1 class="about-hero-title">
+          BUILT BY<br>
+          ENGINEERS WHO<br>
+          WANTED THEIR<br>
+          OWN ROOFS<br>
+          SOLAR-FIRST
+        </h1>
+
+        <p class="about-hero-description">
+          We started in a two-person workshop in 2014 fixing other companies'
+          bad installs. A decade later we design and build our own, end to end,
+          across 19 regional offices and 340 people.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- PHILOSOPHY / ASYMMETRICAL STORY SECTION -->
-  <section class="section section-cream">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content fade-in-up">
-          <div class="eyebrow">The Origin</div>
-          <h2 class="display-2" style="margin-bottom: 24px;">Replacing Sales Tactics With Engineering Rigor</h2>
-          <p class="lead-text" style="margin-bottom: 20px;">
-            The legacy clean-energy market was plagued by third-party subcontracting, confusing finance contracts, and eyesore equipment mounted carelessly across roofs.
-          </p>
-          <p class="body-muted" style="margin-bottom: 28px; line-height: 1.7;">
-            We created Stackly Energy to set an uncompromising benchmark. By keeping 100% of our design, structural engineering, electrical procurement, and installation teams in-house, we eliminate the friction and finger-pointing typical of traditional contractors. Every project is an enduring architectural fixture engineered for multi-decade reliability.
-          </p>
-          <div style="display: flex; gap: 32px; border-top: 1px solid var(--dark-12); padding-top: 24px;">
-            <div>
-              <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--color-accent);">180 MW</div>
-              <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-dark);">Total Generated</div>
-            </div>
-            <div>
-              <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--color-accent);">100%</div>
-              <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-dark);">In-House Crews</div>
-            </div>
-            <div>
-              <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--color-accent);">25 YR</div>
-              <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-dark);">Output Bonded</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-image-frame fade-in-up delay-1">
-          <img src="img/choose-engineer.webp" width="800" height="600" alt="Stackly solar technician on site">
-        </div>
+      <div class="about-hero-image-wrap">
+        <img
+          class="about-hero-image"
+          src="./img/aboutpage-1.webp"
+          alt="Engineers working in a workshop"
+        >
       </div>
     </div>
-  </section>
+
+
+    <!-- STATS -->
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-number about-stat-number-green" data-counter-target="2014" data-counter-plain>2014</div>
+        <div class="about-stat-label">FOUNDED</div>
+      </div>
+
+      <div class="about-stat">
+        <div class="about-stat-number about-stat-number-yellow" data-counter-target="340" data-counter-plain>340</div>
+        <div class="about-stat-label">PEOPLE ON THE TEAM</div>
+      </div>
+
+      <div class="about-stat">
+        <div class="about-stat-number about-stat-number-blue" data-counter-target="19" data-counter-plain>19</div>
+        <div class="about-stat-label">REGIONAL OFFICES</div>
+      </div>
+    </div>
+
+
+    <!-- MISSION -->
+    <div class="about-mission">
+      <div class="about-mission-content">
+        <div class="about-eyebrow about-eyebrow-dark">OUR MISSION</div>
+
+        <h2 class="about-section-title">
+          MAKE CLEAN POWER THE<br>
+          BORING DEFAULT
+        </h2>
+
+        <p class="about-mission-intro">
+          We believe renewable energy should be as unremarkable as a light
+          switch: installed properly, priced fairly and forgotten about until
+          you check how much you saved.
+        </p>
+
+        <p class="about-mission-text">
+          That means no inflated system sizes, no pressure tactics and no
+          disappearing after the last panel goes up. Our success is measured
+          in years of trouble-free output, not in signed contracts.
+        </p>
+
+        <ul class="about-check-list">
+          <li>Right-sized systems, never upsold</li>
+          <li>One accountable team from survey to service</li>
+          <li>Public production data, every quarter</li>
+        </ul>
+      </div>
+
+      <div class="about-mission-image-wrap">
+        <img
+          class="about-mission-image"
+          src="./img/aboutpage-2.webp"
+          alt="Team collaborating around a table"
+        >
+      </div>
+    </div>
+
+
+    <!-- STORY -->
+    <div class="about-story">
+      <div class="about-story-heading-row">
+        <h2 class="about-story-title">OUR STORY</h2>
+
+        <p class="about-story-intro">
+          A short history of getting stubborn about doing installs properly.
+        </p>
+      </div>
+
+      <div class="about-timeline">
+
+        <div class="about-timeline-item">
+          <div class="about-timeline-year">2014</div>
+          <p>
+            Two electricians start fixing botched solar jobs around the region.
+          </p>
+        </div>
+
+        <div class="about-timeline-item">
+          <div class="about-timeline-year">2018</div>
+          <p>
+            First commercial contract: a 400 kW warehouse array.
+          </p>
+        </div>
+
+        <div class="about-timeline-item">
+          <div class="about-timeline-year">2021</div>
+          <p>
+            Battery storage and wind added to the service line.
+          </p>
+        </div>
+
+        <div class="about-timeline-item">
+          <div class="about-timeline-year">2026</div>
+          <p>
+            180 MW installed across 19 regional offices.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
 
   <!-- CORE VALUES / PILLARS -->
   <section class="section section-cream" style="border-top: 1px solid var(--dark-08); border-bottom: 1px solid var(--dark-08);">
@@ -273,6 +386,7 @@
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
           <a href="login.html">Client Portal</a>
+          <a href="404.html">404 Page</a>
         </div>
       </div>
     </div>
