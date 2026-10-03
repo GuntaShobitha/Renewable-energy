@@ -127,7 +127,8 @@ function initScrollAnimations() {
         el.classList.add('counted'); // pop animation on completion
       }
     };
-    requestAnimationFrame(updateCount);
+
+    requestAnimationFrame(updateCount);
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -474,7 +475,8 @@ function initPreloader() {
       <div class="preloader-pct">0%</div>
     </div>`;
   document.body.appendChild(overlay);
-
+
+
   const bar = overlay.querySelector('.preloader-bar span');
   const pct = overlay.querySelector('.preloader-pct');
   const start = performance.now();
@@ -644,3 +646,394 @@ function initParticles() {  const page = document.querySelector('.error-page');
   page.appendChild(frag);
 }
 
+
+// ================ service js ==============
+
+(function () {
+  'use strict';
+
+  /* ---------- Mobile navigation ---------- */
+  var burger = document.getElementById('servicesBurger');
+  var nav = document.getElementById('servicesNav');
+
+  function closeNav() {
+    nav.classList.remove('services-open');
+    burger.classList.remove('services-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('services-open');
+      burger.classList.toggle('services-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !burger.contains(e.target)) closeNav();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeNav();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900) closeNav();
+    });
+  }
+
+  /* ---------- FAQ accordion (one open at a time) ---------- */
+  var items = document.querySelectorAll('.services-faq-item');
+
+  items.forEach(function (item) {
+    var btn = item.querySelector('.services-faq-q');
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.contains('services-open');
+
+      items.forEach(function (other) {
+        other.classList.remove('services-open');
+        other.querySelector('.services-faq-q').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('services-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+
+
+
+
+
+
+// ================== blog js ===============
+
+
+(function () {
+  'use strict';
+
+  /* ---------- Mobile navigation ---------- */
+  var burger = document.getElementById('blogBurger');
+  var nav = document.getElementById('blogNav');
+
+  function closeNav() {
+    nav.classList.remove('blog-open');
+    burger.classList.remove('blog-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('blog-open');
+      burger.classList.toggle('blog-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !burger.contains(e.target)) closeNav();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeNav();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900) closeNav();
+    });
+  }
+
+  /* ---------- Topic chips (toggle selection) ---------- */
+  var chips = document.querySelectorAll('.blog-chip');
+  chips.forEach(function (chip) {
+    chip.setAttribute('aria-pressed', 'false');
+    chip.addEventListener('click', function () {
+      var wasSelected = chip.classList.contains('blog-selected');
+      chips.forEach(function (c) {
+        c.classList.remove('blog-selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      if (!wasSelected) {
+        chip.classList.add('blog-selected');
+        chip.setAttribute('aria-pressed', 'true');
+      }
+    });
+  });
+
+  /* ---------- Newsletter form ---------- */
+  var form = document.getElementById('blogForm');
+  var email = document.getElementById('blogEmail');
+  var msg = document.getElementById('blogMsg');
+
+  if (form && email && msg) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var value = email.value.trim();
+      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+
+      if (!valid) {
+        msg.textContent = 'Enter a valid email address, like you@example.com.';
+        msg.style.color = '#8a1f0f';
+        email.focus();
+        return;
+      }
+
+      msg.textContent = 'You are subscribed. Look out for the next issue.';
+      msg.style.color = '#0f2418';
+      form.reset();
+    });
+
+    email.addEventListener('input', function () { msg.textContent = ''; });
+  }
+})();
+
+
+
+
+// ============= contact js ================
+
+(function () {
+  // Mobile menu
+  var burger = document.querySelector('.contact-burger');
+  var nav = document.getElementById('contactNav');
+  burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('contact-nav-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+
+  // FAQ accordion (one open at a time)
+  var items = document.querySelectorAll('.contact-faq-item');
+  items.forEach(function (item) {
+    item.querySelector('.contact-faq-q').addEventListener('click', function () {
+      var wasOpen = item.classList.contains('contact-open');
+      items.forEach(function (i) {
+        i.classList.remove('contact-open');
+        i.querySelector('.contact-faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        item.classList.add('contact-open');
+        item.querySelector('.contact-faq-q').setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Form validation + confirmation
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('contactStatus');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.elements.email.value.trim();
+    if (!form.elements.name.value.trim() || !/^\S+@\S+\.\S+$/.test(email) || !form.elements.message.value.trim()) {
+      status.style.color = '#c0392b';
+      status.textContent = 'Please enter your name, a valid email and a message.';
+      return;
+    }
+    status.style.color = '';
+    status.textContent = 'Thanks! We will reply within one business day.';
+    form.reset();
+  });
+})();
+
+
+
+
+
+  const blogData = {
+
+    solar: [
+      {
+        meta: "Solar · 6 min read",
+        title: "How to size a solar system for your home",
+        description:
+          "Understand how roof space, household consumption, and seasonal production affect the right system size."
+      },
+      {
+        meta: "Solar · 5 min read",
+        title: "What actually affects solar production?",
+        description:
+          "A practical look at orientation, shading, temperature, module efficiency, and system losses."
+      },
+      {
+        meta: "Solar · 4 min read",
+        title: "What happens after your solar system is installed?",
+        description:
+          "From inspection and utility approval to monitoring your first kilowatt-hour."
+      }
+    ],
+
+    wind: [
+      {
+        meta: "Wind · 7 min read",
+        title: "Is small-scale wind right for your property?",
+        description:
+          "The site conditions, wind resource, tower height, and permitting factors that determine feasibility."
+      },
+      {
+        meta: "Wind · 5 min read",
+        title: "Understanding residential wind systems",
+        description:
+          "A practical introduction to turbines, energy production, maintenance, and system sizing."
+      },
+      {
+        meta: "Wind · 6 min read",
+        title: "Solar vs. wind: understanding the difference",
+        description:
+          "How generation profiles, site conditions, and infrastructure requirements differ between technologies."
+      }
+    ],
+
+    storage: [
+      {
+        meta: "Storage · 5 min read",
+        title: "How home batteries actually work",
+        description:
+          "Learn how batteries store excess generation and deliver energy when your solar system isn't producing."
+      },
+      {
+        meta: "Storage · 6 min read",
+        title: "How much battery storage does a home need?",
+        description:
+          "The key factors behind battery sizing, including household loads, backup requirements, and solar production."
+      },
+      {
+        meta: "Storage · 4 min read",
+        title: "Battery backup during a grid outage",
+        description:
+          "What happens when the grid goes down and how an appropriately designed storage system responds."
+      }
+    ],
+
+    policy: [
+      {
+        meta: "Policy & incentives · 6 min read",
+        title: "Understanding solar incentives",
+        description:
+          "A straightforward guide to the incentives, credits, and local programs that may affect project economics."
+      },
+      {
+        meta: "Policy & incentives · 5 min read",
+        title: "How utility rules affect solar projects",
+        description:
+          "Why interconnection requirements, utility policies, and local regulations matter before installation."
+      },
+      {
+        meta: "Policy & incentives · 7 min read",
+        title: "What to check before claiming an incentive",
+        description:
+          "Important eligibility, documentation, and installation considerations to review before making assumptions."
+      }
+    ],
+
+    maintenance: [
+      {
+        meta: "Maintenance · 4 min read",
+        title: "How much maintenance does solar require?",
+        description:
+          "The routine inspections, monitoring, and occasional service that help keep an energy system performing."
+      },
+      {
+        meta: "Maintenance · 5 min read",
+        title: "Five signs your solar system needs attention",
+        description:
+          "Production changes, equipment alerts, physical issues, and other signals worth investigating."
+      },
+      {
+        meta: "Maintenance · 6 min read",
+        title: "Keeping your battery system healthy",
+        description:
+          "Best practices for monitoring storage performance and identifying potential issues early."
+      }
+    ],
+
+    field: [
+      {
+        meta: "Field notes · 5 min read",
+        title: "Inside a typical solar installation",
+        description:
+          "A behind-the-scenes look at what our field teams evaluate, install, test, and commission."
+      },
+      {
+        meta: "Field notes · 6 min read",
+        title: "The details that make an installation last",
+        description:
+          "Why cable routing, equipment placement, weather protection, and commissioning matter."
+      },
+      {
+        meta: "Field notes · 4 min read",
+        title: "From site survey to system activation",
+        description:
+          "A project timeline showing how engineering, permitting, installation, and utility approval come together."
+      }
+    ]
+
+  };
+
+
+  const chips = document.querySelectorAll(".blog-chip");
+  const results = document.getElementById("blogTopicResults");
+
+
+  function renderTopic(topic) {
+
+    const articles = blogData[topic];
+
+    results.innerHTML = articles.map((article, index) => {
+
+      const number = String(index + 1).padStart(2, "0");
+
+      return `
+        <article class="blog-notification is-entering">
+
+          <div class="blog-notification-number">
+            ${number}
+          </div>
+
+          <div class="blog-notification-content">
+
+            <span>${article.meta}</span>
+
+            <h3>${article.title}</h3>
+
+            <p>${article.description}</p>
+
+          </div>
+
+          <a
+            href="#"
+            class="blog-notification-link"
+            aria-label="Read ${article.title}"
+          >
+            →
+          </a>
+
+        </article>
+      `;
+
+    }).join("");
+
+  }
+
+
+  chips.forEach(chip => {
+
+    chip.addEventListener("click", () => {
+
+      // Remove active state
+      chips.forEach(item => {
+        item.classList.remove("active");
+      });
+
+      // Activate clicked topic
+      chip.classList.add("active");
+
+      // Render related articles
+      renderTopic(chip.dataset.topic);
+
+    });
+
+  });
+
+
+  // Load first topic
+  renderTopic("solar");

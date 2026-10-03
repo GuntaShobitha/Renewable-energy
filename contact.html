@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact & Free Quote — Stackly Energy</title>
-  <meta name="description" content="Request a personalized renewable energy proposal or consult with our licensed solar and storage engineers.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | Stackly</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
 <body>
+<div class="contact-page">
 
-  <!-- STICKY NAVBAR -->
-  <header class="site-header">
+    <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
+        <!-- Left: Logo -->
         <a href="index.html" class="logo">
-          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          <div class="logo-mark">
+            <span class="material-symbols-outlined">solar_power</span>
+          </div>
+          <div class="logo-text">
+            <span>STACKLY</span>
+            <span>ENERGY</span>
+          </div>
         </a>
 
+        <!-- Center: Links -->
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="services.html" class="nav-link">Services</a></li>
@@ -31,6 +38,7 @@
           <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
 
+        <!-- Right: Actions -->
         <div class="nav-actions">
           <a href="login.html" class="nav-login">Login</a>
           <a href="contact.html" class="btn btn-primary btn-sm">
@@ -39,304 +47,338 @@
           </a>
         </div>
 
+        <!-- Mobile Hamburger Toggle -->
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer-backdrop"></div>
-  <aside class="mobile-drawer" aria-label="Mobile Navigation">
-    <div class="mobile-nav-top">
-      <a href="index.html" class="logo" style="margin-bottom: 36px;">
-        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
-      </a>
-      <ul class="mobile-nav-links">
-        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="services.html" class="mobile-nav-link">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="blog.html" class="mobile-nav-link">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-link active">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
+  <section class="contact-hero">
+    <div class="contact-hero-text">
+      <span class="contact-eyebrow">Contact</span>
+      <h1 class="contact-title">Talk to a real installer, not a call center</h1>
+      <p>Questions about pricing, your roof, or an existing system — reach us directly and we will answer within one business day. Every message is read by someone who has actually been on a roof.</p>
+    </div>
+    <div class="contact-hero-img"><img src="./img/hero.png" alt="Support agent at work"></div>
+  </section>
+
+<section class="contact-channels">
+
+  <!-- Email -->
+  <article class="contact-channel contact-yellow">
+    <div class="contact-icon-wrap">
+      <span class="material-symbols-outlined contact-icon">
+        mail
+      </span>
+    </div>
+
+    <div class="contact-channel-content">
+      <span class="contact-label">DIRECT CONTACT</span>
+      <h3>Email</h3>
+      <p>hello@stacklyenergy.com</p>
+
+      <div class="contact-meta">
+        <span class="material-symbols-outlined">schedule</span>
+        <span>Replies within 1 business day</span>
+      </div>
+    </div>
+
+    <span class="contact-arrow material-symbols-outlined">
+      arrow_outward
+    </span>
+  </article>
+
+
+  <!-- Phone -->
+  <article class="contact-channel contact-blue">
+    <div class="contact-icon-wrap">
+      <span class="material-symbols-outlined contact-icon">
+        call
+      </span>
+    </div>
+
+    <div class="contact-channel-content">
+      <span class="contact-label">TALK TO OUR TEAM</span>
+      <h3>Phone</h3>
+      <p>+1 (800) 555-0142</p>
+
+      <div class="contact-meta">
+        <span class="material-symbols-outlined">schedule</span>
+        <span>Mon–Sat · 8am–7pm</span>
+      </div>
+    </div>
+
+    <span class="contact-arrow material-symbols-outlined">
+      arrow_outward
+    </span>
+  </article>
+
+
+  <!-- Live Chat -->
+  <article class="contact-channel contact-blue">
+    <div class="contact-icon-wrap">
+      <span class="material-symbols-outlined contact-icon">
+        forum
+      </span>
+    </div>
+
+    <div class="contact-channel-content">
+      <span class="contact-label">REAL-TIME SUPPORT</span>
+      <h3>Live chat</h3>
+      <p>Chat with a system designer, no appointment needed.</p>
+
+      <div class="contact-meta">
+        <span class="material-symbols-outlined">bolt</span>
+        <span>Typically responds in minutes</span>
+      </div>
+    </div>
+
+    <span class="contact-arrow material-symbols-outlined">
+      arrow_outward
+    </span>
+  </article>
+
+</section>
+
+  <section class="contact-message">
+    <div class="contact-form-wrap">
+      <h2 class="contact-heading">Send us a message</h2>
+      <p class="contact-lead">Tell us about your property and what you are hoping to power. The more detail you share — roof type, monthly bill, goals — the more useful our first reply will be.</p>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="contact-row">
+          <label class="contact-field"><span>Full name</span><input type="text" name="name" required></label>
+          <label class="contact-field"><span>Email</span><input type="email" name="email" required></label>
+        </div>
+        <label class="contact-field"><span>Property type</span>
+          <select name="type"><option>Residential</option><option>Commercial</option><option>Industrial</option></select>
+        </label>
+        <label class="contact-field"><span>Message</span><textarea name="message" rows="3" required></textarea></label>
+        <button type="submit" class="contact-btn contact-btn-green">Send message</button>
+        <p class="contact-form-status" id="contactStatus" role="status"></p>
+      </form>
+    </div>
+    <div class="contact-side">
+      <img src="./img/door.png" alt="Installer at a door">
+      <div class="contact-response">
+        <span>Average response time</span>
+        <strong>Under 24 hrs</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-map">
+    <div class="contact-map-tag">10, Begur - Koppa Rd, Suraksha nagar, Yelenahalli, Akshayanagar, Bengaluru, Karnataka 560114, India</div>
+    <iframe title="Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=10%2C%20Begur%20-%20Koppa%20Rd%2C%20Suraksha%20nagar%2C%20Yelenahalli%2C%20Bengaluru%20560114&z=16&output=embed"></iframe>
+  </section>
+
+  <section class="contact-expect">
+    <div class="contact-expect-text">
+      <span class="contact-eyebrow">What to expect</span>
+      <h2 class="contact-heading">Your first call, step by step</h2>
+      <p>A designer will ask about your roof, your monthly bill and what you want from solar — savings, backup power or both. The call takes about fifteen minutes.</p>
+      <p>Within 48 hours you receive a written estimate, and if you like it we book a free site survey. There is no obligation and no pressure at any step.</p>
+      <ul class="contact-checks">
+        <li>15-minute discovery call</li><li>Written estimate in 48 hours</li><li>Free site survey, no obligation</li>
       </ul>
     </div>
-    <div class="mobile-nav-bottom" style="margin-top: 32px;">
-      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
-      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
-    </div>
-  </aside>
+    <div class="contact-expect-img"><img src="./img/call.png" alt="Customer on a phone call"></div>
+  </section>
 
-  <!-- PAGE HERO -->
-  <section class="section page-hero section-cream">
-    <div class="container">
-      <div class="page-hero-inner fade-in-up">
-        <div class="eyebrow">Engineering Consultation</div>
-        <h1 class="display-1" style="margin-bottom: 24px;">Let's Talk Renewable Power</h1>
-        <p class="lead-text">
-          Direct engineering advice without pushy sales scripts. Speak directly with a licensed solar designer to evaluate your roof, electrical panel, and multi-decade savings potential.
-        </p>
+  <section class="contact-faq">
+    <h2 class="contact-big">Before you write in</h2>
+    <div class="contact-faq-list">
+      <div class="contact-faq-item contact-open">
+        <button class="contact-faq-q" aria-expanded="true">Is the quote free?<i></i></button>
+        <div class="contact-faq-a"><p>Yes — the site survey and quote are free with no obligation to book an install.</p></div>
+      </div>
+      <div class="contact-faq-item">
+        <button class="contact-faq-q" aria-expanded="false">Do you service my area?<i></i></button>
+        <div class="contact-faq-a"><p>We cover most metro and surrounding areas. Share your pin code and we will confirm within one business day.</p></div>
+      </div>
+      <div class="contact-faq-item">
+        <button class="contact-faq-q" aria-expanded="false">Can I reach my installer directly after the job is done?<i></i></button>
+        <div class="contact-faq-a"><p>Yes — existing customers get a direct line to their installation team.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT & QUOTE SECTION -->
-  <section class="section section-cream">
-    <div class="container">
-      <div class="contact-grid">
-        
-        <!-- Left: Office & Contact Channels -->
-        <div class="contact-card-info fade-in-up">
-          <div>
-            <div class="eyebrow eyebrow-dark">Direct Channels</div>
-            <h2 class="heading-3 text-cream" style="margin-bottom: 20px;">Engineering Headquarters</h2>
-            <p class="body-muted" style="margin-bottom: 36px; line-height: 1.6;">
-              Our central design lab and operations hub is available Monday through Saturday. All inquiries receive a full structural review within 24 business hours.
-            </p>
-
-            <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px;">
-              <div class="footer-contact-item">
-                <span class="material-symbols-outlined">location_on</span>
-                <div>
-                  <strong style="color: var(--bg-primary); display: block;">Headquarters:</strong>
-                  <span>100 Renewable Way, Clean Energy Park, Suite 400<br>San Francisco, CA 94107</span>
-                </div>
-              </div>
-
-              <div class="footer-contact-item">
-                <span class="material-symbols-outlined">phone</span>
-                <div>
-                  <strong style="color: var(--bg-primary); display: block;">Telephone:</strong>
-                  <span>+91 (800) 246-8800 (Toll-Free Direct)</span>
-                </div>
-              </div>
-
-              <div class="footer-contact-item">
-                <span class="material-symbols-outlined">mail</span>
-                <div>
-                  <strong style="color: var(--bg-primary); display: block;">Email Inquiries:</strong>
-                  <span>hello@stacklyenergy.com</span>
-                </div>
-              </div>
-
-              <div class="footer-contact-item">
-                <span class="material-symbols-outlined">schedule</span>
-                <div>
-                  <strong style="color: var(--bg-primary); display: block;">Operations Hours:</strong>
-                  <span>Monday – Friday: 08:00 – 18:00<br>Saturday: 09:00 – 14:00 (Surveys by Appt)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="padding: 20px; background-color: rgba(245, 242, 232, 0.05); border: 1px solid var(--cream-15); border-radius: var(--radius-md);">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent); font-size: 20px;">support_agent</span>
-              <strong style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bg-primary);">Existing Customer Support</strong>
-            </div>
-            <p style="font-size: 0.82rem; color: var(--cream-60); margin: 0;">
-              24/7 Grid Emergency & Inverter Diagnostics: Call extension 9 or access the customer portal.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right: Proposal Request Form -->
-        <div class="contact-form-wrap fade-in-up delay-1">
-          <div class="eyebrow">Zero Pressure • Exact Numbers</div>
-          <h2 class="heading-3" style="margin-bottom: 20px;">Request A Custom Solar & Battery Blueprint</h2>
-          
-          <form data-ajax-form data-success-msg="Proposal request received! A Stackly systems engineer will analyze your site and contact you shortly.">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-              <div class="form-group">
-                <label class="form-label">Full Name *</label>
-                <input type="text" required placeholder="Priya Sharma" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email Address *</label>
-                <input type="email" required placeholder="priya@domain.com" class="form-input">
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-              <div class="form-group">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" required placeholder="+91 (800) 000-0000" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Property Type</label>
-                <select class="form-select">
-                  <option value="residential">Residential Single Family</option>
-                  <option value="commercial">Commercial / Industrial Facility</option>
-                  <option value="agricultural">Agricultural / Rural Acreage</option>
-                  <option value="cooperative">Community Cooperative</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px;">
-              <div class="form-group">
-                <label class="form-label">Installation Street Address & City</label>
-                <input type="text" required placeholder="1248 Oakridge Road, Maple Ridge" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Approx. Monthly Bill</label>
-                <select class="form-select">
-                  <option value="150">$100 - $200 / month</option>
-                  <option value="250" selected>$200 - $400 / month</option>
-                  <option value="500">$400 - $800 / month</option>
-                  <option value="1000">$800+ / month (High Load / Commercial)</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">System Components Of Interest</label>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 6px;">
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer;">
-                  <input type="checkbox" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
-                  <span>Rooftop Solar Array</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer;">
-                  <input type="checkbox" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
-                  <span>Battery Storage Backup</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer;">
-                  <input type="checkbox" style="accent-color: var(--color-accent); width: 16px; height: 16px;">
-                  <span>EV High-Speed Charger</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer;">
-                  <input type="checkbox" style="accent-color: var(--color-accent); width: 16px; height: 16px;">
-                  <span>Micro-Wind Turbine</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Specific Requirements or Roof Details (Optional)</label>
-              <textarea rows="3" placeholder="Tile, asphalt shingle, or metal standing seam? Any planned EV purchases or heat pump installations?" class="form-textarea"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-              <span>Submit Free Quote Request</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-          </form>
-        </div>
-
-      </div>
+  <section class="contact-follow">
+    <span class="contact-eyebrow">Follow along</span>
+    <div class="contact-pills">
+      <a href="#" class="contact-pill">Instagram</a><a href="#" class="contact-pill">LinkedIn</a><a href="#" class="contact-pill">YouTube</a>
     </div>
   </section>
 
-  <!-- INTERACTIVE FAQ SECTION -->
-  <section class="section section-cream" style="border-top: 1px solid var(--dark-08);">
-    <div class="container" style="max-width: 900px;">
-      <div class="fade-in-up" style="text-align: center; margin-bottom: 48px;">
-        <div class="eyebrow" style="justify-content: center;">Clarifications</div>
-        <h2 class="display-2">Frequently Asked Questions</h2>
-        <p class="lead-text">Clear answers on technology, financing, and lifetime warranties.</p>
+  <section class="contact-hours">
+
+  <div class="contact-hours-head">
+    <span class="contact-label contact-label-light">WHEN TO REACH US</span>
+
+    <h2 class="contact-big contact-light">
+      Support hours
+    </h2>
+
+   
+  </div>
+
+
+  <div class="contact-hours-grid">
+
+    <!-- Sales -->
+    <div class="contact-hour-card">
+      <div class="contact-hour-top">
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span>Sales &amp; quotes</span>
       </div>
 
-      <div class="faq-accordion fade-in-up">
-        <!-- Q1 -->
-        <div class="faq-item active">
-          <button type="button" class="faq-question">
-            <span>How long does a typical installation take?</span>
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              For standard residential properties (6 to 15 kW), our in-house crews complete the physical roof racking, panel mounting, and micro-inverter wiring in just 1 to 2 days. Final municipal inspection and utility PTO (Permission to Operate) meter swaps generally take 1 to 3 weeks depending on the local utility jurisdiction.
-            </p>
-          </div>
-        </div>
+      <b>Mon–Sat, 8am–7pm</b>
 
-        <!-- Q2 -->
-        <div class="faq-item">
-          <button type="button" class="faq-question">
-            <span>What happens during a utility blackout if I have solar panels?</span>
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Standard grid-tied solar systems automatically disconnect during an outage for safety reasons (anti-islanding mandate to protect electrical utility linemen). However, when paired with Stackly’s modular LFP Battery Storage and automatic microgrid isolation switch, your home disconnects from the grid in under 10 milliseconds, instantly drawing continuous clean electricity from your battery and rooftop array.
-            </p>
-          </div>
-        </div>
+      <p>
+        Talk with a project specialist about system sizing, property
+        requirements, financing options and getting started with a quote.
+      </p>
 
-        <!-- Q3 -->
-        <div class="faq-item">
-          <button type="button" class="faq-question">
-            <span>What exactly is Stackly’s 25-year output guarantee?</span>
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              We provide a legally binding linear generation guarantee: your system will produce at least 90% of its rated nameplate capacity at year 10 and at least 87.4% at year 25. If production falls short due to hardware degradation or system faults, we rectify the issue and directly reimburse you for the shortfall. This commitment is backstopped by independent asset reinsurance from Munich Re.
-            </p>
-          </div>
-        </div>
-
-        <!-- Q4 -->
-        <div class="faq-item">
-          <button type="button" class="faq-question">
-            <span>How do I decide between cash purchase, financing, and solar leasing?</span>
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Direct Cash Purchase delivers the lowest lifetime cost and greatest 25-year return on investment, capturing 100% of federal tax credits. Fixed Financing allows you to own the asset with zero down payment, paying a fixed monthly rate often lower than your prior power bill. A Solar Lease requires $0 upfront and Stackly handles all maintenance and insurance while you pay a predictable, discounted power tariff. Every Stackly quote details all 3 models side-by-side.
-            </p>
-          </div>
-        </div>
-
-        <!-- Q5 -->
-        <div class="faq-item">
-          <button type="button" class="faq-question">
-            <span>Can I expand my solar array or add battery capacity in the future?</span>
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Yes. We engineer every installation with modular expansion in mind. By utilizing distributed micro-inverters rather than a single bottleneck string inverter, additional solar panels can be added down the road without replacing core power electronics. Similarly, our LFP battery cabinets are stackable and support future module additions as your family adds an electric vehicle or heat pumps.
-            </p>
-          </div>
-        </div>
-      </div>
+      <small>
+        <span class="material-symbols-outlined">schedule</span>
+        New inquiries
+      </small>
     </div>
-  </section>
 
-  <!-- FOOTER -->
+
+    <!-- Existing Systems -->
+    <div class="contact-hour-card">
+      <div class="contact-hour-top">
+        <span class="material-symbols-outlined">solar_power</span>
+        <span>Existing systems</span>
+      </div>
+
+      <b>Mon–Fri, 7am–8pm</b>
+
+      <p>
+        Get help with monitoring, system performance, maintenance questions,
+        service requests and other support for an installed system.
+      </p>
+
+      <small>
+        <span class="material-symbols-outlined">support_agent</span>
+        Customer support
+      </small>
+    </div>
+
+
+    <!-- Emergency -->
+    <div class="contact-hour-card">
+      <div class="contact-hour-top">
+        <span class="material-symbols-outlined">emergency</span>
+        <span>Emergency outage line</span>
+      </div>
+
+      <b>24/7</b>
+
+      <p>
+        For urgent system or outage-related situations, our emergency line
+        remains available around the clock for existing customers.
+      </p>
+
+      <small>
+        <span class="material-symbols-outlined">phone_in_talk</span>
+        Always available
+      </small>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="contact-cta">
+
+  <div class="contact-cta-content">
+
+    <span class="contact-label contact-label-light">
+      READY TO GET STARTED?
+    </span>
+
+    <h2 class="contact-heading contact-light">
+      Prefer to just get a quote?
+    </h2>
+
+    <p>
+      Tell us a little about your property and energy goals. Our team can
+      help you understand the right system approach before you commit to
+      anything.
+    </p>
+
+    <div class="contact-cta-points">
+      <span>
+        <span class="material-symbols-outlined">check_circle</span>
+        No-obligation consultation
+      </span>
+
+      <span>
+        <span class="material-symbols-outlined">check_circle</span>
+        Property-specific guidance
+      </span>
+
+      <span>
+        <span class="material-symbols-outlined">check_circle</span>
+        Clear project information
+      </span>
+    </div>
+
+  </div>
+
+  <a href="#" class="contact-btn contact-btn-yellow">
+    Start your free quote
+    <span class="material-symbols-outlined">arrow_outward</span>
+  </a>
+
+</section>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
+        <!-- Col 1: Brand Info -->
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
             <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
             <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
           </a>
           <p class="footer-desc">
-            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure.
+            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure since 2018.
           </p>
           <div class="footer-social-links">
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <span class="material-symbols-outlined">work</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </a>
           </div>
         </div>
 
+        <!-- Col 2: Navigation -->
         <div>
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-nav-list">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="about.html" class="footer-link">About Us</a></li>
             <li><a href="services.html" class="footer-link">Services</a></li>
-            <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+            <li><a href="#projects" class="footer-link">Projects</a></li>
             <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Services -->
         <div>
           <h4 class="footer-col-title">Services</h4>
           <ul class="footer-nav-list">
@@ -344,19 +386,31 @@
             <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
             <li><a href="services.html" class="footer-link">Battery Storage</a></li>
             <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
+            <li><a href="services.html" class="footer-link">Microgrid Sizing</a></li>
           </ul>
         </div>
 
+        <!-- Col 4: Contact -->
         <div>
           <h4 class="footer-col-title">Contact</h4>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><span>hello@stacklyenergy.com</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span><span>+91 (800) 246-8800</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span><span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">mail</span>
+            <span>hello@stacklyenergy.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">phone</span>
+            <span>+91 (800) 246-8800</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>100 Renewable Way, Clean Energy Park, CA 94107</span>
+          </div>
         </div>
       </div>
 
+      <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <div>© 2026 Stackly Energy. All rights reserved.</div>
+        <div>© 2026 Stackly Energy. All rights reserved. Built with architectural renewable precision.</div>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
@@ -367,6 +421,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+</div>
+<script src="./js/main.js"></script>
 </body>
 </html>

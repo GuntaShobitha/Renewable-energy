@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog & Insights — Stackly Energy</title>
-  <meta name="description" content="Technical perspectives on solar engineering, battery energy arbitrage, microgrids, and the global transition to clean power.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | Stackly Energy</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
 <body>
+<div class="blog-page">
 
-  <!-- STICKY NAVBAR -->
-  <header class="site-header">
+  <!-- Header -->
+ <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
+        <!-- Left: Logo -->
         <a href="index.html" class="logo">
-          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          <div class="logo-mark">
+            <span class="material-symbols-outlined">solar_power</span>
+          </div>
+          <div class="logo-text">
+            <span>STACKLY</span>
+            <span>ENERGY</span>
+          </div>
         </a>
 
+        <!-- Center: Links -->
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="services.html" class="nav-link">Services</a></li>
@@ -31,6 +39,7 @@
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
 
+        <!-- Right: Actions -->
         <div class="nav-actions">
           <a href="login.html" class="nav-login">Login</a>
           <a href="contact.html" class="btn btn-primary btn-sm">
@@ -39,283 +48,744 @@
           </a>
         </div>
 
+        <!-- Mobile Hamburger Toggle -->
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer-backdrop"></div>
-  <aside class="mobile-drawer" aria-label="Mobile Navigation">
-    <div class="mobile-nav-top">
-      <a href="index.html" class="logo" style="margin-bottom: 36px;">
-        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+  <!-- Hero -->
+  <section class="blog-hero">
+    <div class="blog-hero-text">
+      <span class="blog-eyebrow">The Stackly Journal</span>
+      <h1 class="blog-display">Notes on going renewable</h1>
+      <p>Field notes, cost breakdowns and policy updates from our engineers and installers — written for homeowners and business owners weighing a switch, with no jargon and no sales pitch.</p>
+    </div>
+    <div class="blog-hero-img"><img src="./img/hero.png" alt="Engineer standing beside solar panels"></div>
+  </section>
+
+  <!-- Featured -->
+  <section class="blog-featured">
+    <div class="blog-featured-img"><img src="./img/featured.jpg" alt="Man working on a laptop in a colourful office"></div>
+    <div class="blog-featured-text">
+      <span class="blog-eyebrow">Featured · Policy</span>
+      <h2 class="blog-title">What the new residential solar tax credit actually covers</h2>
+      <p>A plain-language walkthrough of the current federal credit, what qualifies, and how to claim it on your return. We cover batteries, roof work and what happens if you move.</p>
+      <p>We also flag the common mistakes that cost homeowners part of their credit each year.</p>
+      <span class="blog-byline">By Yuki Tanaka · 9 min read</span>
+      <a href="#" class="blog-btn blog-btn-outline-light">Read the article</a>
+    </div>
+  </section>
+
+  <!-- Recent posts -->
+  <section class="blog-card-section blog-recent">
+    <div class="blog-section-head">
+      <h2 class="blog-title">Recent posts</h2>
+      <p>Latest from the team.</p>
+    </div>
+    <div class="blog-post-grid">
+      <a href="#" class="blog-post blog-bg-yellow">
+        <img src="./img/post-panels.jpg" alt="Cleaning solar panels">
+        <span class="blog-meta">Maintenance · 5 min</span>
+        <h3>Cleaning your panels: when it is worth it</h3>
+        <p>Rain does most of the work. Here is when a manual clean actually pays off, and when it risks damage.</p>
       </a>
-      <ul class="mobile-nav-links">
-        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="services.html" class="mobile-nav-link">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="blog.html" class="mobile-nav-link active">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-link">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
-      </ul>
-    </div>
-    <div class="mobile-nav-bottom" style="margin-top: 32px;">
-      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
-      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
-    </div>
-  </aside>
-
-  <!-- PAGE HERO -->
-  <section class="section page-hero section-cream">
-    <div class="container">
-      <div class="page-hero-inner fade-in-up">
-        <div class="eyebrow">Editorial & Field Notes</div>
-        <h1 class="display-1" style="margin-bottom: 24px;">Perspectives on Clean Power</h1>
-        <p class="lead-text">
-          Technical insights, grid economic analyses, and architectural case studies authored by Stackly’s systems engineering team.
-        </p>
-      </div>
+      <a href="#" class="blog-post blog-bg-green">
+        <img src="./img/post-battery.jpg" alt="Utility meter close-up">
+        <span class="blog-meta">Storage · 8 min</span>
+        <h3>Battery sizing, explained with real bills</h3>
+        <p>How we translate a year of utility bills into a battery recommendation you can trust.</p>
+      </a>
+      <a href="#" class="blog-post blog-bg-orange">
+        <img src="./img/post-warehouse.jpg" alt="Warehouse interior with shelving">
+        <span class="blog-meta">Field notes · 6 min</span>
+        <h3>Inside a 1.2 MW warehouse install</h3>
+        <p>A week-by-week look at the Harbor Logistics project from permit to power-on.</p>
+      </a>
+      <a href="#" class="blog-post blog-bg-blue">
+        <img src="./img/post-wind.jpg" alt="Wind turbines on green hills">
+        <span class="blog-meta">Wind · 7 min</span>
+        <h3>Solar vs. wind for a rural property</h3>
+        <p>A practical checklist for choosing between the two, or combining them.</p>
+      </a>
+      <a href="#" class="blog-post blog-bg-dark">
+        <img src="./img/post-outage.jpg" alt="House at night during a power outage">
+        <span class="blog-meta">Storage · 7 min</span>
+        <h3>What happens during a grid outage</h3>
+        <p>How backup batteries behave when the neighbourhood goes dark.</p>
+      </a>
+      <a href="#" class="blog-post blog-bg-deep">
+        <img src="./img/post-meter.jpg" alt="Multimeter testing an outlet">
+        <span class="blog-meta">Field data · 5 min</span>
+        <h3>The real lifespan of a solar panel</h3>
+        <p>What twelve years of our own field data says about degradation.</p>
+      </a>
     </div>
   </section>
 
-  <!-- FEATURED EDITORIAL PIECE -->
-  <section class="section section-cream" style="padding-top: 40px; padding-bottom: 40px;">
-    <div class="container">
-      <article class="project-card featured fade-in-up" style="min-height: 480px; cursor: pointer;">
-        <div class="project-media">
-          <img src="img/hero-home.webp" width="800" height="600" alt="Commercial solar facility">
+  <!-- Topics -->
+  <section class="blog-topics">
+
+  <span class="blog-topics-label">Browse by topic</span>
+
+  <div class="blog-chips" id="blogChips">
+    <button class="blog-chip active" data-topic="all">All</button>
+    <button class="blog-chip" data-topic="solar">Solar</button>
+    <button class="blog-chip" data-topic="wind">Wind</button>
+    <button class="blog-chip" data-topic="storage">Storage</button>
+    <button class="blog-chip" data-topic="policy">Policy &amp; incentives</button>
+    <button class="blog-chip" data-topic="maintenance">Maintenance</button>
+    <button class="blog-chip" data-topic="field">Field notes</button>
+  </div>
+
+
+  <!-- BLOG DATA -->
+  <div class="blog-topic-grid" id="blogTopicGrid">
+
+    <!-- SOLAR -->
+
+    <article class="blog-topic-card" data-topic="solar">
+      <div class="blog-topic-number">01</div>
+      <span class="blog-topic-category">Solar</span>
+      <h3>How to size a solar system for your home</h3>
+      <p>
+        A practical look at electricity usage, roof space, system capacity,
+        and the factors that determine the right solar array for a property.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="solar">
+      <div class="blog-topic-number">02</div>
+      <span class="blog-topic-category">Solar</span>
+      <h3>What makes a high-performance solar installation?</h3>
+      <p>
+        From panel orientation and shading to inverter selection and system
+        monitoring, explore the engineering decisions behind better output.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="solar">
+      <div class="blog-topic-number">03</div>
+      <span class="blog-topic-category">Solar</span>
+      <h3>Understanding solar production throughout the year</h3>
+      <p>
+        Solar production changes with seasons, weather, daylight hours, and
+        site conditions. Here's what homeowners should expect.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <!-- WIND -->
+
+    <article class="blog-topic-card" data-topic="wind">
+      <div class="blog-topic-number">04</div>
+      <span class="blog-topic-category">Wind</span>
+      <h3>Is small-scale wind right for your property?</h3>
+      <p>
+        Learn how wind resource, tower height, site conditions, and local
+        regulations affect the feasibility of a residential wind system.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="wind">
+      <div class="blog-topic-number">05</div>
+      <span class="blog-topic-category">Wind</span>
+      <h3>Solar and wind: building a hybrid energy system</h3>
+      <p>
+        Combining renewable generation sources can create a more flexible
+        energy system when designed around the property's actual load profile.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="wind">
+      <div class="blog-topic-number">06</div>
+      <span class="blog-topic-category">Wind</span>
+      <h3>Understanding residential wind performance</h3>
+      <p>
+        A closer look at wind speed, turbulence, turbine placement, and the
+        conditions that influence annual energy production.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <!-- STORAGE -->
+
+    <article class="blog-topic-card" data-topic="storage">
+      <div class="blog-topic-number">07</div>
+      <span class="blog-topic-category">Storage</span>
+      <h3>How home battery storage actually works</h3>
+      <p>
+        Understand how batteries store excess solar energy and deliver it back
+        to your home when generation is unavailable.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="storage">
+      <div class="blog-topic-number">08</div>
+      <span class="blog-topic-category">Storage</span>
+      <h3>Choosing the right battery capacity</h3>
+      <p>
+        Battery sizing depends on energy consumption, backup requirements,
+        solar production, and the loads you want to support.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="storage">
+      <div class="blog-topic-number">09</div>
+      <span class="blog-topic-category">Storage</span>
+      <h3>Battery storage for outage protection</h3>
+      <p>
+        Explore how properly configured storage can provide backup power for
+        selected household circuits during grid interruptions.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <!-- POLICY -->
+
+    <article class="blog-topic-card" data-topic="policy">
+      <div class="blog-topic-number">10</div>
+      <span class="blog-topic-category">Policy &amp; incentives</span>
+      <h3>Understanding solar incentives</h3>
+      <p>
+        A plain-language guide to the incentives, rebates, credits, and local
+        programs that may affect the economics of an energy project.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="policy">
+      <div class="blog-topic-number">11</div>
+      <span class="blog-topic-category">Policy &amp; incentives</span>
+      <h3>How utility rules affect your solar project</h3>
+      <p>
+        Interconnection requirements, export rules, and utility programs can
+        all influence how a system is designed and operated.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="policy">
+      <div class="blog-topic-number">12</div>
+      <span class="blog-topic-category">Policy &amp; incentives</span>
+      <h3>Net metering explained</h3>
+      <p>
+        Understand how exported solar electricity may be credited and why
+        compensation structures vary between utilities and regions.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <!-- MAINTENANCE -->
+
+    <article class="blog-topic-card" data-topic="maintenance">
+      <div class="blog-topic-number">13</div>
+      <span class="blog-topic-category">Maintenance</span>
+      <h3>How much maintenance does solar need?</h3>
+      <p>
+        Most modern solar systems require limited routine maintenance, but
+        monitoring and periodic inspection remain important for performance.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="maintenance">
+      <div class="blog-topic-number">14</div>
+      <span class="blog-topic-category">Maintenance</span>
+      <h3>Signs your energy system needs attention</h3>
+      <p>
+        Learn which changes in production, alerts, equipment behavior, or
+        physical conditions may warrant a professional inspection.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="maintenance">
+      <div class="blog-topic-number">15</div>
+      <span class="blog-topic-category">Maintenance</span>
+      <h3>Keeping solar equipment performing long term</h3>
+      <p>
+        Monitoring, equipment checks, clean electrical connections, and timely
+        service can help maintain system performance over its operating life.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <!-- FIELD NOTES -->
+
+    <article class="blog-topic-card" data-topic="field">
+      <div class="blog-topic-number">16</div>
+      <span class="blog-topic-category">Field notes</span>
+      <h3>Inside a residential solar installation</h3>
+      <p>
+        Follow the major stages of an installation, from the initial site
+        survey through mounting, wiring, commissioning, and activation.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="field">
+      <div class="blog-topic-number">17</div>
+      <span class="blog-topic-category">Field notes</span>
+      <h3>Designing around challenging roof conditions</h3>
+      <p>
+        Real-world properties rarely have perfect roofs. Here's how installers
+        approach complex layouts, obstructions, and difficult access.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+
+    <article class="blog-topic-card" data-topic="field">
+      <div class="blog-topic-number">18</div>
+      <span class="blog-topic-category">Field notes</span>
+      <h3>From site survey to system activation</h3>
+      <p>
+        A behind-the-scenes look at the technical decisions and quality checks
+        that happen before a new energy system goes live.
+      </p>
+      <a href="#">Read article →</a>
+    </article>
+
+  </div>
+
+</section>
+
+  <!-- Most read -->
+  <section class="blog-card-section blog-mostread">
+
+  <div class="blog-section-head">
+    <div class="blog-eyebrow">Reader Favorites</div>
+
+    <h2 class="blog-title">Most read</h2>
+
+    <p>
+      Practical guides, field insights, and energy explainers our readers
+      return to most often.
+    </p>
+  </div>
+
+
+  <ul class="blog-read-list">
+
+    <!-- Article 01 -->
+    <li>
+      <a href="#" class="blog-read-item">
+
+        <span class="blog-read-number">01</span>
+
+        <span class="blog-thumb blog-thumb-green">
+          <span>Solar</span>
+        </span>
+
+        <span class="blog-read-body">
+
+          <span class="blog-read-meta">
+            <span>Solar</span>
+            <span>•</span>
+            <span>Updated Jun 12, 2026</span>
+          </span>
+
+          <strong>Solar vs. wind for a rural property</strong>
+
+          <em>
+            How to choose, when to combine both, and what site conditions
+            matter most.
+          </em>
+
+        </span>
+
+        <span class="blog-read-time">
+          <strong>6 min</strong>
+          <small>read</small>
+        </span>
+
+        <span class="blog-read-arrow">↗</span>
+
+      </a>
+    </li>
+
+
+    <!-- Article 02 -->
+    <li>
+      <a href="#" class="blog-read-item">
+
+        <span class="blog-read-number">02</span>
+
+        <span class="blog-thumb blog-thumb-blue">
+          <span>Storage</span>
+        </span>
+
+        <span class="blog-read-body">
+
+          <span class="blog-read-meta">
+            <span>Energy Storage</span>
+            <span>•</span>
+            <span>Updated May 28, 2026</span>
+          </span>
+
+          <strong>
+            What happens during a grid outage with battery backup
+          </strong>
+
+          <em>
+            What your home keeps running, how backup power works, and how
+            battery capacity affects runtime.
+          </em>
+
+        </span>
+
+        <span class="blog-read-time">
+          <strong>7 min</strong>
+          <small>read</small>
+        </span>
+
+        <span class="blog-read-arrow">↗</span>
+
+      </a>
+    </li>
+
+
+    <!-- Article 03 -->
+    <li>
+      <a href="#" class="blog-read-item">
+
+        <span class="blog-read-number">03</span>
+
+        <span class="blog-thumb blog-thumb-orange">
+          <span>Field Notes</span>
+        </span>
+
+        <span class="blog-read-body">
+
+          <span class="blog-read-meta">
+            <span>Field Notes</span>
+            <span>•</span>
+            <span>Updated Apr 16, 2026</span>
+          </span>
+
+          <strong>The real lifespan of a solar panel</strong>
+
+          <em>
+            What long-term field data tells us about degradation and solar
+            output after 10+ years.
+          </em>
+
+        </span>
+
+        <span class="blog-read-time">
+          <strong>5 min</strong>
+          <small>read</small>
+        </span>
+
+        <span class="blog-read-arrow">↗</span>
+
+      </a>
+    </li>
+
+  </ul>
+
+</section>
+
+  <!-- Editor's note -->
+  <section class="blog-split blog-editor">
+    <div class="blog-split-img"><img src="./img/editor.jpg" alt="Woman on a phone call at an archive desk"></div>
+    <div class="blog-split-text">
+      <span class="blog-eyebrow">Editor's note</span>
+      <h2 class="blog-title">Why we write this journal</h2>
+      <p>Most renewable-energy content online is either marketing or academic. We wanted something in between: honest, specific and grounded in real installs we have done.</p>
+      <p>Every article is reviewed by an engineer, and we correct mistakes publicly in a running changelog at the bottom of the piece.</p>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="blog-newsletter">
+    <div class="blog-newsletter-text">
+      <h2 class="blog-title">Get one email a month</h2>
+      <p>New articles, incentive updates and the occasional field story. No spam.</p>
+    </div>
+    <form class="blog-form" id="blogForm" novalidate>
+      <div class="blog-field">
+        <label for="blogEmail">Email</label>
+        <input type="email" id="blogEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <span class="blog-form-msg" id="blogMsg" role="status" aria-live="polite"></span>
+      </div>
+      <button type="submit" class="blog-btn blog-btn-dark">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Authors -->
+  <!-- Authors -->
+<section class="blog-authors">
+  <div class="blog-section-head">
+    <span class="blog-eyebrow">THE PEOPLE BEHIND THE STORIES</span>
+    <h2 class="blog-title">Who writes this</h2>
+    <p>Engineers and installers sharing practical knowledge from the projects they actually work on.</p>
+  </div>
+
+  <div class="blog-author-grid">
+
+    <!-- Author 01 -->
+    <article class="blog-author blog-author-green">
+      <div class="blog-author-top">
+        <span class="blog-avatar">
+          <span>YT</span>
+        </span>
+
+        <div>
+          <span class="blog-author-role">Engineering</span>
+          <h3>Yuki Tanaka</h3>
         </div>
-        <div class="project-gradient"></div>
-        <div class="project-content" style="max-width: 750px;">
-          <span class="project-tag">Featured Analysis • 8 Min Read • Energy Economics</span>
-          <h2 class="project-title" style="font-size: clamp(1.8rem, 3.2vw, 2.75rem); margin-bottom: 16px;">
-            The 2026 Shift: Why Commercial Microgrids Are Replacing Diesel Generators
-          </h2>
-          <div class="project-accent-line"></div>
-          <p class="project-meta" style="font-size: 1rem; max-width: 620px;">
-            As grid instability surges and diesel fuel procurement costs spike, enterprises are deploying multi-megawatt solar and LFP storage arrays to guarantee zero-downtime uptime with dramatic tax depreciation benefits.
-          </p>
-          <div class="project-cta">
-            <span>Read Full Investigation</span>
-            <span class="material-symbols-outlined">arrow_outward</span>
-          </div>
+      </div>
+
+      <p>
+        Head of Engineering — policy, incentives, system design and
+        technical planning for residential energy projects.
+      </p>
+
+      <div class="blog-author-meta">
+        <span>18 Articles</span>
+        <span>•</span>
+        <span>Solar + Policy</span>
+      </div>
+
+      <div class="blog-author-tags">
+        <span>System Design</span>
+        <span>Incentives</span>
+      </div>
+    </article>
+
+    <!-- Author 02 -->
+    <article class="blog-author blog-author-yellow">
+      <div class="blog-author-top">
+        <span class="blog-avatar">
+          <span>MR</span>
+        </span>
+
+        <div>
+          <span class="blog-author-role">Field Operations</span>
+          <h3>Marco Reyes</h3>
         </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ARTICLE GRID -->
-  <section class="section section-cream">
-    <div class="container">
-      <div class="blog-grid">
-        <!-- Article 1 -->
-        <article class="blog-card fade-in-up">
-          <div class="blog-thumb">
-            <img src="img/svc-solar.webp" width="800" height="600" alt="N-Type TOPCon vs HJT Solar Cells">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Engineering</span>
-              <span>•</span>
-              <span>May 14, 2026</span>
-            </div>
-            <h3 class="blog-title">Demystifying N-Type TOPCon vs. HJT Solar Cells</h3>
-            <p class="blog-excerpt">
-              Why P-type PERC panels are obsolete, and how tunnel-oxide passivated contact architecture increases low-light generation by up to 14%.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 2 -->
-        <article class="blog-card fade-in-up delay-1">
-          <div class="blog-thumb">
-            <img src="img/svc-battery.webp" width="800" height="600" alt="Battery Storage Arbitrage">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Economics</span>
-              <span>•</span>
-              <span>Apr 28, 2026</span>
-            </div>
-            <h3 class="blog-title">Battery Storage Arbitrage: Turning Stored Energy Into Cash Flow</h3>
-            <p class="blog-excerpt">
-              How modern microgrid firmware automates utility peak shaving and exports electricity to wholesale frequency response markets.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 3 -->
-        <article class="blog-card fade-in-up delay-2">
-          <div class="blog-thumb">
-            <img src="img/proj-community.webp" width="800" height="600" alt="Community Solar">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Community</span>
-              <span>•</span>
-              <span>Apr 12, 2026</span>
-            </div>
-            <h3 class="blog-title">Community Solar 101: Clean Energy Without Roof Ownership</h3>
-            <p class="blog-excerpt">
-              Structuring agricultural cooperative microgrids so suburban tenants and apartment dwellers can tap into local renewable generation.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 4 -->
-        <article class="blog-card fade-in-up">
-          <div class="blog-thumb">
-            <img src="img/choose-engineer.webp" width="800" height="600" alt="Inverter Reliability">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Hardware</span>
-              <span>•</span>
-              <span>Mar 22, 2026</span>
-            </div>
-            <h3 class="blog-title">The 25-Year Inverter Lifespan: What Most Solar Brands Hide</h3>
-            <p class="blog-excerpt">
-              Central string inverters fail every 10–12 years. We unpack why distributed micro-inverters with redundant semiconductor topology matter.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 5 -->
-        <article class="blog-card fade-in-up delay-1">
-          <div class="blog-thumb">
-            <img src="img/proj-residential.webp" width="800" height="600" alt="Net Metering Policies">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Policy</span>
-              <span>•</span>
-              <span>Mar 05, 2026</span>
-            </div>
-            <h3 class="blog-title">Navigating Net Metering 3.0: Export Tariffs Explained</h3>
-            <p class="blog-excerpt">
-              A comprehensive guide to avoiding grid penalty fees and designing high self-consumption solar-plus-storage residential configurations.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 6 -->
-        <article class="blog-card fade-in-up delay-2">
-          <div class="blog-thumb">
-            <img src="img/svc-wind.webp" width="800" height="600" alt="Acoustic Engineering Wind Turbines">
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta-row">
-              <span>Wind Technology</span>
-              <span>•</span>
-              <span>Feb 18, 2026</span>
-            </div>
-            <h3 class="blog-title">Acoustic Engineering: Achieving Whisper-Quiet Wind Yield</h3>
-            <p class="blog-excerpt">
-              How serrated trailing edge blade aerodynamics and direct-drive permanent magnet generators eliminate turbine vibration noise.
-            </p>
-            <div class="project-cta">
-              <span>Read Article</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </div>
-          </div>
-        </article>
       </div>
-    </div>
-  </section>
 
-  <!-- NEWSLETTER SIGNUP SECTION -->
-  <section class="section section-cream" style="border-top: 1px solid var(--dark-08);">
-    <div class="container">
-      <div class="contact-form-wrap fade-in-up" style="max-width: 720px; margin: 0 auto; text-align: center;">
-        <div class="eyebrow" style="justify-content: center;">Field Telemetry & Reports</div>
-        <h2 class="heading-3" style="margin-bottom: 12px;">Subscribe To Stackly Energy Quarterly</h2>
-        <p class="body-muted" style="margin-bottom: 28px;">
-          Receive quarterly whitepapers on renewable economics, grid interconnection codes, and battery storage innovations. No spam, ever.
-        </p>
-        <form data-ajax-form data-success-msg="You have successfully subscribed to Stackly Quarterly Insights.">
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <input type="email" required placeholder="Enter your business or personal email" class="form-input" style="flex: 1; min-width: 260px;">
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </div>
-        </form>
+      <p>
+        Head of Install — field notes covering real project sites,
+        installation challenges and practical construction decisions.
+      </p>
+
+      <div class="blog-author-meta">
+        <span>24 Articles</span>
+        <span>•</span>
+        <span>Field Notes</span>
       </div>
-    </div>
-  </section>
 
-  <!-- FINAL CTA -->
-  <section class="section final-cta-section">
-    <div class="final-cta-bg">
-      <img src="img/svc-solar.webp" width="800" height="600" alt="Clean solar energy">
-    </div>
-    <div class="container">
-      <div class="final-cta-content fade-in-up">
-        <div class="eyebrow eyebrow-dark">Turn Knowledge Into Power</div>
-        <h2 class="display-1 text-cream final-cta-title">Ready to power your future?</h2>
-        <p class="lead-text final-cta-desc">
-          Put industry-leading renewable engineering to work on your rooftop or commercial facility.
-        </p>
-        <a href="contact.html" class="btn btn-primary">
-          <span>Start Your Free Quote</span>
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
+      <div class="blog-author-tags">
+        <span>Installation</span>
+        <span>Site Work</span>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+    <!-- Author 03 -->
+    <article class="blog-author blog-author-orange">
+      <div class="blog-author-top">
+        <span class="blog-avatar">
+          <span>PN</span>
+        </span>
+
+        <div>
+          <span class="blog-author-role">Service &amp; Support</span>
+          <h3>Priya Nair</h3>
+        </div>
+      </div>
+
+      <p>
+        Service lead — maintenance, troubleshooting, performance checks
+        and keeping energy systems running reliably over time.
+      </p>
+
+      <div class="blog-author-meta">
+        <span>21 Articles</span>
+        <span>•</span>
+        <span>Maintenance</span>
+      </div>
+
+      <div class="blog-author-tags">
+        <span>Maintenance</span>
+        <span>Troubleshooting</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- Guides -->
+<section class="blog-card-section blog-guides">
+
+  <div class="blog-section-head">
+    <span class="blog-eyebrow">RESOURCES</span>
+    <h2 class="blog-title">Guides &amp; downloads</h2>
+    <p>Longer references, checklists and practical resources worth bookmarking.</p>
+  </div>
+
+  <div class="blog-guide-grid">
+
+    <a href="#" class="blog-guide">
+      <span class="blog-guide-icon">PDF</span>
+
+      <span class="blog-guide-content">
+        <strong>Home solar buyer's checklist</strong>
+        <em>Compare equipment, warranties, installation and project costs.</em>
+
+        <span class="blog-guide-meta">
+          <span>PDF</span>
+          <span>•</span>
+          <span>12 pages</span>
+          <span>•</span>
+          <span>2.4 MB</span>
+        </span>
+      </span>
+
+      <span class="blog-guide-arrow">↗</span>
+    </a>
+
+
+    <a href="#" class="blog-guide">
+      <span class="blog-guide-icon blog-guide-icon-yellow">2026</span>
+
+      <span class="blog-guide-content">
+        <strong>Incentives by state, 2026</strong>
+        <em>A practical overview of solar incentives and common program types.</em>
+
+        <span class="blog-guide-meta">
+          <span>PDF</span>
+          <span>•</span>
+          <span>18 pages</span>
+          <span>•</span>
+          <span>3.1 MB</span>
+        </span>
+      </span>
+
+      <span class="blog-guide-arrow">↗</span>
+    </a>
+
+
+    <a href="#" class="blog-guide">
+      <span class="blog-guide-icon blog-guide-icon-orange">▶</span>
+
+      <span class="blog-guide-content">
+        <strong>How an install actually works</strong>
+        <em>A visual walkthrough from site survey to system activation.</em>
+
+        <span class="blog-guide-meta">
+          <span>VIDEO</span>
+          <span>•</span>
+          <span>08:42</span>
+          <span>•</span>
+          <span>HD</span>
+        </span>
+      </span>
+
+      <span class="blog-guide-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="blog-cta">
+
+  <div class="blog-cta-content">
+    <span class="blog-eyebrow">LET'S TALK ENERGY</span>
+
+    <h2 class="blog-title">Have a question for the team?</h2>
+
+    <p>
+      Can't find the answer you're looking for?
+      Send us your question and our engineering team can point you in the right direction.
+    </p>
+
+    <div class="blog-cta-points">
+      <span>✓ Technical questions</span>
+      <span>✓ Project guidance</span>
+      <span>✓ No-pressure answers</span>
+    </div>
+  </div>
+
+  <a href="#" class="blog-btn blog-btn-yellow">
+    Ask us directly
+    <span>↗</span>
+  </a>
+
+</section>
+
+  <!-- Footer -->
+ <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
+        <!-- Col 1: Brand Info -->
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
             <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
             <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
           </a>
           <p class="footer-desc">
-            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure.
+            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure since 2018.
           </p>
           <div class="footer-social-links">
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <span class="material-symbols-outlined">work</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </a>
           </div>
         </div>
 
+        <!-- Col 2: Navigation -->
         <div>
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-nav-list">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="about.html" class="footer-link">About Us</a></li>
             <li><a href="services.html" class="footer-link">Services</a></li>
-            <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+            <li><a href="#projects" class="footer-link">Projects</a></li>
             <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Services -->
         <div>
           <h4 class="footer-col-title">Services</h4>
           <ul class="footer-nav-list">
@@ -323,19 +793,31 @@
             <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
             <li><a href="services.html" class="footer-link">Battery Storage</a></li>
             <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
+            <li><a href="services.html" class="footer-link">Microgrid Sizing</a></li>
           </ul>
         </div>
 
+        <!-- Col 4: Contact -->
         <div>
           <h4 class="footer-col-title">Contact</h4>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><span>hello@stacklyenergy.com</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span><span>+91 (800) 246-8800</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span><span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">mail</span>
+            <span>hello@stacklyenergy.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">phone</span>
+            <span>+91 (800) 246-8800</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>100 Renewable Way, Clean Energy Park, CA 94107</span>
+          </div>
         </div>
       </div>
 
+      <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <div>© 2026 Stackly Energy. All rights reserved.</div>
+        <div>© 2026 Stackly Energy. All rights reserved. Built with architectural renewable precision.</div>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
@@ -346,6 +828,43 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+</div>
+<script src="./js/main.js"></script>
+<script>
+  const blogChips = document.querySelectorAll(".blog-chip");
+  const blogCards = document.querySelectorAll(".blog-topic-card");
+
+  blogChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+
+      const selectedTopic = chip.dataset.topic;
+
+      // Active button
+      blogChips.forEach(item => {
+        item.classList.remove("active");
+      });
+
+      chip.classList.add("active");
+
+
+      // Filter cards
+      blogCards.forEach(card => {
+
+        const cardTopic = card.dataset.topic;
+
+        if (
+          selectedTopic === "all" ||
+          cardTopic === selectedTopic
+        ) {
+          card.classList.remove("hidden");
+        } else {
+          card.classList.add("hidden");
+        }
+
+      });
+
+    });
+  });
+</script>
 </body>
 </html>

@@ -316,3 +316,54 @@
 
   seedUsers();
 })();
+
+
+// =================login js ==================
+
+(function () {
+  // Mobile menu
+  var burger = document.querySelector('.login-burger');
+  var nav = document.getElementById('loginNav');
+  burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('login-nav-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+
+  // Login form validation
+  var form = document.getElementById('loginForm');
+  var status = document.getElementById('loginStatus');
+  var fields = form.querySelectorAll('.login-field');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.elements.email.value.trim();
+    var pass = form.elements.password.value;
+    fields.forEach(function (f) { f.classList.remove('login-field-error'); });
+    status.classList.remove('login-ok');
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      form.elements.email.closest('.login-field').classList.add('login-field-error');
+      status.textContent = 'Enter a valid email address.';
+      form.elements.email.focus();
+      return;
+    }
+    if (pass.length < 6) {
+      form.elements.password.closest('.login-field').classList.add('login-field-error');
+      status.textContent = 'Password must be at least 6 characters.';
+      form.elements.password.focus();
+      return;
+    }
+    if (form.elements.remember.checked) {
+      try { localStorage.setItem('loginEmail', email); } catch (err) {}
+    }
+    status.classList.add('login-ok');
+    status.textContent = 'Logging you in…';
+    // TODO: send credentials to your backend here
+  });
+
+  // Prefill remembered email
+  try {
+    var saved = localStorage.getItem('loginEmail');
+    if (saved) { form.elements.email.value = saved; form.elements.remember.checked = true; }
+  } catch (err) {}
+})();

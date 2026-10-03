@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Solutions — Stackly Energy</title>
-  <meta name="description" content="Explore Stackly Energy's engineered renewable systems: Solar Arrays, Wind Turbines, Battery Storage, and Commercial Microgrids.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services | Stackly Energy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
+<style>
+  
+</style>
 <body>
+<div class="services-page">
 
-  <!-- STICKY NAVBAR -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
+        <!-- Left: Logo -->
         <a href="index.html" class="logo">
-          <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-          <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+          <div class="logo-mark">
+            <span class="material-symbols-outlined">solar_power</span>
+          </div>
+          <div class="logo-text">
+            <span>STACKLY</span>
+            <span>ENERGY</span>
+          </div>
         </a>
 
+        <!-- Center: Links -->
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="services.html" class="nav-link active">Services</a></li>
@@ -31,6 +42,7 @@
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
 
+        <!-- Right: Actions -->
         <div class="nav-actions">
           <a href="login.html" class="nav-login">Login</a>
           <a href="contact.html" class="btn btn-primary btn-sm">
@@ -39,253 +51,650 @@
           </a>
         </div>
 
+        <!-- Mobile Hamburger Toggle -->
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer-backdrop"></div>
-  <aside class="mobile-drawer" aria-label="Mobile Navigation">
-    <div class="mobile-nav-top">
-      <a href="index.html" class="logo" style="margin-bottom: 36px;">
-        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
-        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
-      </a>
-      <ul class="mobile-nav-links">
-        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="services.html" class="mobile-nav-link active">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="blog.html" class="mobile-nav-link">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
-        <li><a href="contact.html" class="mobile-nav-link">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
+  <!-- Hero -->
+  <section class="services-hero">
+    <div class="services-hero-text">
+      <span class="services-eyebrow">Services</span>
+      <h1 class="services-display">Six services,<br>one crew, no<br>handoffs</h1>
+      <p>Everything from the first energy audit to the technician who answers your call five years from now. Choose a single service or bundle them into one integrated system.</p>
+    </div>
+    <div class="services-hero-img"><img src="./img/hero.jpg" alt="Installer working on an electrical panel"></div>
+  </section>
+
+  <!-- What we offer -->
+  <section class="services-card-section services-offer">
+    <div class="services-section-head">
+      <h2 class="services-title">What we offer</h2>
+      <p>Pick one service or bundle several into a single system.</p>
+    </div>
+    <div class="services-offer-grid">
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/solar.jpg" alt="Solar installation">
+        <h3>Solar installation</h3>
+        <p>Rooftop and ground-mount panels, sized from a year of your bills, permitted and connected by our own crews.</p>
+      </article>
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/wind.jpg" alt="Wind turbines">
+        <h3>Wind turbines</h3>
+        <p>Small and mid-scale turbines for open, high-wind sites, with a wind-resource assessment before we quote.</p>
+      </article>
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/battery.jpg" alt="Battery storage">
+        <h3>Battery storage</h3>
+        <p>Store excess generation and ride through grid outages, or shift usage away from peak-rate hours.</p>
+      </article>
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/ev.jpg" alt="EV charging">
+        <h3>EV charging</h3>
+        <p>Home and fleet chargers wired straight into your solar system, so your commute runs on sunshine.</p>
+      </article>
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/monitoring.jpg" alt="Monitoring dashboard">
+        <h3>Monitoring</h3>
+        <p>Real-time production dashboards with fault alerts by text, so problems get fixed before you notice them.</p>
+      </article>
+      <article class="services-offer-card services-bg-dark">
+        <img src="./img/maintenance.jpg" alt="Maintenance crew">
+        <h3>Maintenance plans</h3>
+        <p>Annual inspection, panel cleaning and inverter checks included, with priority response if something goes wrong.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Solar deep dive -->
+  <section class="services-split services-sizing">
+    <div class="services-split-img"><img src="./img/sizing.jpg" alt="Laptop and coffee on a desk"></div>
+    <div class="services-split-text">
+      <span class="services-eyebrow">Solar deep dive</span>
+      <h2 class="services-title">How we size your system</h2>
+      <p>Most systems are oversized because it is easier to sell. We start by analysing twelve months of your utility bills, then model your roof's shading, tilt and orientation hour by hour.</p>
+      <p>Only then do we choose panel count and inverter type, comparing at least two layouts so you can see the trade-off between cost and production.</p>
+      <ul class="services-checks">
+        <li>Hour-by-hour production model</li>
+        <li>Shade and structural review</li>
+        <li>Two layout options in every quote</li>
       </ul>
     </div>
-    <div class="mobile-nav-bottom" style="margin-top: 32px;">
-      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
-      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
-    </div>
-  </aside>
+  </section>
 
-  <!-- PAGE HERO -->
-  <section class="section page-hero section-cream">
-    <div class="container">
-      <div class="page-hero-inner fade-in-up">
-        <div class="eyebrow">Comprehensive Engineering</div>
-        <h1 class="display-1" style="margin-bottom: 24px;">Systems Engineered For Maximum Yield</h1>
-        <p class="lead-text">
-          Stackly delivers integrated renewable energy hardware and software. Every component is selected for durability, architectural coherence, and 25-year guaranteed power generation.
+  <!-- How a project runs -->
+ <section class="services-process">
+
+  <div class="services-section-head">
+    <h2 class="services-title">How a project runs</h2>
+    <p>
+      From the first site assessment to system activation, every project follows
+      a structured process designed to keep the work predictable, transparent,
+      and technically sound.
+    </p>
+  </div>
+
+  <div class="services-steps">
+
+    <!-- Week 1 -->
+    <div class="services-step services-step-green">
+      <div class="services-step-content">
+        <span>Week 1</span>
+
+        <h3>Assess &amp; Design</h3>
+
+        <p>
+          We evaluate your roof, electrical infrastructure, energy usage, and
+          property conditions to engineer a system sized for your actual needs.
         </p>
       </div>
     </div>
-  </section>
 
-  <!-- INTERACTIVE SYSTEM SIZING CALCULATOR -->
-  <section class="section section-cream" style="padding-top: 40px;">
-    <div class="container">
-      <div class="calc-card fade-in-up">
-        <div class="calc-grid">
-          <div>
-            <div class="eyebrow eyebrow-dark">Interactive Solar Estimator</div>
-            <h2 class="heading-3 text-cream" style="margin-bottom: 16px;">Estimate Your System Size & Payback</h2>
-            <p class="body-muted" style="margin-bottom: 32px;">
-              Adjust your monthly electric expense to model the recommended kilowatt rating, annual utility savings, and avoided emissions.
-            </p>
 
-            <!-- Property Type Selector -->
-            <div class="calc-input-group">
-              <label class="calc-label">Property Classification</label>
-              <div class="calc-radio-group">
-                <button type="button" class="calc-radio-btn calc-prop-btn active" data-multiplier="1.0">Residential Home</button>
-                <button type="button" class="calc-radio-btn calc-prop-btn" data-multiplier="2.8">Commercial Facility</button>
-              </div>
-            </div>
+    <!-- Week 2 -->
+    <div class="services-step services-step-green">
+      <div class="services-step-content">
+        <span>Week 2</span>
 
-            <!-- Slider -->
-            <div class="calc-input-group">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <label class="calc-label" style="margin-bottom: 0;">Average Monthly Power Bill</label>
-                <span class="calc-val-badge" id="calcBillVal">$250</span>
-              </div>
-              <div class="calc-range-wrapper">
-                <input type="range" class="calc-slider" id="calcBillSlider" min="80" max="1500" step="10" value="250">
-              </div>
-            </div>
-          </div>
+        <h3>Permits &amp; Approvals</h3>
 
-          <!-- Calculated Output Box -->
-          <div class="calc-results-box">
-            <div class="calc-res-item">
-              <div class="res-num" id="calcResSystemSize">9.6 kW</div>
-              <div class="res-label">Recommended Array Capacity</div>
-            </div>
-            <div class="calc-res-item">
-              <div class="res-num" id="calcResAnnualSavings">$2,640</div>
-              <div class="res-label">Estimated First-Year Energy Savings</div>
-            </div>
-            <div class="calc-res-item">
-              <div class="res-num" id="calcResOffsetCo2">13.0 Tons</div>
-              <div class="res-label">Annual Greenhouse Gas Offset</div>
-            </div>
-            <a href="contact.html" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
-              <span>Lock In Custom Proposal</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CORE SERVICE BREAKDOWN -->
-  <section class="section section-cream">
-    <div class="container">
-      
-      <!-- 01 Solar Arrays Detailed -->
-      <div class="hero-grid" style="margin-bottom: clamp(60px, 8vw, 100px);">
-        <div class="hero-content fade-in-up">
-          <div class="eyebrow">Service 01 • Generation</div>
-          <h2 class="display-2" style="margin-bottom: 20px;">Photovoltaic Solar Arrays</h2>
-          <p class="lead-text" style="margin-bottom: 24px;">
-            We engineer premium rooftop, ground-mounted, and architectural solar carport systems. Using bifacial monocrystalline cells with up to 22.8% module efficiency, our arrays capture ambient reflected light from below while presenting a clean, low-profile silhouette.
-          </p>
-          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>All-black concealed mounting hardware with zero roof-membrane leaks</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Enphase IQ8 / SolarEdge micro-inverters with module-level MPPT</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>25-year linear degradation warranty retaining 87.4% output at year 25</span>
-            </li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline-dark">Request Solar Consultation</a>
-        </div>
-        <div class="hero-image-frame fade-in-up delay-1">
-          <img src="img/svc-solar.webp" width="800" height="600" alt="Photovoltaic solar installation">
-        </div>
-      </div>
-
-      <!-- 02 Battery Storage Detailed (Inverted Layout) -->
-      <div class="hero-grid" style="margin-bottom: clamp(60px, 8vw, 100px);">
-        <div class="hero-image-frame fade-in-up">
-          <img src="img/svc-battery.webp" width="800" height="600" alt="Lithium iron phosphate battery energy storage system">
-        </div>
-        <div class="hero-content fade-in-up delay-1">
-          <div class="eyebrow">Service 02 • Resilience</div>
-          <h2 class="display-2" style="margin-bottom: 20px;">Battery Energy Storage</h2>
-          <p class="lead-text" style="margin-bottom: 24px;">
-            Energy independence requires dependable storage. Our modular Lithium Iron Phosphate (LiFePO4) storage systems feature thermal runaway protection, zero cobalt chemistry, and sub-10 millisecond automatic islanding during utility grid collapse.
-          </p>
-          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Intelligent time-of-use arbitration to automatically dodge peak utility pricing</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Expandable from 10 kWh residential modules up to multi-megawatt commercial units</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>10,000+ cycle design life with 15-year comprehensive battery warranty</span>
-            </li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline-dark">Configure Battery Storage</a>
-        </div>
-      </div>
-
-      <!-- 03 Wind & Consulting Detailed -->
-      <div class="hero-grid">
-        <div class="hero-content fade-in-up">
-          <div class="eyebrow">Service 03 • Kinetic & Advisory</div>
-          <h2 class="display-2" style="margin-bottom: 20px;">Wind & Microgrid Advisory</h2>
-          <p class="lead-text" style="margin-bottom: 24px;">
-            For agricultural, commercial, and coastal parcels with sustained wind speeds, we engineer aerodynamic vertical and horizontal axis micro-turbines. Combined with our deep grid interconnection consulting, we turn raw land into high-yield clean power generators.
-          </p>
-          <ul style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Acoustically damped blade geometry operating below 45 dB</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Complete turnkey utility interconnection and tax equity structuring</span>
-            </li>
-            <li style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
-              <span class="material-symbols-outlined" style="color: var(--color-accent);">check_circle</span>
-              <span>Autonomous storm feathering and active electronic yaw controls</span>
-            </li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary">
-            <span>Speak With An Engineer</span>
-            <span class="material-symbols-outlined">arrow_forward</span>
-          </a>
-        </div>
-        <div class="hero-image-frame fade-in-up delay-1">
-          <img src="img/svc-wind.webp" width="800" height="600" alt="Wind energy installation">
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="section final-cta-section">
-    <div class="final-cta-bg">
-      <img src="img/svc-solar.webp" width="800" height="600" alt="Clean solar energy">
-    </div>
-    <div class="container">
-      <div class="final-cta-content fade-in-up">
-        <div class="eyebrow eyebrow-dark">Custom Engineering Proposal</div>
-        <h2 class="display-1 text-cream final-cta-title">Ready to power your future?</h2>
-        <p class="lead-text final-cta-desc">
-          Schedule an engineering review. Our NABCEP certified designers will analyze your site and prepare a detailed, zero-obligation proposal.
+        <p>
+          Our team prepares and submits the required plans, utility
+          interconnection documents, and local permits so the project can move
+          forward without unnecessary delays.
         </p>
-        <a href="contact.html" class="btn btn-primary">
-          <span>Start Your Free Quote</span>
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
+      </div>
+    </div>
+
+
+    <!-- Week 3–4 -->
+    <div class="services-step services-step-green">
+      <div class="services-step-content">
+        <span>Week 3–4</span>
+
+        <h3>Install &amp; Commission</h3>
+
+        <p>
+          Our in-house installation team mounts the system, completes the
+          electrical work, configures monitoring, and commissions the equipment
+          for safe and reliable operation.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Week 5 -->
+    <div class="services-step services-step-green">
+      <div class="services-step-content">
+        <span>Week 5</span>
+
+        <h3>Inspect &amp; Activate</h3>
+
+        <p>
+          After final inspection and utility approval, we complete system
+          activation and verify that your solar and energy equipment is
+          operating as designed.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Packages -->
+  <section class="services-card-section services-packages">
+
+  <div class="services-section-head">
+    <h2 class="services-title">Energy Packages</h2>
+    <p>
+      Purpose-built energy systems for homes, businesses, and properties.
+      Every package is custom-sized around your site, energy profile, and
+      long-term goals.
+    </p>
+  </div>
+
+
+  <div class="services-package-grid">
+
+    <!-- 01 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $9,800</span>
+
+      <h3>Starter Solar</h3>
+
+      <div class="services-package-spec">
+        4–6 kW Rooftop System
+      </div>
+
+      <p>
+        A streamlined solar installation designed to reduce everyday grid
+        consumption and establish a strong foundation for long-term energy
+        savings.
+      </p>
+
+      <ul>
+        <li>High-efficiency solar modules</li>
+        <li>Smart production monitoring</li>
+        <li>25-year output warranty</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 02 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $17,400</span>
+
+      <h3>Solar + Storage</h3>
+
+      <div class="services-package-spec">
+        8–10 kW + Home Battery
+      </div>
+
+      <p>
+        Generate your own electricity and store excess production for evening
+        use, peak-rate management, and greater energy independence.
+      </p>
+
+      <ul>
+        <li>Solar + battery integration</li>
+        <li>Backup power capability</li>
+        <li>Energy management controls</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 03 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $24,900</span>
+
+      <h3>Whole-Home Backup</h3>
+
+      <div class="services-package-spec">
+        10–15 kW + Expanded Storage
+      </div>
+
+      <p>
+        A higher-capacity system engineered to keep essential household loads
+        running when the grid goes down.
+      </p>
+
+      <ul>
+        <li>Expanded battery capacity</li>
+        <li>Automatic backup switching</li>
+        <li>Critical-load management</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 04 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $13,500</span>
+
+      <h3>Solar + EV</h3>
+
+      <div class="services-package-spec">
+        6–10 kW + EV Charging
+      </div>
+
+      <p>
+        Pair rooftop generation with dedicated EV charging to shift more of
+        your transportation energy onto your own solar system.
+      </p>
+
+      <ul>
+        <li>Level 2 EV charger</li>
+        <li>Solar-aware charging</li>
+        <li>Load management</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 05 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $21,800</span>
+
+      <h3>Energy Independence</h3>
+
+      <div class="services-package-spec">
+        Solar + Storage + Controls
+      </div>
+
+      <p>
+        A comprehensive residential energy system designed to maximize onsite
+        generation, storage, and intelligent energy consumption.
+      </p>
+
+      <ul>
+        <li>Advanced energy controls</li>
+        <li>Battery optimization</li>
+        <li>Real-time system monitoring</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 06 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">From $35,000</span>
+
+      <h3>Commercial Solar</h3>
+
+      <div class="services-package-spec">
+        25–100+ kW Systems
+      </div>
+
+      <p>
+        Commercial-scale solar engineered around facility loads, available
+        roof or ground space, utility requirements, and operating schedules.
+      </p>
+
+      <ul>
+        <li>Commercial-grade equipment</li>
+        <li>Demand-aware system design</li>
+        <li>Performance monitoring</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 07 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">Custom Quote</span>
+
+      <h3>Microgrid Systems</h3>
+
+      <div class="services-package-spec">
+        Solar + Storage + Controls
+      </div>
+
+      <p>
+        Integrated energy infrastructure for properties that require resilient
+        power, coordinated generation, and intelligent load management.
+      </p>
+
+      <ul>
+        <li>Multi-source generation</li>
+        <li>Advanced battery systems</li>
+        <li>Microgrid controls</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 08 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">Custom Quote</span>
+
+      <h3>Ground-Mount Solar</h3>
+
+      <div class="services-package-spec">
+        Residential &amp; Commercial
+      </div>
+
+      <p>
+        Flexible ground-mounted arrays for properties with available land,
+        optimized for orientation, accessibility, and long-term maintenance.
+      </p>
+
+      <ul>
+        <li>Site-specific engineering</li>
+        <li>Optimized array positioning</li>
+        <li>Easy service access</li>
+      </ul>
+
+    </article>
+
+
+    <!-- 09 -->
+    <article class="services-package services-bg-green">
+
+      <span class="services-package-label">Custom Quote</span>
+
+      <h3>Enterprise Energy</h3>
+
+      <div class="services-package-spec">
+        Multi-Site &amp; High-Capacity
+      </div>
+
+      <p>
+        Portfolio-level energy infrastructure for organizations managing
+        multiple facilities, complex loads, and long-term energy strategies.
+      </p>
+
+      <ul>
+        <li>Multi-site system planning</li>
+        <li>Centralized monitoring</li>
+        <li>Long-term performance strategy</li>
+      </ul>
+
+    </article>
+
+  </div>
+</section>
+
+  <!-- Case study -->
+  <section class="services-split services-case">
+    <div class="services-split-img"><img src="./img/casestudy.jpg" alt="Warehouse with ground-mount site"></div>
+    <div class="services-split-text">
+      <span class="services-eyebrow">Case study</span>
+      <h2 class="services-title">Harbor Logistics cut daytime grid draw to zero</h2>
+      <p>A 1.2 MW ground-mount array with battery buffering now covers the warehouse's full daytime operating load, paying back in under six years.</p>
+      <p>We staged the install around live operations so not a single shift was lost, finishing three weeks ahead of schedule.</p>
+      <div class="services-stats">
+        <div><strong>1.2 MW</strong><span>Array size</span></div>
+        <div><strong>5.8 yrs</strong><span>Payback</span></div>
+        <div><strong>0</strong><span>Lost shifts</span></div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <!-- Wind & storage -->
+  <section class="services-card-section services-windstorage">
+    <div class="services-windstorage-text">
+      <span class="services-eyebrow">Wind &amp; storage</span>
+      <h2 class="services-title">When wind and batteries make sense</h2>
+      <p>Wind works best on open sites with steady average speeds above about 5 m/s. We place an anemometer for a few weeks before recommending a turbine.</p>
+      <p>Batteries pay off most where evening rates are high or outages are frequent. We show the numbers both ways so you can decide with real figures.</p>
+    </div>
+    <div class="services-windstorage-img"><img src="./img/windbattery.jpg" alt="Wind turbines and battery house illustration"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="services-faq">
+    <h2 class="services-title">Common questions</h2>
+    <div class="services-faq-list">
+      <div class="services-faq-item services-open">
+        <button class="services-faq-q" aria-expanded="true">How long does an install take?<span class="services-faq-icon"></span></button>
+        <div class="services-faq-a"><p>Most homes take one to two days on site once permits clear, which usually takes two to three weeks.</p></div>
+      </div>
+      <div class="services-faq-item">
+        <button class="services-faq-q" aria-expanded="false">Do you handle permits and utility paperwork?<span class="services-faq-icon"></span></button>
+        <div class="services-faq-a"><p>Yes. We file every permit and interconnection application on your behalf and keep you updated at each stage.</p></div>
+      </div>
+      <div class="services-faq-item">
+        <button class="services-faq-q" aria-expanded="false">What happens if a panel underperforms?<span class="services-faq-icon"></span></button>
+        <div class="services-faq-a"><p>Our monitoring flags it automatically, and it is covered by the 25-year output guarantee. We repair or replace it at no cost.</p></div>
+      </div>
+      <div class="services-faq-item">
+        <button class="services-faq-q" aria-expanded="false">Can I finance the system?<span class="services-faq-icon"></span></button>
+        <div class="services-faq-a"><p>Yes. We offer loans and leases through partner lenders, and we show the monthly cost next to your projected savings.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we work -->
+  <!-- WHERE WE WORK -->
+<section class="services-where">
+
+  <div class="services-section-head">
+    <div class="services-eyebrow">Our Service Network</div>
+
+    <h2 class="services-title">Where we work</h2>
+
+    <p>
+      Our regional teams combine local permitting knowledge with a consistent
+      engineering and installation standard, giving every project the same
+      level of technical oversight from design through activation.
+    </p>
+  </div>
+
+
+  <div class="services-zones">
+
+    <div class="services-zone">
+      <strong>Pacific</strong>
+      <span>OR · WA · CA</span>
+      <p>
+        Solar systems designed for diverse coastal, urban, and high-sun
+        environments with attention to local utility requirements.
+      </p>
+    </div>
+
+    <div class="services-zone">
+      <strong>Mountain</strong>
+      <span>CO · UT · AZ</span>
+      <p>
+        Site-specific designs accounting for elevation, temperature swings,
+        roof conditions, and high solar exposure.
+      </p>
+    </div>
+
+    <div class="services-zone">
+      <strong>Central</strong>
+      <span>TX · MN · IL</span>
+      <p>
+        Energy systems engineered around regional weather conditions, utility
+        programs, household loads, and seasonal demand.
+      </p>
+    </div>
+
+    <div class="services-zone">
+      <strong>Eastern</strong>
+      <span>NC · NY · GA</span>
+      <p>
+        Local project teams managing permitting, interconnection, installation,
+        and commissioning across a range of residential properties.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- <div class="services-where-note">
+    <span>19 Regional Offices</span>
+    <p>
+      Every location is supported by dedicated project, engineering, and field
+      teams rather than a centralized call-center model.
+    </p>
+  </div> -->
+
+</section>
+
+
+<!-- BACKED -->
+<section class="services-backed">
+
+  <div class="services-backed-text">
+
+    <div class="services-eyebrow">Long-Term Protection</div>
+
+    <h2 class="services-title">Backed for 25 years</h2>
+
+    <p>
+      Your energy system is a long-term investment. Our warranty structure is
+      designed to provide clear protection for both system output and the
+      quality of the installation itself.
+    </p>
+
+    <p class="services-backed-detail">
+      From initial commissioning through years of operation, we maintain
+      documentation around system performance and provide a clear path for
+      warranty and service support.
+    </p>
+
+  </div>
+
+
+  <div class="services-pills">
+
+    <div class="services-pill">
+      <strong>25 yrs</strong>
+      <span>Output guarantee</span>
+      <p>
+        Protection tied to the expected energy production of the installed
+        system.
+      </p>
+    </div>
+
+    <div class="services-pill">
+      <strong>10 yrs</strong>
+      <span>Workmanship warranty</span>
+      <p>
+        Coverage for qualifying installation-related workmanship issues.
+      </p>
+    </div>
+
+    <div class="services-pill">
+      <strong>24/7</strong>
+      <span>System monitoring</span>
+      <p>
+        Ongoing visibility into system performance helps identify potential
+        issues early.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="services-cta">
+
+  <div class="services-cta-content">
+
+    <div class="services-eyebrow">Start With Your Property</div>
+
+    <h2 class="services-title" style="margin-bottom: 10px;">Get a system sized for you</h2>
+
+    <p style="margin-bottom: 10px;">
+      Tell us about your property, energy usage, and goals. Our team will
+      evaluate the site and build a system recommendation around your actual
+      requirements rather than a standard package.
+    </p>
+
+    <div style="margin-bottom: 10px;" class="services-cta-points">
+      <span>Site-specific design</span>
+      <span>Transparent pricing</span>
+      <span>No obligation</span>
+    </div>
+
+    <a href="#" class="services-btn services-btn-yellow">
+      Request a quote
+    </a>
+
+  </div>
+
+</section>
+
+  <!-- Footer -->
+</div>
+<footer class="site-footer">
     <div class="container">
       <div class="footer-top">
+        <!-- Col 1: Brand Info -->
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
             <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
             <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
           </a>
           <p class="footer-desc">
-            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure.
+            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure since 2018.
           </p>
           <div class="footer-social-links">
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <span class="material-symbols-outlined">work</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </a>
           </div>
         </div>
 
+        <!-- Col 2: Navigation -->
         <div>
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-nav-list">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="about.html" class="footer-link">About Us</a></li>
             <li><a href="services.html" class="footer-link">Services</a></li>
-            <li><a href="index.html#projects" class="footer-link">Projects</a></li>
+            <li><a href="#projects" class="footer-link">Projects</a></li>
             <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Services -->
         <div>
           <h4 class="footer-col-title">Services</h4>
           <ul class="footer-nav-list">
@@ -293,19 +702,31 @@
             <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
             <li><a href="services.html" class="footer-link">Battery Storage</a></li>
             <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
+            <li><a href="services.html" class="footer-link">Microgrid Sizing</a></li>
           </ul>
         </div>
 
+        <!-- Col 4: Contact -->
         <div>
           <h4 class="footer-col-title">Contact</h4>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><span>hello@stacklyenergy.com</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span><span>+91 (800) 246-8800</span></div>
-          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span><span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">mail</span>
+            <span>hello@stacklyenergy.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">phone</span>
+            <span>+91 (800) 246-8800</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>100 Renewable Way, Clean Energy Park, CA 94107</span>
+          </div>
         </div>
       </div>
 
+      <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <div>© 2026 Stackly Energy. All rights reserved.</div>
+        <div>© 2026 Stackly Energy. All rights reserved. Built with architectural renewable precision.</div>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
@@ -315,7 +736,6 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/main.js"></script>
+<script src="./js/main.js"></script>
 </body>
 </html>
