@@ -6414,3 +6414,36 @@ body.page-exit {
     gap: 9px;
   }
 }
+
+/* ==========================================================================
+   ALWAYS-ON SECTION ANIMATIONS (every page, every visit)
+   - .sec-reveal  → each <section> fades/slides in as a whole block
+   - .reveal-item → cards inside grids cascade in with a stagger
+   Both RE-TRIGGER every time they re-enter the viewport (JS toggles .in-view).
+   Uses the standalone `translate` property so hover transforms keep working.
+   ========================================================================== */
+.sec-reveal {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), translate 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, translate;
+}
+
+.sec-reveal:not(.in-view) { opacity: 0; translate: 0 34px; }
+.sec-reveal.in-view { will-change: auto; }
+
+.reveal-item {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), translate 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, translate;
+}
+
+.reveal-item:not(.in-view) { opacity: 0; translate: 0 26px; }
+.reveal-item.in-view { will-change: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-reveal,
+  .reveal-item {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: none !important;
+  }
+}

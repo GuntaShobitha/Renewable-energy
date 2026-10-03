@@ -73,25 +73,30 @@ function initMobileDrawer() {
 }
 
 /* ==========================================================================
-   3. SCROLL TRIGGERED ELEMENT REVEALS
+   3. SHARED REVEAL OBSERVER — animations re-trigger EVERY time an element
+      re-enters the viewport (scroll past it, scroll back → it plays again).
+      CSS classes: .reveal / .sec-reveal / .reveal-item + .in-view
+   ========================================================================== */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -8% 0px'
+});
+
+function observeReveal(nodes) {
+  nodes.forEach(el => revealObserver.observe(el));
+}
+
+/* ==========================================================================
+   3b. SCROLL TRIGGERED ELEMENT REVEALS
    ========================================================================== */
 function initScrollAnimations() {
   const revealElements = document.querySelectorAll('.fade-in-up, .timeline-track-wrapper');
   if (!revealElements.length) return;
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  revealElements.forEach(el => observer.observe(el));
+  observeReveal(revealElements);
 }
 
 /* ==========================================================================
@@ -521,26 +526,40 @@ const REVEAL_SELECTOR = [
   '.about-story', '.about-timeline-item', '.dash-metric', '.dash-panel > *'
 ].join(',');
 
+const SECTION_STAGGER_GRIDS = [
+  '.services-offer-grid', '.services-steps', '.services-package-grid',
+  '.services-zones', '.services-pills', '.services-faq-list',
+  '.blog-post-grid', '.blog-topic-grid', '.blog-read-list',
+  '.blog-author-grid', '.blog-guide-grid', '.blog-chips'
+].join(',');
+
 function initRevealAuto() {
   const targets = document.querySelectorAll(REVEAL_SELECTOR);
-  if (!targets.length) return;
-
   targets.forEach(el => el.classList.add('reveal'));
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  // EVERY <section> on every page animates as a whole block
+  document.querySelectorAll('section').forEach(sec => sec.classList.add('sec-reveal'));
 
-  targets.forEach(el => observer.observe(el));
+  // Stagger cards inside grids/lists so they cascade in one after another
+  document.querySelectorAll(SECTION_STAGGER_GRIDS).forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.classList.add('reveal-item');
+      child.style.setProperty('--reveal-delay', Math.min(i * 90, 720) + 'ms');
+    });
+  });
+
+  // Users who prefer reduced motion get everything visible immediately
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal, .sec-reveal, .reveal-item')
+      .forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  observeReveal(document.querySelectorAll('.reveal, .sec-reveal, .reveal-item'));
 
   // Safety net: reveal anything still hidden after 4s (e.g. odd layouts)
   setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.in-view)').forEach(el => {
+    document.querySelectorAll('.reveal:not(.in-view), .sec-reveal:not(.in-view), .reveal-item:not(.in-view)').forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in-view');
     });
@@ -552,17 +571,8 @@ function initRevealAuto() {
    Applied to section headings; wrapper keeps existing layout intact.
    ========================================================================== */
 function initSplitTextHeadlines() {
-  const headings = document.querySelectorAll('.display-1, .display-2, .about-hero-title, .about-section-title, .about-story-title, .dash-hero h1');
+  const headings = document.querySelectorAll('.display-1, .display-2, .about-hero-title, .about-section-title, .about-story-title, .dash-hero h1, .services-display, .blog-display, .services-title, .blog-title');
   if (!headings.length) return;
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
 
   headings.forEach((heading) => {
     if (heading.dataset.splitDone) return;
@@ -595,7 +605,7 @@ function initSplitTextHeadlines() {
 
     wrapWords(heading);
     heading.classList.add('split-ready');
-    observer.observe(heading);
+    observeReveal([heading]);
   });
 }
 
@@ -797,6 +807,7 @@ function initParticles() {  const page = document.querySelector('.error-page');
   // Mobile menu
   var burger = document.querySelector('.contact-burger');
   var nav = document.getElementById('contactNav');
+  if (!burger || !nav) return;
   burger.addEventListener('click', function () {
     var open = nav.classList.toggle('contact-nav-open');
     burger.setAttribute('aria-expanded', open);
@@ -976,7 +987,10 @@ function initParticles() {  const page = document.querySelector('.error-page');
 
   function renderTopic(topic) {
 
+    if (!results) return;
+
     const articles = blogData[topic];
+    if (!articles) return;
 
     results.innerHTML = articles.map((article, index) => {
 
