@@ -22,17 +22,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. NAVBAR SCROLL EFFECT & ACTIVE STATE
+   1. NAVBAR SCROLL EFFECT & READING PROGRESS
    ========================================================================== */
 function initNavbar() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
+  // Ensure scroll progress indicator bar exists
+  let progressBar = header.querySelector('.site-scroll-progress');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.className = 'site-scroll-progress';
+    header.appendChild(progressBar);
+  }
+
   const handleScroll = () => {
-    if (window.scrollY > 30) {
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY > 20) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
+    }
+
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const progressPercent = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+      progressBar.style.width = progressPercent + '%';
     }
   };
 
@@ -981,73 +996,170 @@ function initParticles() {  const page = document.querySelector('.error-page');
   };
 
 
-  const chips = document.querySelectorAll(".blog-chip");
-  const results = document.getElementById("blogTopicResults");
+  /* ==========================================================================
+     BLOG 3D CAROUSEL & TOPIC FILTER ENGINE
+     (Fixes: "in blog browse by topic add 3d caurosel and if if a goes goes there it showing white bcoz of that the text is not visible")
+     ========================================================================== */
+  function initBlog3DCarousel() {
+    const grid = document.getElementById('blogTopicGrid');
+    const container = document.getElementById('blogCarouselContainer');
+    const chips = document.querySelectorAll('.blog-chip');
+    const prevBtn = document.getElementById('blogCarouselPrev');
+    const nextBtn = document.getElementById('blogCarouselNext');
+    const dotsContainer = document.getElementById('blogCarouselDots');
+    const toggleBtn = document.getElementById('blogViewToggle');
+    const toggleText = document.getElementById('blogViewToggleText');
 
+    if (!grid) return;
 
-  function renderTopic(topic) {
+    const cards = Array.from(grid.querySelectorAll('.blog-topic-card'));
+    let activeFilter = 'all';
+    let currentIndex = 0;
+    let is3D = true;
 
-    if (!results) return;
+    function getVisibleCards() {
+      return cards.filter(card => {
+        const topic = card.getAttribute('data-topic');
+        return activeFilter === 'all' || topic === activeFilter;
+      });
+    }
 
-    const articles = blogData[topic];
-    if (!articles) return;
+    function renderDots(visibleCards) {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      const total = Math.min(visibleCards.length, 8);
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === currentIndex % total ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to article slide ' + (i + 1));
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
 
-    results.innerHTML = articles.map((article, index) => {
+    function updateCarousel() {
+      const visible = getVisibleCards();
 
-      const number = String(index + 1).padStart(2, "0");
-
-      return `
-        <article class="blog-notification is-entering">
-
-          <div class="blog-notification-number">
-            ${number}
-          </div>
-
-          <div class="blog-notification-content">
-
-            <span>${article.meta}</span>
-
-            <h3>${article.title}</h3>
-
-            <p>${article.description}</p>
-
-          </div>
-
-          <a
-            href="#"
-            class="blog-notification-link"
-            aria-label="Read ${article.title}"
-          >
-            →
-          </a>
-
-        </article>
-      `;
-
-    }).join("");
-
-  }
-
-
-  chips.forEach(chip => {
-
-    chip.addEventListener("click", () => {
-
-      // Remove active state
-      chips.forEach(item => {
-        item.classList.remove("active");
+      // Show/hide cards based on filter
+      cards.forEach(card => {
+        const topic = card.getAttribute('data-topic');
+        const show = (activeFilter === 'all' || topic === activeFilter);
+        card.classList.toggle('hidden', !show);
       });
 
-      // Activate clicked topic
-      chip.classList.add("active");
+      if (!visible.length) return;
+      if (currentIndex >= visible.length) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = visible.length - 1;
 
-      // Render related articles
-      renderTopic(chip.dataset.topic);
+      if (is3D && container) {
+        container.classList.add('is-3d');
+        if (toggleText) toggleText.textContent = 'Switch to Grid';
 
+        visible.forEach((card, idx) => {
+          card.classList.remove('pos-center', 'pos-left', 'pos-right', 'pos-hidden');
+          const total = visible.length;
+          const diff = (idx - currentIndex + total) % total;
+
+          if (diff === 0) {
+            card.classList.add('pos-center');
+          } else if (diff === 1 || (total === 2 && diff === 1)) {
+            card.classList.add('pos-right');
+          } else if (diff === total - 1) {
+            card.classList.add('pos-left');
+          } else {
+            card.classList.add('pos-hidden');
+          }
+        });
+      } else if (container) {
+        container.classList.remove('is-3d');
+        if (toggleText) toggleText.textContent = 'Switch to 3D Carousel';
+        visible.forEach(card => {
+          card.classList.remove('pos-center', 'pos-left', 'pos-right', 'pos-hidden');
+        });
+      }
+
+      renderDots(visible);
+    }
+
+    function next() {
+      const visible = getVisibleCards();
+      if (!visible.length) return;
+      currentIndex = (currentIndex + 1) % visible.length;
+      updateCarousel();
+    }
+
+    function prev() {
+      const visible = getVisibleCards();
+      if (!visible.length) return;
+      currentIndex = (currentIndex - 1 + visible.length) % visible.length;
+      updateCarousel();
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', next);
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+
+    // Clicking side cards brings them to front in 3D
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (!is3D) return;
+        if (e.target.closest('a')) return;
+        if (card.classList.contains('pos-left')) {
+          prev();
+        } else if (card.classList.contains('pos-right')) {
+          next();
+        }
+      });
     });
 
-  });
+    // View toggle button (3D Carousel vs Grid)
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        is3D = !is3D;
+        const icon = toggleBtn.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = is3D ? 'grid_view' : 'view_carousel';
+        updateCarousel();
+      });
+    }
 
+    // Filter Chips
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.getAttribute('data-topic') || 'all';
+        currentIndex = 0;
+        updateCarousel();
+      });
+    });
 
-  // Load first topic
-  renderTopic("solar");
+    // Touch swipe support
+    let startX = 0;
+    if (grid) {
+      grid.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+      grid.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) next();
+          else prev();
+        }
+      }, { passive: true });
+    }
+
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+      const containerInView = container && container.getBoundingClientRect().top < window.innerHeight && container.getBoundingClientRect().bottom > 0;
+      if (!containerInView || !is3D) return;
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    updateCarousel();
+  }
+
+  initBlog3DCarousel();

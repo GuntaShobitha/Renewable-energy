@@ -180,8 +180,8 @@ function drawSeriesChart(canvas, seriesList, opts) {
   function x(i, n) { return padL + (i / Math.max(n - 1, 1)) * (w - padL - padR); }
   function y(v) { return padT + (1 - v / maxVal) * (h - padT - padB); }
 
-  ctx.strokeStyle = 'rgba(245,242,232,0.12)';
-  ctx.fillStyle = 'rgba(245,242,232,0.55)';
+  ctx.strokeStyle = 'rgba(16, 185, 129, 0.15)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
   ctx.font = '10px "Plus Jakarta Sans", sans-serif';
   ctx.lineWidth = 1;
   for (var g = 0; g <= 4; g++) {
@@ -196,7 +196,7 @@ function drawSeriesChart(canvas, seriesList, opts) {
     ctx.beginPath();
     s.data.forEach(function (v, i) { i === 0 ? ctx.moveTo(x(i, s.data.length), y(v)) : ctx.lineTo(x(i, s.data.length), y(v)); });
     ctx.strokeStyle = s.color;
-    ctx.lineWidth = 2.2;
+    ctx.lineWidth = 2.4;
     ctx.lineJoin = 'round';
     ctx.stroke();
     if (s.fill) {
@@ -208,7 +208,7 @@ function drawSeriesChart(canvas, seriesList, opts) {
     }
     // end dot
     ctx.beginPath();
-    ctx.arc(x(s.data.length - 1, s.data.length), y(s.data[s.data.length - 1]), 4, 0, Math.PI * 2);
+    ctx.arc(x(s.data.length - 1, s.data.length), y(s.data[s.data.length - 1]), 4.5, 0, Math.PI * 2);
     ctx.fillStyle = s.color;
     ctx.fill();
   });
@@ -219,9 +219,26 @@ function renderDashUser(session) {
   var nameEl = document.getElementById('dashUserName');
   var roleEl = document.getElementById('dashUserRole');
   var avatarEl = document.getElementById('dashAvatar');
-  if (nameEl) nameEl.textContent = session.name || session.email;
-  if (roleEl) roleEl.textContent = session.role === 'admin' ? 'Administrator' : (session.plan || 'Member');
-  if (avatarEl) avatarEl.textContent = (session.name || session.email || '?').charAt(0).toUpperCase();
+  if (nameEl) {
+    nameEl.textContent = session.email || session.name || 'User';
+    nameEl.title = session.email || '';
+  }
+  if (roleEl) roleEl.textContent = session.role === 'admin' ? 'Administrator' : (session.plan || 'Client Member');
+  if (avatarEl) {
+    var em = String(session.email || '').toLowerCase();
+    var photo = (em.indexOf('priya') !== -1) ? 'img/avatar-priya.webp'
+              : (em.indexOf('david') !== -1) ? 'img/avatar-david.webp'
+              : (em.indexOf('aria') !== -1) ? 'img/avatar-aria.webp'
+              : (em.indexOf('elena') !== -1) ? 'img/avatar-elena.webp'
+              : (session.role === 'admin' && em.indexOf('admin') !== -1) ? 'img/about-leader-1.webp'
+              : null;
+    if (photo) {
+      avatarEl.innerHTML = '<img src="' + photo + '" alt="' + dashEsc(session.email) + '" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';
+    } else {
+      var initial = (session.email || 'U').charAt(0).toUpperCase();
+      avatarEl.innerHTML = '<span style="font-family:var(--font-display); font-weight:800; font-size:1.05rem; color:#10b981; line-height:1; display:flex; align-items:center; justify-content:center; width:100%; height:100%;">' + dashEsc(initial) + '</span>';
+    }
+  }
 }
 function bindDashLogout() {
   var btns = document.querySelectorAll('[data-logout]');
@@ -248,9 +265,17 @@ window.initUserDashboard = function () {
   bindDashLogout();
 
   var hello = document.getElementById('udHello');
-  if (hello) hello.textContent = 'Welcome back, ' + (session.name || session.email).split(' ')[0];
+  if (hello) hello.textContent = 'Welcome back, ' + (session.email || session.name);
   var siteEl = document.getElementById('udSiteId');
   if (siteEl) siteEl.textContent = session.siteId || '—';
+  var facSite = document.getElementById('udFacilitySiteId');
+  if (facSite) facSite.textContent = session.siteId || 'STK-8492';
+  var facEmail = document.getElementById('udFacilityEmail');
+  if (facEmail) facEmail.textContent = session.email;
+  var userEmailDisp = document.getElementById('udUserEmailDisplay');
+  if (userEmailDisp) userEmailDisp.textContent = session.email;
+  var sideEmail = document.getElementById('udSidebarEmail');
+  if (sideEmail) sideEmail.textContent = session.email;
 
   /* -- live telemetry feeds both overview + telemetry panels -- */
   var ids = ['udPower', 'udStatus', 'udBattery', 'udGrid', 'udCo2', 'udUpdated',
@@ -278,12 +303,12 @@ window.initUserDashboard = function () {
     if (gen) gen.textContent = dashFmt(d.generatedToday) + ' kWh';
     if (exp) exp.textContent = dashFmt(d.exportedToday) + ' kWh';
     drawSeriesChart(document.getElementById('udChart'), [
-      { data: d.buffer.map(function (p) { return p.production; }), color: '#1F8A4C', fill: 'rgba(31,138,76,0.2)' },
-      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#F5F2E8' }
+      { data: d.buffer.map(function (p) { return p.production; }), color: '#10b981', fill: 'rgba(16, 185, 129, 0.22)' },
+      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#ffffff' }
     ]);
     drawSeriesChart(document.getElementById('udTelChart'), [
-      { data: d.buffer.map(function (p) { return p.production; }), color: '#1F8A4C', fill: 'rgba(31,138,76,0.2)' },
-      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#F5F2E8' }
+      { data: d.buffer.map(function (p) { return p.production; }), color: '#10b981', fill: 'rgba(16, 185, 129, 0.22)' },
+      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#ffffff' }
     ]);
   });
 
@@ -294,7 +319,7 @@ window.initUserDashboard = function () {
     var hist = [];
     for (var i = 13; i >= 0; i--) hist.push(Math.round(base * (0.55 + rand() * 0.6)));
     drawSeriesChart(document.getElementById('udHistChart'), [
-      { data: hist, color: '#1F8A4C', fill: 'rgba(31,138,76,0.25)' }
+      { data: hist, color: '#10b981', fill: 'rgba(16, 185, 129, 0.25)' }
     ]);
     var month = Math.round(base * 30 * 0.24);
     var set = function (id, v) { var n = document.getElementById(id); if (n) n.textContent = v; };
@@ -363,11 +388,24 @@ window.initUserDashboard = function () {
 
   /* -- profile -- */
   (function renderProfile() {
-    var set = function (id, v) { var n = document.getElementById(id); if (n) n.value = n.textContent = v; };
-    set('udProfileName', session.name || session.email);
-    set('udProfileEmail', session.email);
+    var set = function (id, v) { var n = document.getElementById(id); if (n) { if ('value' in n) n.value = v; n.textContent = v; } };
+    set('udProfileName', session.name || (session.email ? session.email.split('@')[0] : 'User'));
+    set('udProfileEmail', session.email || '—');
     var av = document.getElementById('udProfileAvatar');
-    if (av) av.textContent = (session.name || session.email || '?').charAt(0).toUpperCase();
+    if (av) {
+      var em = String(session.email || '').toLowerCase();
+      var photo = (em.indexOf('priya') !== -1) ? 'img/avatar-priya.webp'
+                : (em.indexOf('david') !== -1) ? 'img/avatar-david.webp'
+                : (em.indexOf('aria') !== -1) ? 'img/avatar-aria.webp'
+                : (em.indexOf('elena') !== -1) ? 'img/avatar-elena.webp'
+                : null;
+      if (photo) {
+        av.innerHTML = '<img src="' + photo + '" alt="' + dashEsc(session.email) + '" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';
+      } else {
+        var initial = (session.email || 'U').charAt(0).toUpperCase();
+        av.textContent = initial;
+      }
+    }
     var role = document.getElementById('udProfileRole');
     if (role) role.textContent = (session.role || 'user').toUpperCase();
     set('udProfileSite', session.siteId || '—');
@@ -397,7 +435,7 @@ window.initUserDashboard = function () {
       var badge = t.status === 'open' ? '<span class="dash-badge badge-open">Open</span>'
         : t.status === 'pending' ? '<span class="dash-badge badge-pending">Awaiting you</span>'
         : '<span class="dash-badge badge-resolved">Resolved</span>';
-      var reply = t.reply ? '<div style="margin-top:10px; padding:10px 12px; background:var(--accent-06); border-left:3px solid var(--color-accent); border-radius:6px; font-size:0.82rem;"><strong>Support:</strong> ' + dashEsc(t.reply) + '</div>' : '';
+      var reply = t.reply ? '<div style="margin-top:10px; padding:10px 14px; background:rgba(16, 185, 129, 0.12); border-left:3px solid #10b981; border-radius:8px; font-size:0.84rem; color:#ffffff;"><strong style="color:#10b981;">Support:</strong> ' + dashEsc(t.reply) + '</div>' : '';
       return '<div class="ticket-item"><h4>' + dashEsc(t.subject) + '</h4><div class="t-meta"><span>#' + t.id + '</span><span>' + dashTimeAgo(t.createdAt) + '</span>' + badge + '</div><p>' + dashEsc(t.message) + '</p>' + reply + '</div>';
     }).join('');
   }
@@ -436,6 +474,11 @@ window.initAdminDashboard = function () {
   renderDashUser(session);
   bindDashLogout();
 
+  var adSigned = document.getElementById('adSignedEmail');
+  if (adSigned) adSigned.textContent = session.email;
+  var adSide = document.getElementById('adSidebarEmail');
+  if (adSide) adSide.textContent = session.email;
+
   /* -- 1A live fleet metrics + chart -- */
   var el = {};
   ['adFleetPower', 'adFleetStatus', 'adEnergyToday', 'adFleetUpdated', 'adUsers', 'adSessions', 'adOpenTickets', 'adTicketsSub', 'adCapacity'].forEach(function (id) {
@@ -461,8 +504,8 @@ window.initAdminDashboard = function () {
     if (el.adCapacity) el.adCapacity.textContent = dashFmt(d.now.production / 1000) + ' MW peak';
     if (el.adFleetUpdated) el.adFleetUpdated.textContent = new Date().toLocaleTimeString();
     drawSeriesChart(document.getElementById('adChart'), [
-      { data: d.buffer.map(function (p) { return p.production; }), color: '#1F8A4C', fill: 'rgba(31,138,76,0.2)' },
-      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#F5F2E8' }
+      { data: d.buffer.map(function (p) { return p.production; }), color: '#10b981', fill: 'rgba(16, 185, 129, 0.22)' },
+      { data: d.buffer.map(function (p) { return p.consumption; }), color: '#ffffff' }
     ]);
     refreshStats();
   });
@@ -507,8 +550,9 @@ window.initAdminDashboard = function () {
       var statusBadge = u.status === 'active'
         ? '<span class="dash-badge badge-open"><span class="material-symbols-outlined">check_circle</span>Active</span>'
         : '<span class="dash-badge badge-pending"><span class="material-symbols-outlined">block</span>Suspended</span>';
+      var photo = u.role === 'admin' ? 'img/about-leader-1.webp' : (u.email.indexOf('david') !== -1 ? 'img/avatar-david.webp' : (u.email.indexOf('elena') !== -1 ? 'img/avatar-elena.webp' : (u.email.indexOf('aria') !== -1 ? 'img/avatar-aria.webp' : 'img/avatar-priya.webp')));
       return '<tr>' +
-        '<td><div style="display:flex; align-items:center; gap:10px;"><div class="dash-avatar" style="width:32px; height:32px; font-size:0.75rem;">' + dashEsc((u.name || u.email).charAt(0).toUpperCase()) + '</div><div><strong>' + dashEsc(u.name) + '</strong><br><span style="font-size:0.74rem; color:var(--dark-65);">' + dashEsc(u.email) + '</span></div></div></td>' +
+        '<td><div style="display:flex; align-items:center; gap:12px;"><img src="' + photo + '" alt="' + dashEsc(u.name) + '" class="dash-avatar-photo" style="width:36px; height:36px;"><div><strong style="color:#ffffff;">' + dashEsc(u.name) + '</strong><br><span style="font-size:0.75rem; color:rgba(255,255,255,0.6);">' + dashEsc(u.email) + '</span></div></div></td>' +
         '<td>' + roleBadge + '</td><td>' + dashEsc(u.plan || '—') + '</td><td>' + statusBadge + '</td><td>' + dashTimeAgo(u.lastLogin) + '</td>' +
         '<td style="white-space:nowrap;"><button class="dash-btn sm" data-action="view" data-user="' + u.id + '">View</button>' +
         (isSelf ? '' : ' <button class="dash-btn sm" data-action="role" data-user="' + u.id + '">' + (u.role === 'admin' ? 'Make User' : 'Make Admin') + '</button> <button class="dash-btn sm ' + (u.status === 'active' ? 'danger' : 'primary') + '" data-action="status" data-user="' + u.id + '">' + (u.status === 'active' ? 'Suspend' : 'Activate') + '</button>') +
@@ -578,8 +622,8 @@ window.initAdminDashboard = function () {
         : t.status === 'pending' ? '<span class="dash-badge badge-pending">Pending</span>'
         : '<span class="dash-badge badge-resolved">Resolved</span>';
       var replyBlock = t.reply
-        ? '<div style="margin-top:10px; padding:10px 12px; background:var(--accent-06); border-left:3px solid var(--color-accent); border-radius:6px; font-size:0.82rem;"><strong>Your reply:</strong> ' + dashEsc(t.reply) + '</div>'
-        : '<div class="ticket-reply"><input class="dash-input" type="text" placeholder="Type a reply to ' + dashEsc(t.userEmail) + '…" data-reply-input="' + t.id + '"><button class="dash-btn primary sm" style="margin-top:8px;" data-reply-send="' + t.id + '">Send Reply &amp; Resolve</button></div>';
+        ? '<div style="margin-top:10px; padding:10px 14px; background:rgba(16, 185, 129, 0.12); border-left:3px solid #10b981; border-radius:8px; font-size:0.84rem; color:#ffffff;"><strong style="color:#10b981;">Your reply:</strong> ' + dashEsc(t.reply) + '</div>'
+        : '<div class="ticket-reply"><input class="dash-input" type="text" placeholder="Type a reply to ' + dashEsc(t.userEmail) + '…" data-reply-input="' + t.id + '"><button class="dash-btn primary sm" style="margin-top:10px;" data-reply-send="' + t.id + '">Send Reply &amp; Resolve</button></div>';
       return '<div class="ticket-item" data-ticket-item="' + t.id + '"><h4>' + dashEsc(t.subject) + '</h4><div class="t-meta"><span>#' + t.id + '</span><span>' + dashEsc(t.userEmail) + '</span><span>' + dashTimeAgo(t.createdAt) + '</span>' + badge + '</div><p>' + dashEsc(t.message) + '</p>' + replyBlock +
         (t.reply ? '' : '<div style="margin-top:10px;"><button class="dash-btn sm" data-toggle-ticket="' + t.id + '">Reply</button></div>') +
         '</div>';

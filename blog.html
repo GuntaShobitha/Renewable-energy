@@ -4,19 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog | Stackly Energy</title>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
 <body>
 <div class="blog-page">
 
   <!-- Header -->
- <header class="site-header">
+  <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
         <!-- Left: Logo -->
@@ -57,7 +55,6 @@
       </nav>
     </div>
   </header>
-
   <!-- Hero -->
   <section class="blog-hero">
     <div class="blog-hero-text">
@@ -128,23 +125,31 @@
   </section>
 
   <!-- Topics -->
-  <section class="blog-topics">
+  <section class="blog-topics" style="padding:20px">
+    <div class="blog-topics-header" >
+      <div>
+        <span class="blog-topics-label">Browse by topic</span>
+        <h2 class="display-2" style="color:#ffffff; margin-top: 6px;">Editorial Knowledge Base</h2>
+      </div>
+      <button type="button" class="blog-view-toggle" id="blogViewToggle">
+        <span class="material-symbols-outlined" style="font-size:18px;">grid_view</span>
+        <span id="blogViewToggleText">Switch to Grid</span>
+      </button>
+    </div>
 
-  <span class="blog-topics-label">Browse by topic</span>
+    <div class="blog-chips" id="blogChips">
+      <button class="blog-chip active" data-topic="all">All Topics</button>
+      <button class="blog-chip" data-topic="solar">Solar Arrays</button>
+      <button class="blog-chip" data-topic="wind">Wind Turbines</button>
+      <button class="blog-chip" data-topic="storage">Storage &amp; Battery</button>
+      <button class="blog-chip" data-topic="policy">Policy &amp; Incentives</button>
+      <button class="blog-chip" data-topic="maintenance">Preventive Maintenance</button>
+      <button class="blog-chip" data-topic="field">Field Engineering</button>
+    </div>
 
-  <div class="blog-chips" id="blogChips">
-    <button class="blog-chip active" data-topic="all">All</button>
-    <button class="blog-chip" data-topic="solar">Solar</button>
-    <button class="blog-chip" data-topic="wind">Wind</button>
-    <button class="blog-chip" data-topic="storage">Storage</button>
-    <button class="blog-chip" data-topic="policy">Policy &amp; incentives</button>
-    <button class="blog-chip" data-topic="maintenance">Maintenance</button>
-    <button class="blog-chip" data-topic="field">Field notes</button>
-  </div>
-
-
-  <!-- BLOG DATA -->
-  <div class="blog-topic-grid" id="blogTopicGrid">
+    <!-- 3D CAROUSEL CONTAINER -->
+    <div class="blog-carousel-container is-3d" id="blogCarouselContainer">
+      <div class="blog-carousel-stage" id="blogTopicGrid">
 
     <!-- SOLAR -->
 
@@ -373,9 +378,20 @@
       <a href="#">Read article →</a>
     </article>
 
-  </div>
+      </div>
+    </div>
 
-</section>
+    <!-- 3D Carousel Interactive Controls -->
+    <div class="blog-carousel-controls" id="blogCarouselControls">
+      <button type="button" class="carousel-nav-btn" id="blogCarouselPrev" aria-label="Previous Article">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div class="carousel-dots" id="blogCarouselDots"></div>
+      <button type="button" class="carousel-nav-btn" id="blogCarouselNext" aria-label="Next Article">
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
+    </div>
+  </section>
 
   <!-- Most read -->
   <section class="blog-card-section blog-mostread">
@@ -525,20 +541,7 @@
   </section>
 
   <!-- Newsletter -->
-  <section class="blog-newsletter">
-    <div class="blog-newsletter-text">
-      <h2 class="blog-title">Get one email a month</h2>
-      <p>New articles, incentive updates and the occasional field story. No spam.</p>
-    </div>
-    <form class="blog-form" id="blogForm" novalidate>
-      <div class="blog-field">
-        <label for="blogEmail">Email</label>
-        <input type="email" id="blogEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
-        <span class="blog-form-msg" id="blogMsg" role="status" aria-live="polite"></span>
-      </div>
-      <button type="submit" class="blog-btn blog-btn-dark">Subscribe</button>
-    </form>
-  </section>
+  
 
   <!-- Authors -->
   <!-- Authors -->
@@ -552,10 +555,10 @@
   <div class="blog-author-grid">
 
     <!-- Author 01 -->
-    <article class="blog-author blog-author-green">
+    <article class="blog-author">
       <div class="blog-author-top">
         <span class="blog-avatar">
-          <span>YT</span>
+          <img src="./img/about-leader-1.webp" alt="Yuki Tanaka">
         </span>
 
         <div>
@@ -582,10 +585,10 @@
     </article>
 
     <!-- Author 02 -->
-    <article class="blog-author blog-author-yellow">
+    <article class="blog-author">
       <div class="blog-author-top">
         <span class="blog-avatar">
-          <span>MR</span>
+          <img src="./img/avatar-david.webp" alt="Marco Reyes">
         </span>
 
         <div>
@@ -612,10 +615,10 @@
     </article>
 
     <!-- Author 03 -->
-    <article class="blog-author blog-author-orange">
+    <article class="blog-author">
       <div class="blog-author-top">
         <span class="blog-avatar">
-          <span>PN</span>
+          <img src="./img/avatar-priya.webp" alt="Priya Nair">
         </span>
 
         <div>
@@ -649,7 +652,7 @@
 <section class="blog-card-section blog-guides">
 
   <div class="blog-section-head">
-    <span class="blog-eyebrow">RESOURCES</span>
+    <span class="blog-eyebrow"></span>
     <h2 class="blog-title">Guides &amp; downloads</h2>
     <p>Longer references, checklists and practical resources worth bookmarking.</p>
   </div>
@@ -744,7 +747,22 @@
     <span>↗</span>
   </a>
 
-</section>
+</section> 
+
+<section class="blog-newsletter">
+    <div class="blog-newsletter-text">
+      <h2 class="blog-title">Get one email a month</h2>
+      <p>New articles, incentive updates and the occasional field story. No spam.</p>
+    </div>
+    <form class="blog-form" id="blogForm" novalidate>
+      <div class="blog-field">
+        <label for="blogEmail">Email</label>
+        <input type="email" id="blogEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <span class="blog-form-msg" id="blogMsg" role="status" aria-live="polite"></span>
+      </div>
+      <button type="submit" class="blog-btn blog-btn-dark">Subscribe</button>
+    </form>
+  </section>
 
   <!-- Footer -->
  <footer class="site-footer">

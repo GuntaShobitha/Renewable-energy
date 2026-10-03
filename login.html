@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Log in | Stackly</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal Access | Stackly Energy</title>
+  <meta name="description" content="Sign in to your Stackly Energy portal. Choose Administrator or Client account to view telemetry, live production, and billing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
 </head>
-<body>
-<div class="login-page">
+<body class="page-login">
 
+  <!-- ==========================================================================
+       UNIVERSAL FIXED NAVBAR
+       ========================================================================== -->
   <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
@@ -39,7 +41,7 @@
 
         <!-- Right: Actions -->
         <div class="nav-actions">
-          <a href="login.html" class="nav-login">Login</a>
+          <a href="login.html" class="nav-login active">Login</a>
           <a href="contact.html" class="btn btn-primary btn-sm">
             <span>Get a Quote</span>
             <span class="material-symbols-outlined">arrow_forward</span>
@@ -56,57 +58,212 @@
     </div>
   </header>
 
-  <main class="login-card">
-    <section class="login-promo">
-      <span class="login-sun" aria-hidden="true"></span>
-      <div class="login-promo-inner">
-        <img class="login-promo-logo" src="./img/logo-light.png" alt="Stackly">
-        <h2 class="login-promo-title">Track your system from anywhere</h2>
-        <p class="login-promo-text">Log in to see live production, your savings so far, and upcoming maintenance visits.</p>
-        <img class="login-promo-img" src="./img/login-panel.webp" alt="Technician inspecting solar panels">
-        <ul class="login-points">
-          <li>Live production and savings, updated every 5 minutes</li>
-          <li>Maintenance visits and service history in one place</li>
-          <li>Download annual output and tax-credit statements</li>
-        </ul>
-        <div class="login-stats">
-          <div><strong>180 MW</strong><span>Installed</span></div>
-          <div><strong>42,000</strong><span>Homes powered</span></div>
-        </div>
-      </div>
-    </section>
+  <!-- Mobile Drawer Backdrop & Menu -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <a href="index.html" class="logo" style="margin-bottom: 36px;">
+        <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+        <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
+      </a>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link">Services <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">About <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog <span class="material-symbols-outlined">arrow_forward</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact <span class="material-symbols-outlined">arrow_forward</span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-bottom" style="margin-top: 32px;">
+      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Portal Login</a>
+      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
+    </div>
+  </aside>
 
-    <section class="login-formwrap">
-      <div class="login-formbox">
-        <a href="./index.html" class="login-back">Back to site</a>
-        <h1 class="login-title">Welcome back</h1>
-        <p class="login-sub">Log in to your Stackly Energy account to view your system.</p>
+  <!-- ==========================================================================
+       LOGIN CARD CONTAINER (AWARD-WINNING LUXURY GLASSMORPHISM)
+       ========================================================================== -->
+  <div class="login-wrapper">
+    <main class="login-card">
 
-        <form class="login-form" id="loginForm" novalidate>
-          <label class="login-field"><span>Email</span>
-            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
-          </label>
-          <label class="login-field"><span>Password</span>
-            <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
-          </label>
-          <div class="login-row">
-            <label class="login-remember"><input type="checkbox" name="remember"><span>Remember me</span></label>
-            <a href="#" class="login-forgot">Forgot password?</a>
+      <!-- Left Promo Panel: Architectural Telemetry Overview -->
+      <section class="login-promo">
+        <div class="login-glow-aura"></div>
+        <div class="login-promo-inner">
+          <div class="login-badge-pill">
+            <span class="live-dot"></span>
+            <span>Grid Synchronized 24/7 • Zero Carbon</span>
           </div>
-          <p class="login-status" id="loginStatus" role="status"></p>
-          <button type="submit" class="login-submit">Log in</button>
-        </form>
 
-        <div class="login-divider"><span>Or continue with</span></div>
-        <div class="login-social">
-          <button type="button" class="login-social-btn">Google</button>
-          <button type="button" class="login-social-btn">Apple</button>
+          <h2 class="login-promo-title">Autonomous Clean Energy Control</h2>
+          <p class="login-promo-text">
+            Monitor real-time photovoltaic generation, smart battery storage reserves, and live grid export metrics from any device with sub-second precision.
+          </p>
+
+          <!-- Realistic Solar Architecture Showcase -->
+          <div class="login-img-container">
+            <img class="login-promo-img" src="./img/hero-home.webp" alt="Realistic modern architectural home with rooftop solar system">
+            <div class="login-floating-chip chip-top">
+              <span class="live-dot"></span>
+              <span>8.4 kWp Peak Solar</span>
+            </div>
+            <div class="login-floating-chip chip-bottom">
+              <span class="material-symbols-outlined">battery_charging_full</span>
+              <span>20 kWh LFP Storage • 98% SoC</span>
+            </div>
+          </div>
+
+          <ul class="login-points">
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <span>Sub-minute telemetry &amp; dynamic solar irradiance tracking</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <span>Automated scheduled preventive maintenance &amp; ticket logging</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <span>Direct utility interconnection statement &amp; ESG export</span>
+            </li>
+          </ul>
+
+          <!-- Trust Citation Pill -->
+          <div class="login-trust-pill">
+            <img src="./img/avatar-aria.webp" alt="Aria M." class="login-trust-avatar">
+            <div>
+              <div class="trust-quote">"Sub-second telemetry has transformed our microgrid uptime."</div>
+              <small class="trust-author">Aria M. — Fleet Director, Harbor Logistics</small>
+            </div>
+          </div>
+
+          <!-- <div class="login-stats">
+            <div class="login-stat-box">
+              <strong>180 MW</strong>
+              <span>Installed Capacity</span>
+            </div>
+            <div class="login-stat-box">
+              <strong>42,000+</strong>
+              <span>Active Facilities</span>
+            </div>
+            <div class="login-stat-box">
+              <strong>99.98%</strong>
+              <span>System Uptime</span>
+            </div>
+          </div> -->
         </div>
-        <p class="login-new">New to Stackly? <a href="#">Create an account</a></p>
-      </div>
-    </section>
-  </main>
+      </section>
 
+      <!-- Right Form Panel: Role-Based Authentication Gateway -->
+      <section class="login-formwrap">
+        <div class="login-formbox">
+          <div class="login-top-row">
+            <a href="./index.html" class="login-back">
+              <span class="material-symbols-outlined">arrow_back</span>
+              <span>Back to Home</span>
+            </a>
+            <!-- <span class="login-secure-badge">
+              <span class="material-symbols-outlined">lock</span>
+              <span>256-Bit SSL Encrypted</span>
+            </span> -->
+          </div>
+
+          <h1 class="login-title">Stackly Portal Access</h1>
+          <!-- <p class="login-sub">Select your account role below to authenticate into your dedicated control workspace.</p> -->
+
+          <!-- ================= ROLE SELECTOR (Admin vs User) ================= -->
+          <div class="login-role-wrap">
+            <span class="login-role-heading">Select Account Role</span>
+            <div class="login-role-selector" role="tablist" aria-label="Select role">
+              <button type="button" class="login-role-tab active" data-role="user" role="tab" aria-selected="true">
+                <span class="material-symbols-outlined">person</span>
+                <div class="role-tab-text">
+                  <strong>Client / User</strong>
+                  <small>Home &amp; Business Owner</small>
+                </div>
+              </button>
+
+              <button type="button" class="login-role-tab" data-role="admin" role="tab" aria-selected="false">
+                <span class="material-symbols-outlined">admin_panel_settings</span>
+                <div class="role-tab-text">
+                  <strong>Administrator</strong>
+                  <small>Grid &amp; Fleet Operations</small>
+                </div>
+              </button>
+            </div>
+
+            <!-- Role Context Alert Notice -->
+            <!-- <div id="loginRoleNotice" class="login-role-notice notice-user">
+              <span class="material-symbols-outlined">solar_power</span>
+              <span><strong>Customer Gateway:</strong> Live generation, battery state-of-charge, and utility statements.</span>
+            </div> -->
+          </div>
+
+          <!-- Login Form -->
+          <form class="login-form" id="loginForm" novalidate>
+            <input type="hidden" name="role" id="loginRoleInput" value="user">
+
+            <label class="login-field">
+              <span>Account Email Address</span>
+              <div class="input-wrap">
+                <span class="material-symbols-outlined input-icon">mail</span>
+                <input type="email" name="email" id="loginEmail" placeholder="Enter your email (e.g. you@example.com)" autocomplete="email" required>
+              </div>
+              <small style="display:block; font-size:0.74rem; color:rgba(255,255,255,0.6); margin-top:4px;">Sign in with any email address — your workspace and telemetry sync automatically.</small>
+            </label>
+
+            <label class="login-field">
+              <span>Password</span>
+              <div class="input-wrap">
+                <span class="material-symbols-outlined input-icon">key</span>
+                <input type="password" name="password" id="loginPassword" placeholder="Enter password (min 4 characters)" autocomplete="current-password" required>
+              </div>
+            </label>
+
+            <div class="login-row">
+              <label class="login-remember">
+                <input type="checkbox" name="remember">
+                <span>Keep me signed in</span>
+              </label>
+              <a href="#" class="login-forgot">Reset credentials</a>
+            </div>
+
+            <p class="login-status" id="loginStatus" role="status"></p>
+
+            <button type="submit" class="btn btn-primary login-submit">
+              <span>Enter Workspace</span>
+              <span class="material-symbols-outlined">login</span>
+            </button>
+          </form>
+
+          <!-- <div class="login-divider"><span>Enterprise SSO Credentials</span></div> -->
+
+          <div class="login-social">
+            <button type="button" class="login-social-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
+              </svg>
+              <span>Google Workspace</span>
+            </button>
+            <button type="button" class="login-social-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.87-.93.04-2.02.63-2.66 1.38-.56.65-.98 1.72-.85 2.76 1.04.08 2.06-.52 2.59-1.27z"/>
+              </svg>
+              <span>Apple ID</span>
+            </button>
+          </div>
+
+          <p class="login-new">
+            New facility deployment? <a href="contact.html">Request onboarding</a>
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
@@ -117,7 +274,7 @@
             <div class="logo-text"><span>STACKLY</span><span>ENERGY</span></div>
           </a>
           <p class="footer-desc">
-            Clean energy systems designed for a better tomorrow. Engineering architectural solar, wind, and storage infrastructure since 2018.
+            Clean energy systems engineered for zero carbon footprints and complete grid resilience. Architectural solar, wind, and industrial storage.
           </p>
           <div class="footer-social-links">
             <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
@@ -139,34 +296,32 @@
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="about.html" class="footer-link">About Us</a></li>
             <li><a href="services.html" class="footer-link">Services</a></li>
-            <li><a href="#projects" class="footer-link">Projects</a></li>
-            <li><a href="blog.html" class="footer-link">Blog & Insights</a></li>
+            <li><a href="blog.html" class="footer-link">Blog &amp; Insights</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Services -->
+        <!-- Col 3: Portals -->
         <div>
-          <h4 class="footer-col-title">Services</h4>
+          <h4 class="footer-col-title">Access Gateways</h4>
           <ul class="footer-nav-list">
-            <li><a href="services.html" class="footer-link">Solar Arrays</a></li>
-            <li><a href="services.html" class="footer-link">Wind Turbines</a></li>
-            <li><a href="services.html" class="footer-link">Battery Storage</a></li>
-            <li><a href="services.html" class="footer-link">Energy Consulting</a></li>
-            <li><a href="services.html" class="footer-link">Microgrid Sizing</a></li>
+            <li><a href="login.html" class="footer-link">Client Portal (Home &amp; Business)</a></li>
+            <li><a href="login.html" class="footer-link">Grid Administrator Portal</a></li>
+            <li><a href="admin-dashboard.html" class="footer-link">Operations Center</a></li>
+            <li><a href="user-dashboard.html" class="footer-link">Energy Telemetry</a></li>
           </ul>
         </div>
 
         <!-- Col 4: Contact -->
         <div>
-          <h4 class="footer-col-title">Contact</h4>
+          <h4 class="footer-col-title">Support &amp; Dispatch</h4>
           <div class="footer-contact-item">
             <span class="material-symbols-outlined">mail</span>
             <span>hello@stacklyenergy.com</span>
           </div>
           <div class="footer-contact-item">
             <span class="material-symbols-outlined">phone</span>
-            <span>+91 (800) 246-8800</span>
+            <span>+1 (800) 555-0142</span>
           </div>
           <div class="footer-contact-item">
             <span class="material-symbols-outlined">location_on</span>
@@ -177,7 +332,7 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <div>© 2026 Stackly Energy. All rights reserved. Built with architectural renewable precision.</div>
+        <div>© 2026 Stackly Energy. Built with architectural renewable precision. Strictly Green, White &amp; Black design.</div>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
@@ -188,7 +343,7 @@
     </div>
   </footer>
 
-</div>
-<script src="./js/auth.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>

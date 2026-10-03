@@ -7,13 +7,12 @@
   <meta name="description" content="Admin control center: fleet telemetry, regions, user management, support queue and platform settings.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
   <link rel="stylesheet" href="css/dashboard.css">
 </head>
-<body>
+<body class="page-dashboard">
   <div class="dash-shell" id="adminDashboardRoot">
 
     <!-- TOP BAR -->
@@ -27,9 +26,9 @@
         <span class="dash-live-pill"><span class="live-dot"></span>Fleet Sync</span>
         <div class="dash-user-chip">
           <div><div class="u-name" id="dashUserName">—</div><div class="u-role" id="dashUserRole">—</div></div>
-          <div class="dash-avatar" id="dashAvatar">?</div>
+          <div class="dash-avatar" id="dashAvatar"><img src="img/about-leader-1.webp" alt="Administrator" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;"></div>
         </div>
-        <button type="button" class="dash-btn sm" data-logout style="background:transparent; border-color:var(--cream-30); color:var(--bg-primary);"><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
+        <button type="button" class="dash-btn sm dash-btn-logout" data-logout><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
       </div>
     </header>
 
@@ -47,7 +46,7 @@
         <div class="dash-sidebar-label">System</div>
         <button class="dash-nav-item" data-panel="ad-settings"><span class="material-symbols-outlined">tune</span> Platform Settings</button>
 
-        <div class="dash-sidebar-foot">Signed in as administrator.<br><a href="user-dashboard.html" style="color:var(--color-accent); font-weight:700;">Open client portal →</a></div>
+        <div class="dash-sidebar-foot">Signed in as <strong id="adSidebarEmail" style="color:#10b981; display:block; word-break:break-all;">—</strong><a href="user-dashboard.html" style="color:var(--color-accent); font-weight:700;">Open client portal →</a></div>
       </aside>
       <div class="dash-backdrop" id="dashBackdrop"></div>
 
@@ -64,11 +63,74 @@
           <div class="dash-hero">
             <div>
               <h1>Fleet Control Center</h1>
-              <p>Live operational picture of every installed site — synced across all sessions.</p>
+              <p>Live operational picture of every installed site — Signed in as <strong id="adSignedEmail" style="color:#10b981;">—</strong></p>
             </div>
             <div class="dash-hero-actions">
               <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a>
               <button class="dash-btn primary" data-goto="ad-users"><span class="material-symbols-outlined" style="font-size:18px;">manage_accounts</span> Manage Users</button>
+            </div>
+          </div>
+
+          <!-- Real-World Fleet Generation Showcase -->
+          <div class="fleet-showcase-grid">
+            <div class="dash-showcase-card">
+              <div class="card-img-wrap">
+                <img src="img/svc-solar.webp" alt="North District Photovoltaic Complex">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open"><span class="live-dot"></span>Online</span></div>
+                <div class="card-meta-bar">
+                  <span class="facility-pill"><span class="material-symbols-outlined">solar_power</span>Solar PV</span>
+                  <span style="font-size:0.72rem; color:#ffffff; font-weight:700;">412 Sites</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">North District PV Complex</div>
+                <p class="card-desc">Utility-scale bifacial monocrystalline tracking array with centralized battery reserves.</p>
+                <div class="card-stats-row">
+                  <div class="card-stat-item"><span>Current Output</span><strong>48.2 MW</strong></div>
+                  <div class="card-stat-item"><span>Efficiency</span><strong>98.4%</strong></div>
+                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-showcase-card">
+              <div class="card-img-wrap">
+                <img src="img/proj-commercial.webp" alt="Harbor Commercial Zone Microgrid">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open"><span class="live-dot"></span>Online</span></div>
+                <div class="card-meta-bar">
+                  <span class="facility-pill"><span class="material-symbols-outlined">factory</span>Commercial</span>
+                  <span style="font-size:0.72rem; color:#ffffff; font-weight:700;">238 Sites</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Harbor Commercial Zone</div>
+                <p class="card-desc">High-demand logistics warehouses &amp; refrigeration centers powered by integrated solar.</p>
+                <div class="card-stats-row">
+                  <div class="card-stat-item"><span>Current Output</span><strong>61.7 MW</strong></div>
+                  <div class="card-stat-item"><span>Capacity Factor</span><strong>94.2%</strong></div>
+                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-showcase-card">
+              <div class="card-img-wrap">
+                <img src="img/svc-wind.webp" alt="Willow Valley Wind & Storage Co-op">
+                <div class="card-overlay-badge"><span class="dash-badge badge-pending"><span class="material-symbols-outlined">engineering</span>Service</span></div>
+                <div class="card-meta-bar">
+                  <span class="facility-pill"><span class="material-symbols-outlined">wind_power</span>Wind + Storage</span>
+                  <span style="font-size:0.72rem; color:#ffffff; font-weight:700;">86 Sites</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Willow Valley Wind &amp; Storage</div>
+                <p class="card-desc">Hybrid 60 kW HAWT wind turbines coupled with regional vanadium flow storage banks.</p>
+                <div class="card-stats-row">
+                  <div class="card-stat-item"><span>Current Output</span><strong>12.4 MW</strong></div>
+                  <div class="card-stat-item"><span>Field Status</span><strong style="color:#ffffff;">Crew En Route</strong></div>
+                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -104,7 +166,49 @@
 
         <!-- ======== PANEL: REGIONS ======== -->
         <section class="dash-panel" id="ad-regions">
-          <div class="dash-hero"><div><h1>Regions</h1><p>Site distribution and output across service territories.</p></div></div>
+          <div class="dash-hero"><div><h1>Regions &amp; Service Territories</h1><p>Site distribution, live drone thermography and field crew operations across territories.</p></div></div>
+
+          <!-- Visual Aerial Territory Surveillance -->
+          <div class="hardware-fleet-grid">
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/svc-maintenance.webp" alt="Drone Thermography Fleet">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">Autonomous IR</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">AERIAL THERMOGRAPHY</div>
+                <div class="hardware-name">Harbor Logistics Flyover</div>
+                <div class="hardware-specs">100% cell integrity • Zero resistive hotspots detected</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">verified</span>Nominal</span>
+              </div>
+            </div>
+
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/choose-engineer.webp" alt="Field Engineering Dispatch">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">On Site</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">NORTH DISTRICT COMPLEX</div>
+                <div class="hardware-name">Inverter Field Diagnostic</div>
+                <div class="hardware-specs">Crew B completing bi-monthly firmware recalibration</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">check_circle</span>Active</span>
+              </div>
+            </div>
+
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/proj-community.webp" alt="Substation Interconnection">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">Grid Sync</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">SOUTH RESIDENTIAL BELT</div>
+                <div class="hardware-name">Substation Feeder 4A</div>
+                <div class="hardware-specs">Bi-directional grid export at 44.9 MW capacity peak</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">bolt</span>Exporting</span>
+              </div>
+            </div>
+          </div>
 
           <!-- 3.1 region table -->
           <div class="dash-section">
@@ -120,11 +224,11 @@
           <!-- 3.2 capacity chart -->
           <div class="dash-section">
             <div class="dash-section-head"><h2><span class="material-symbols-outlined">bar_chart</span> Installed Capacity by Region (MW)</h2></div>
-            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">North District</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:78%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">48.2 MW</span></div>
-            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Harbor Commercial Zone</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:92%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">61.7 MW</span></div>
-            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Willow Valley Co-op</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:34%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">12.4 MW</span></div>
-            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">South Residential Belt</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:71%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">44.9 MW</span></div>
-            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">East Industrial Park</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div style="height:100%; width:52%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">27.3 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">North District</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div style="height:100%; width:78%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">48.2 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Harbor Commercial Zone</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div style="height:100%; width:92%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">61.7 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">Willow Valley Co-op</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div style="height:100%; width:34%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">12.4 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">South Residential Belt</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div style="height:100%; width:71%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end accent">44.9 MW</span></div>
+            <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">place</span><div><div class="l-title">East Industrial Park</div><div style="margin-top:6px; height:8px; width:220px; max-width:60vw; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div style="height:100%; width:52%; background:var(--color-accent); border-radius:999px;"></div></div></div></div><span class="l-end">27.3 MW</span></div>
           </div>
 
           <!-- 3.3 field crews -->
@@ -174,7 +278,23 @@
 
         <!-- ======== PANEL: SUPPORT QUEUE ======== -->
         <section class="dash-panel" id="ad-tickets">
-          <div class="dash-hero"><div><h1>Support Queue</h1><p>Client tickets arrive here in real time. Reply and resolve — clients see it instantly.</p></div></div>
+          <div class="dash-hero"><div><h1>Support Queue &amp; Field Dispatch</h1><p>Client tickets arrive here in real time. Reply and resolve with direct field technician escalation.</p></div></div>
+
+          <!-- Support Crew Dispatch Banner -->
+          <div class="dash-facility-hero">
+            <div class="facility-img-wrap" style="height:190px;">
+              <img src="img/about-clean-team.webp" alt="Field Engineering Support Team" class="facility-img">
+              <div class="facility-gradient-overlay"></div>
+              <div class="facility-top-badges">
+                <span class="dash-badge badge-open"><span class="live-dot"></span>ON-CALL FLEET CREW</span>
+                <span class="facility-pill"><span class="material-symbols-outlined">timer</span>15-Min Response SLA</span>
+              </div>
+              <div class="facility-caption">
+                <div class="facility-tag">REGIONAL LOGISTICS &amp; TICKET RESOLUTION</div>
+                <h2 class="facility-title" style="font-size:1.25rem; margin-bottom:4px;">Enterprise Technical Operations &amp; Rapid Field Diagnostics</h2>
+              </div>
+            </div>
+          </div>
 
           <!-- 3.1 incoming tickets -->
           <div class="dash-section">

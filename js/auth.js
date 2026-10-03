@@ -94,7 +94,7 @@
     if (users.length) return;
     users.push({
       id: 'u-admin',
-      email: 'admin@stacklyenergy.com',
+      email: '',
       name: 'Grid Administrator',
       role: 'admin',
       plan: 'Internal',
@@ -105,7 +105,7 @@
     });
     users.push({
       id: 'u-demo',
-      email: 'priya@example.com',
+      email: '',
       name: 'Priya N.',
       role: 'user',
       plan: 'Residential — 8.4 kW + 20 kWh',
@@ -133,25 +133,30 @@
     return e.indexOf('admin') === 0 || e === 'admin@stacklyenergy.com';
   }
 
-  function registerUser(email, password) {
+  function registerUser(email, password, explicitRole) {
     var users = getUsers();
     var existing = users.filter(function (u) { return u.email === email; })[0];
-    if (existing) return existing;
+    if (existing) {
+      if (explicitRole) {
+        existing.role = explicitRole;
+        writeJSON(STORAGE.users, users);
+      }
+      return existing;
+    }
 
     var now = new Date().toISOString();
+    var role = explicitRole || (isAdminEmail(email) ? 'admin' : 'user');
     var user = {
       id: 'u-' + Date.now().toString(36),
       email: email,
       name: deriveName(email),
-      role: isAdminEmail(email) ? 'admin' : 'user',
-      plan: isAdminEmail(email) ? 'Internal' : 'Residential — 6.6 kW + 13.5 kWh',
+      role: role,
+      plan: role === 'admin' ? 'Internal Administrator' : 'Residential — 6.6 kW + 13.5 kWh',
       siteId: 'STK-' + String(1000 + Math.floor(Math.random() * 9000)),
       createdAt: now,
       lastLogin: now,
       status: 'active'
     };
-    // Demo auth: passwords are intentionally not stored or checked —
-    // any email + any password (>= 4 chars) grants access.
     users.push(user);
     writeJSON(STORAGE.users, users);
     broadcast('users:changed', users);
@@ -184,10 +189,10 @@
   }
 
   /**
-   * Login with ANY email + password (>= 4 chars).
+   * Login with email + password (>= 4 chars) and optional role override.
    * Auto-registers unknown emails. Rejects empty/short input.
    */
-  function login(email, password, remember) {
+  function login(email, password, remember, explicitRole) {
     email = String(email || '').trim().toLowerCase();
     password = String(password || '');
 
@@ -202,8 +207,11 @@
     var user = users.filter(function (u) { return u.email === email; })[0];
 
     if (!user) {
-      user = registerUser(email, password);
+      user = registerUser(email, password, explicitRole);
     } else {
+      if (explicitRole) {
+        user.role = explicitRole;
+      }
       user.lastLogin = new Date().toISOString();
       writeJSON(STORAGE.users, users);
       broadcast('users:changed', users);
@@ -318,52 +326,152 @@
 })();
 
 
-// =================login js ==================
+// ================= Login Page Controller ==================
 
 (function () {
-  // Mobile menu
-  var burger = document.querySelector('.login-burger');
-  var nav = document.getElementById('loginNav');
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('login-nav-open');
-    burger.setAttribute('aria-expanded', open);
+  var form = document.getElementById('loginForm');
+  if (!form) return;
+
+  var status = document.getElementById('loginStatus');
+  var roleInput = document.getElementById('loginRoleInput');
+  var roleTabs = document.querySelectorAll('.login-role-tab');
+  var roleNotice = document.getElementById('loginRoleNotice');
+
+  // Handle Role selection tabs
+  function setRole(role) {
+    if (roleInput) roleInput.value = role;
+    roleTabs.forEach(function (tab) {
+      var isTarget = tab.getAttribute('data-role') === role;
+      tab.classList.toggle('active', isTarget);
+      tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+    });
+
+    if (roleNotice) {
+      if (role === 'admin') {
+        roleNotice.innerHTML = '<span class="material-symbols-outlined">shield_person</span> <span><strong>Admin Gateway:</strong> Direct telemetry stream, fleet inverter controls, and system tickets.</span>';
+        roleNotice.className = 'login-role-notice notice-admin';
+      } else {
+        roleNotice.innerHTML = '<span class="material-symbols-outlined">solar_power</span> <span><strong>Customer Gateway:</strong> Live generation, battery state-of-charge, and utility statements.</span>';
+        roleNotice.className = 'login-role-notice notice-user';
+      }
+    }
+  }
+
+  roleTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var role = this.getAttribute('data-role') || 'user';
+      setRole(role);
+    });
   });
 
-  // Login form validation
-  var form = document.getElementById('loginForm');
-  var status = document.getElementById('loginStatus');
-  var fields = form.querySelectorAll('.login-field');
+  // Demo autofill triggers
+  var demoAdminBtn = document.getElementById('btnDemoAdmin');
+  var demoUserBtn = document.getElementById('btnDemoUser');
 
+  if (demoAdminBtn) {
+    demoAdminBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      setRole('admin');
+      if (form.elements.email) form.elements.email.value = 'admin@stacklyenergy.com';
+      if (form.elements.password) form.elements.password.value = 'admin123';
+      if (status) {
+        status.className = 'login-status';
+        status.textContent = 'Admin credentials filled. Ready to log in.';
+      }
+    });
+  }
+
+  if (demoUserBtn) {
+    demoUserBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      setRole('user');
+      if (form.elements.email) form.elements.email.value = 'priya@example.com';
+      if (form.elements.password) form.elements.password.value = 'user123';
+      if (status) {
+        status.className = 'login-status';
+        status.textContent = 'Client credentials filled. Ready to log in.';
+      }
+    });
+  }
+
+  // Login form submission & auth execution
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = form.elements.email.value.trim();
     var pass = form.elements.password.value;
+    var remember = form.elements.remember ? form.elements.remember.checked : false;
+    var selectedRole = (roleInput ? roleInput.value : 'user') || 'user';
+
+    var fields = form.querySelectorAll('.login-field');
     fields.forEach(function (f) { f.classList.remove('login-field-error'); });
-    status.classList.remove('login-ok');
+    if (status) {
+      status.className = 'login-status';
+      status.textContent = '';
+    }
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      form.elements.email.closest('.login-field').classList.add('login-field-error');
-      status.textContent = 'Enter a valid email address.';
+      var emailField = form.elements.email.closest('.login-field');
+      if (emailField) emailField.classList.add('login-field-error');
+      if (status) {
+        status.classList.add('login-error');
+        status.textContent = 'Please enter a valid email address.';
+      }
       form.elements.email.focus();
       return;
     }
-    if (pass.length < 6) {
-      form.elements.password.closest('.login-field').classList.add('login-field-error');
-      status.textContent = 'Password must be at least 6 characters.';
+
+    if (pass.length < 4) {
+      var passField = form.elements.password.closest('.login-field');
+      if (passField) passField.classList.add('login-field-error');
+      if (status) {
+        status.classList.add('login-error');
+        status.textContent = 'Password must be at least 4 characters.';
+      }
       form.elements.password.focus();
       return;
     }
-    if (form.elements.remember.checked) {
+
+    if (remember) {
       try { localStorage.setItem('loginEmail', email); } catch (err) {}
     }
-    status.classList.add('login-ok');
-    status.textContent = 'Logging you in…';
-    // TODO: send credentials to your backend here
+
+    // Execute authentication via StacklyAuth
+    var authResult = window.StacklyAuth.login(email, pass, remember, selectedRole);
+
+    if (!authResult.ok) {
+      if (status) {
+        status.classList.add('login-error');
+        status.textContent = authResult.error || 'Authentication failed.';
+      }
+      return;
+    }
+
+    var targetRole = authResult.user.role || selectedRole;
+    var dest = targetRole === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+    var targetLabel = targetRole === 'admin' ? 'Grid Administrator Portal' : 'Customer System Dashboard';
+
+    if (status) {
+      status.classList.add('login-ok');
+      status.innerHTML = '<span class="login-spinner"></span> Authenticated as <strong>' + (targetRole === 'admin' ? 'Admin' : 'User') + '</strong>. Redirecting to ' + targetLabel + '…';
+    }
+
+    var submitBtn = form.querySelector('.login-submit');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Launching Dashboard…';
+    }
+
+    setTimeout(function () {
+      window.location.href = dest;
+    }, 600);
   });
 
   // Prefill remembered email
   try {
     var saved = localStorage.getItem('loginEmail');
-    if (saved) { form.elements.email.value = saved; form.elements.remember.checked = true; }
+    if (saved && form.elements.email) {
+      form.elements.email.value = saved;
+      if (form.elements.remember) form.elements.remember.checked = true;
+    }
   } catch (err) {}
 })();

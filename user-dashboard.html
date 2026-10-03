@@ -7,13 +7,12 @@
   <meta name="description" content="Live solar telemetry, devices, analytics, billing and support for your Stackly renewable energy system.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
   <link rel="stylesheet" href="css/dashboard.css">
 </head>
-<body>
+<body class="page-dashboard">
   <div class="dash-shell" id="userDashboardRoot">
 
     <!-- TOP BAR -->
@@ -27,9 +26,9 @@
         <span class="dash-live-pill"><span class="live-dot"></span>Live</span>
         <div class="dash-user-chip">
           <div><div class="u-name" id="dashUserName">—</div><div class="u-role" id="dashUserRole">—</div></div>
-          <div class="dash-avatar" id="dashAvatar">?</div>
+          <div class="dash-avatar" id="dashAvatar"><img src="img/avatar-priya.webp" alt="Priya N." style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;"></div>
         </div>
-        <button type="button" class="dash-btn sm" data-logout style="background:transparent; border-color:var(--cream-30); color:var(--bg-primary);"><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
+        <button type="button" class="dash-btn sm dash-btn-logout" data-logout><span class="material-symbols-outlined" style="font-size:18px;">logout</span> Logout</button>
       </div>
     </header>
 
@@ -49,7 +48,7 @@
         <button class="dash-nav-item" data-panel="ud-profile"><span class="material-symbols-outlined">person</span> Profile</button>
         <button class="dash-nav-item" data-panel="ud-support"><span class="material-symbols-outlined">support_agent</span> Support<span class="nav-count" id="udTicketCount">0</span></button>
 
-        <div class="dash-sidebar-foot">© 2026 Stackly Energy<br>Telemetry simulated locally.</div>
+        <div class="dash-sidebar-foot">Signed in as <strong id="udSidebarEmail" style="color:#10b981; display:block; word-break:break-all;">—</strong>Telemetry simulated locally.</div>
       </aside>
       <div class="dash-backdrop" id="dashBackdrop"></div>
 
@@ -74,6 +73,28 @@
             </div>
           </div>
 
+          <!-- Real-World Installation Showcase -->
+          <div class="dash-facility-hero">
+            <div class="facility-img-wrap">
+              <img src="img/hero-home.webp" alt="Sunnyvale Monitored Solar Residence" class="facility-img">
+              <div class="facility-gradient-overlay"></div>
+              <div class="facility-top-badges">
+                <span class="dash-badge badge-open"><span class="live-dot"></span>ACTIVE GENERATION</span>
+                <span class="facility-pill"><span class="material-symbols-outlined">verified</span>Tier 1 Microgrid</span>
+              </div>
+              <div class="facility-caption">
+                <div class="facility-tag">SITE <span id="udFacilitySiteId">STK-8492</span> • <span id="udFacilityEmail" style="color:#ffffff;">CLIENT PORTAL</span></div>
+                <h2 class="facility-title">Sunnyvale Monitored Solar &amp; Storage Residence</h2>
+                <div class="facility-meta-chips">
+                  <span><span class="material-symbols-outlined">solar_power</span>8.4 kWp Monocrystalline PV</span>
+                  <span><span class="material-symbols-outlined">battery_charging_full</span>20 kWh LFP Storage</span>
+                  <span><span class="material-symbols-outlined">wb_sunny</span>842 W/m² Irradiance</span>
+                  <span><span class="material-symbols-outlined">shield</span>25-Yr Output Bond</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- 3.1 status metrics -->
           <div class="dash-section">
             <div class="dash-section-head">
@@ -82,7 +103,7 @@
             </div>
             <div class="dash-metrics">
               <div class="dash-metric"><div class="m-label">Generating Now</div><div class="m-value accent" id="udPower">—</div><div class="m-delta"><span class="material-symbols-outlined">wb_sunny</span><span id="udStatus">—</span></div></div>
-              <div class="dash-metric"><div class="m-label">Battery</div><div class="m-value" id="udBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div id="udSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
+              <div class="dash-metric"><div class="m-label">Battery</div><div class="m-value" id="udBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div id="udSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
               <div class="dash-metric"><div class="m-label">Grid Exchange</div><div class="m-value" id="udGrid">—</div><div class="m-delta"><span class="material-symbols-outlined">electric_meter</span>+ export • − import</div></div>
               <div class="dash-metric"><div class="m-label">CO₂ Avoided Today</div><div class="m-value" id="udCo2">—</div><div class="m-delta"><span class="material-symbols-outlined">eco</span>vs. grid baseline</div></div>
             </div>
@@ -119,7 +140,7 @@
             <div class="dash-metrics">
               <div class="dash-metric"><div class="m-label">Production</div><div class="m-value accent" id="udTelPower">—</div><div class="m-delta"><span class="material-symbols-outlined">solar_power</span>Array output</div></div>
               <div class="dash-metric"><div class="m-label">Consumption</div><div class="m-value" id="udTelLoad">—</div><div class="m-delta"><span class="material-symbols-outlined">power</span>Home load</div></div>
-              <div class="dash-metric"><div class="m-label">Battery SoC</div><div class="m-value" id="udTelBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:var(--dark-08); overflow:hidden;"><div id="udTelSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
+              <div class="dash-metric"><div class="m-label">Battery SoC</div><div class="m-value" id="udTelBattery">—%</div><div style="margin-top:10px; height:8px; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;"><div id="udTelSocBar" style="height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--color-accent), rgba(31,138,76,0.4)); transition:width 0.6s ease;"></div></div></div>
               <div class="dash-metric"><div class="m-label">Grid</div><div class="m-value" id="udTelGrid">—</div><div class="m-delta"><span class="material-symbols-outlined">electric_meter</span>+ export • − import</div></div>
               <div class="dash-metric"><div class="m-label">Autonomy</div><div class="m-value" id="udTelAutonomy">—</div><div class="m-delta"><span class="material-symbols-outlined">shield</span>Self-sufficiency</div></div>
             </div>
@@ -137,17 +158,73 @@
           <!-- 3.3 cumulative -->
           <div class="dash-section">
             <div class="dash-section-head"><h2><span class="material-symbols-outlined">stacked_line_chart</span> Cumulative Today</h2></div>
-            <div style="display:flex; gap:28px; flex-wrap:wrap; font-size:0.88rem;">
-              <span>Generated: <strong id="udGenerated" style="color:var(--color-dark);">— kWh</strong></span>
-              <span>Exported: <strong id="udExported" style="color:var(--color-dark);">— kWh</strong></span>
-              <span>Site ID: <strong id="udSiteId" style="color:var(--color-dark);">—</strong></span>
+            <div style="display:flex; gap:24px; flex-wrap:wrap; font-size:0.88rem;">
+              <span>Account: <strong id="udUserEmailDisplay" style="color:#10b981; font-weight:700;">—</strong></span>
+              <span>Generated: <strong id="udGenerated" style="color:var(--color-accent); font-weight:700;">— kWh</strong></span>
+              <span>Exported: <strong id="udExported" style="color:var(--color-accent); font-weight:700;">— kWh</strong></span>
+              <span>Site ID: <strong id="udSiteId" style="color:var(--color-accent); font-weight:700;">—</strong></span>
             </div>
           </div>
         </section>
 
         <!-- ======== PANEL: DEVICES ======== -->
         <section class="dash-panel" id="ud-devices">
-          <div class="dash-hero"><div><h1>Device Fleet</h1><p>Every monitored component at your site with live status and readings.</p></div></div>
+          <div class="dash-hero"><div><h1>Device Fleet</h1><p>Every monitored component at your site with live status, hardware imagery and readings.</p></div></div>
+
+          <!-- Realistic Hardware Gallery -->
+          <div class="hardware-fleet-grid">
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/svc-monitoring.webp" alt="Primary Hybrid Inverter">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">98.2% Eff</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">INV-01 • Hybrid</div>
+                <div class="hardware-name">Central String Inverter</div>
+                <div class="hardware-specs">Dual MPPT • 10 kW continuous conversion</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">check_circle</span>Online</span>
+              </div>
+            </div>
+
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/svc-battery.webp" alt="LFP Battery Bank">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">94% SoC</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">BMS-01 • Storage</div>
+                <div class="hardware-name">20 kWh LiFePO4 Bank</div>
+                <div class="hardware-specs">Active liquid cooling • 6,000 cycle rating</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">check_circle</span>Online</span>
+              </div>
+            </div>
+
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/svc-solar.webp" alt="High-Efficiency Monocrystalline Panels">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">8.4 kWp</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">PV-ARRAY • Generation</div>
+                <div class="hardware-name">All-Black Monocrystalline</div>
+                <div class="hardware-specs">22.4% cell efficiency • Half-cut bifacial</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">check_circle</span>Online</span>
+              </div>
+            </div>
+
+            <div class="hardware-card">
+              <div class="hardware-img-wrap">
+                <img src="img/svc-maintenance.webp" alt="Drone Thermography Inspection">
+                <div class="card-overlay-badge"><span class="dash-badge badge-open">Verified</span></div>
+              </div>
+              <div class="hardware-content">
+                <div class="hardware-tag">DIAG-01 • Fleet QA</div>
+                <div class="hardware-name">IR Drone Thermography</div>
+                <div class="hardware-specs">Weekly automated scan • Zero hot-spots</div>
+                <span class="dash-badge badge-open"><span class="material-symbols-outlined">verified</span>Pass</span>
+              </div>
+            </div>
+          </div>
 
           <!-- 3.1 table -->
           <div class="dash-section">
@@ -197,7 +274,20 @@
 
           <!-- 3.3 impact -->
           <div class="dash-section">
-            <div class="dash-section-head"><h2><span class="material-symbols-outlined">forest</span> Environmental Impact</h2></div>
+            <div class="dash-section-head"><h2><span class="material-symbols-outlined">forest</span> Environmental Impact</h2><span class="facility-pill"><span class="material-symbols-outlined">eco</span>EPA Clean Air Dividend</span></div>
+            
+            <!-- Realistic Forest ESG Showcase -->
+            <div class="impact-showcase-card">
+              <div class="impact-img-wrap">
+                <img src="img/impact-forest.webp" alt="Lush forest environmental offset">
+                <div class="impact-overlay">
+                  <div class="facility-tag">CERTIFIED ENVIRONMENTAL OFFSET</div>
+                  <h3 class="impact-title">Certified Net-Zero Clean Energy Footprint</h3>
+                  <p class="impact-sub">Your rooftop installation offsets over 14.2 tons of carbon lifetime — equivalent to 348 mature forest trees conserved annually.</p>
+                </div>
+              </div>
+            </div>
+
             <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">co2</span><div><div class="l-title">CO₂ avoided (lifetime)</div><div class="l-sub">EPA equivalency factors</div></div></div><span class="l-end accent" id="udImpactCo2">—</span></div>
             <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">park</span><div><div class="l-title">Trees equivalent</div><div class="l-sub">42 kg CO₂ / tree / yr</div></div></div><span class="l-end accent" id="udImpactTrees">—</span></div>
             <div class="dash-list-row"><div class="l-main"><span class="material-symbols-outlined">directions_car</span><div><div class="l-title">Car km avoided</div><div class="l-sub">120 g CO₂ / km</div></div></div><span class="l-end accent" id="udImpactKm">—</span></div>
@@ -242,10 +332,10 @@
           <div class="dash-section">
             <div class="dash-section-head"><h2><span class="material-symbols-outlined">badge</span> Account</h2></div>
             <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
-              <div class="dash-avatar" style="width:72px; height:72px; font-size:1.6rem;" id="udProfileAvatar">?</div>
+              <img src="img/avatar-priya.webp" alt="Priya N." class="dash-avatar-photo" style="width:72px; height:72px;" id="udProfileAvatar">
               <div>
-                <div style="font-family:var(--font-display); font-weight:800; font-size:1.2rem;" id="udProfileName">—</div>
-                <div style="font-size:0.84rem; color:var(--dark-65);" id="udProfileEmail">—</div>
+                <div style="font-family:var(--font-display); font-weight:800; font-size:1.2rem; color:#ffffff;" id="udProfileName">—</div>
+                <div style="font-size:0.84rem; color:rgba(255,255,255,0.65);" id="udProfileEmail">—</div>
                 <span class="dash-badge badge-user" style="margin-top:8px;" id="udProfileRole">USER</span>
               </div>
             </div>
@@ -261,6 +351,14 @@
             <div class="field-row">
               <div class="field-group"><label class="dash-label">Commissioned</label><input class="dash-input" value="March 2026" readonly></div>
               <div class="field-group"><label class="dash-label">Warranty</label><input class="dash-input" value="25-year output bond" readonly></div>
+            </div>
+
+            <div class="profile-signoff">
+              <img src="img/choose-engineer.webp" alt="Certified Lead Engineer" class="signoff-thumb">
+              <div>
+                <strong style="color:#ffffff;">Commissioned &amp; Certified by Lead Engineer Marcus Vance</strong>
+                <small style="color:rgba(255,255,255,0.6); display:block;">NABCEP Certified Installation ID #STK-8492 • 25-Year Performance Bond</small>
+              </div>
             </div>
           </div>
 
