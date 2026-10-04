@@ -237,6 +237,40 @@ body.page-dashboard {
   z-index: 70;
 }
 
+/* Mobile drawer header (brand + close button) — visible only on small screens */
+.dash-sidebar-head {
+  display: none;
+}
+
+.dash-sidebar-close {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #10b981;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.dash-sidebar-close:hover {
+  background: #10b981;
+  color: #02120b;
+  transform: rotate(90deg);
+}
+
+.dash-sidebar-close .material-symbols-outlined {
+  font-size: 24px;
+}
+
+/* Lock background scrolling while the mobile drawer is open */
+body.dash-nav-open {
+  overflow: hidden;
+}
+
 .dash-sidebar-label {
   font-size: 0.62rem;
   font-weight: 800;
@@ -1450,12 +1484,57 @@ label.dash-label {
     left: 0;
     top: 0;
     height: 100vh;
+    height: 100dvh;
     transform: translateX(-100%);
-    padding-top: 24px;
+    padding-top: 18px;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
+    /* Sit ABOVE the cream topbar so only the side nav is visible when open */
+    z-index: 120;
   }
   .dash-sidebar.open {
     transform: translateX(0);
+  }
+  .dash-backdrop {
+    z-index: 110;
+  }
+  .dash-sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 20px 16px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.14);
+  }
+  .dash-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .dash-sidebar-brand .logo-mark {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 11px;
+    flex: 0 0 auto;
+  }
+  .dash-sidebar-brand .logo-mark .material-symbols-outlined {
+    color: #10b981;
+    font-size: 22px;
+  }
+  .dash-sidebar-brand-name {
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .field-row {
     grid-template-columns: 1fr;

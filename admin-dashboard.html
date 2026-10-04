@@ -35,6 +35,16 @@
     <div class="dash-frame">
       <!-- SIDEBAR -->
       <aside class="dash-sidebar" id="dashSidebar">
+        <!-- Mobile drawer header: brand + close (X) button -->
+        <div class="dash-sidebar-head">
+          <div class="dash-sidebar-brand">
+            <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+            <span class="dash-sidebar-brand-name">Stackly Energy</span>
+          </div>
+          <button type="button" class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close navigation menu">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
         <div class="dash-sidebar-label">Operations</div>
         <button class="dash-nav-item active" data-panel="ad-overview"><span class="material-symbols-outlined">dashboard</span> Fleet Overview</button>
         <button class="dash-nav-item" data-panel="ad-regions"><span class="material-symbols-outlined">map</span> Regions</button>
@@ -66,7 +76,7 @@
               <p>Live operational picture of every installed site — Signed in as <strong id="adSignedEmail" style="color:#10b981;">—</strong></p>
             </div>
             <div class="dash-hero-actions">
-              <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a>
+              <!-- <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a> -->
               <button class="dash-btn primary" data-goto="ad-users"><span class="material-symbols-outlined" style="font-size:18px;">manage_accounts</span> Manage Users</button>
             </div>
           </div>
@@ -88,7 +98,7 @@
                 <div class="card-stats-row">
                   <div class="card-stat-item"><span>Current Output</span><strong>48.2 MW</strong></div>
                   <div class="card-stat-item"><span>Efficiency</span><strong>98.4%</strong></div>
-                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                  <button class="dash-btn sm" onclick="window.location.href='./404.html'" data-goto="ad-regions">Territory</button>
                 </div>
               </div>
             </div>
@@ -108,7 +118,7 @@
                 <div class="card-stats-row">
                   <div class="card-stat-item"><span>Current Output</span><strong>61.7 MW</strong></div>
                   <div class="card-stat-item"><span>Capacity Factor</span><strong>94.2%</strong></div>
-                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                  <button class="dash-btn sm" onclick="window.location.href='./404.html'" data-goto="ad-regions">Territory</button>
                 </div>
               </div>
             </div>
@@ -128,7 +138,7 @@
                 <div class="card-stats-row">
                   <div class="card-stat-item"><span>Current Output</span><strong>12.4 MW</strong></div>
                   <div class="card-stat-item"><span>Field Status</span><strong style="color:#ffffff;">Crew En Route</strong></div>
-                  <button class="dash-btn sm" data-goto="ad-regions">Territory →</button>
+                  <button class="dash-btn sm" onclick="window.location.href='./404.html'" data-goto="ad-regions">Territory</button>
                 </div>
               </div>
             </div>
@@ -297,10 +307,10 @@
           </div>
 
           <!-- 3.1 incoming tickets -->
-          <div class="dash-section">
+          <!-- <div class="dash-section">
             <div class="dash-section-head"><h2><span class="material-symbols-outlined">confirmation_number</span> Incoming Tickets</h2><span class="sub" id="adTicketsSub">—</span></div>
             <div id="adTicketList" style="max-height:520px; overflow:auto;"></div>
-          </div>
+          </div> -->
 
           <!-- 3.2 SLA targets -->
           <div class="dash-section">

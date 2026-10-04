@@ -806,6 +806,7 @@ function initParticles() {  const page = document.querySelector('.error-page');
 
       msg.textContent = 'You are subscribed. Look out for the next issue.';
       msg.style.color = '#0f2418';
+      window.location.href='./404.html'
       form.reset();
     });
 

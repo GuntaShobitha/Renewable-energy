@@ -54,17 +54,47 @@ function initPanelRouter() {
   var sidebar = document.getElementById('dashSidebar');
   var backdrop = document.getElementById('dashBackdrop');
   var toggle = document.getElementById('dashMenuToggle');
+  var closeBtn = document.getElementById('dashSidebarClose');
   if (!sidebar) return;
+
+  function setToggleState(open) {
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 
   function closeDrawer() {
     sidebar.classList.remove('open');
     if (backdrop) backdrop.classList.remove('show');
+    document.body.classList.remove('dash-nav-open');
+    setToggleState(false);
   }
-  if (toggle) toggle.addEventListener('click', function () {
-    var open = sidebar.classList.toggle('open');
-    if (backdrop) backdrop.classList.toggle('show', open);
-  });
+
+  function openDrawer() {
+    sidebar.classList.add('open');
+    if (backdrop) backdrop.classList.add('show');
+    document.body.classList.add('dash-nav-open');
+    setToggleState(true);
+  }
+
+  if (toggle) {
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'dashSidebar');
+    toggle.addEventListener('click', function () {
+      if (sidebar.classList.contains('open')) closeDrawer();
+      else openDrawer();
+    });
+  }
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+  // Esc key closes the mobile drawer
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) closeDrawer();
+  });
+
+  // Returning to desktop width always restores the inline sidebar
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 960 && sidebar.classList.contains('open')) closeDrawer();
+  });
 
   function activate(panelId) {
     var panels = document.querySelectorAll('.dash-panel');
@@ -415,6 +445,7 @@ window.initUserDashboard = function () {
       e.preventDefault();
       pw.reset();
       dashToast('Password updated (demo — any value accepted).');
+      window.location.href='./404.html'
     });
   })();
 
@@ -670,6 +701,7 @@ window.initAdminDashboard = function () {
       telemetryInterval: parseInt(document.getElementById('setInterval').value, 10) || 2000
     });
     dashToast('Settings saved — live on every portal.');
+    window.location.href='./404.html'
   });
 
   /* -- 3C support contacts -- */

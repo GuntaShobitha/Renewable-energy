@@ -200,6 +200,17 @@ ul, ol {
   color: var(--color-white);
 }
 
+
+.blog-read-meta {
+  color:#fff;
+}
+
+
+.blog-read-number {
+  color:#fff;
+}
+
+
 /* ==========================================================================
    TYPOGRAPHY HIERARCHY (ARCHITECTURAL & EDITORIAL)
    ========================================================================== */
@@ -5059,7 +5070,7 @@ body.page-exit {
 .blog-read-list li:first-child .blog-read-item { padding-top: 0; }
 .blog-thumb {
   flex: none; width: 66px; height: 66px; border-radius: 50%;
-  display: grid; place-items: center; color: #ffffff;
+  display: grid; place-items: center; color: #000;
   font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em;
   background: radial-gradient(circle at 30% 30%, #10b981, #042016);
   border: 1px solid rgba(16, 185, 129, 0.4);
@@ -7647,6 +7658,7 @@ input:focus, select:focus, textarea:focus {
 .login-submit {
   width: 100%;
   height: 50px;
+  margin-bottom: 20px;
 }
 
 .login-divider {
@@ -8703,4 +8715,344 @@ input:focus, select:focus, textarea:focus {
   .contact-hero { grid-template-columns: 1fr !important; }
   .form-input-grid, .goal-checkboxes { grid-template-columns: 1fr !important; }
   .contact-channels { grid-template-columns: 1fr !important; }
+}
+
+/* ==========================================================================
+   RESPONSIVE HARDENING — CONTACT & LOGIN PAGES
+   Goal: no horizontal (x) scroll, no collapsed/escaping content on ANY
+   device width (320px phones → 4K desktops). Real-world app behavior.
+   ========================================================================== */
+
+/* 1. Kill horizontal overflow at the root for every page.
+   `clip` avoids the sticky-positioning breakage that `hidden` can cause;
+   `hidden` is kept first as a fallback for older browsers. */
+html, body {
+  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* 2. Contact page: let grid/flex children shrink instead of blowing out */
+.contact-page-shell,
+.contact-form-container,
+.contact-estimate-sidebar,
+.estimate-card,
+.contact-hero-visual,
+.contact-door-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Long values (emails, addresses, phone numbers) must wrap, never push width */
+.channel-contact-val,
+.hub-address,
+.expect-sub,
+.contact-hero-desc,
+.contact-form-status,
+.form-privacy-note,
+.trust-quote,
+.trust-author,
+.login-points li {
+  overflow-wrap: anywhere;
+}
+
+/* Hero image badge stays inside its visual frame */
+.contact-hero-badge {
+  left: 12px;
+  right: 12px;
+}
+.contact-hero-badge > div {
+  min-width: 0;
+}
+
+/* Live estimator rows wrap gracefully on narrow screens */
+.estimate-hero-metric {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+.spec-row {
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+.spec-label {
+  min-width: 0;
+}
+.spec-val {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* Map address tag was the #1 x-scroll culprit on phones */
+.contact-map-tag {
+  right: 16px;
+  max-width: calc(100% - 32px);
+  flex-wrap: wrap;
+}
+.contact-map-tag span:last-child {
+  min-width: 0;
+}
+
+/* FAQ answers: never clip text on mobile (larger allowance when open) */
+.contact-open .contact-faq-a {
+  max-height: 640px;
+}
+
+/* 3. Login page: keep every element inside the card at any width */
+.login-card,
+.login-promo,
+.login-formwrap,
+.login-formbox,
+.login-role-selector,
+.login-role-tab,
+.login-social,
+.login-social-btn {
+  min-width: 0;
+}
+
+.login-role-tab {
+  text-align: left;
+}
+.login-role-tab .role-tab-text {
+  min-width: 0;
+}
+.login-role-tab .role-tab-text strong,
+.login-role-tab .role-tab-text small {
+  overflow-wrap: anywhere;
+}
+
+.login-row {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.login-floating-chip {
+  max-width: calc(100% - 20px);
+}
+.login-floating-chip span:last-child {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+/* iOS: stop inputs from zooming the viewport on focus */
+.login-form input,
+.login-form select {
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: large phones / small tablets (≤ 600px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  /* Contact */
+  .contact-page-shell {
+    padding-left: 14px;
+    padding-right: 14px;
+    gap: 34px;
+  }
+  .contact-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.4rem);
+  }
+  .contact-form-container,
+  .estimate-card,
+  .contact-expect,
+  .contact-faq {
+    padding: 26px 18px;
+    border-radius: 22px;
+  }
+  .contact-channel-card,
+  .hub-card,
+  .sla-card,
+  .contact-hour-card {
+    padding: 22px 18px;
+  }
+  .contact-channel-card h3,
+  .hub-city,
+  .sla-card h3,
+  .contact-hour-card b {
+    font-size: 1.12rem;
+  }
+  .channel-contact-val {
+    font-size: 0.95rem;
+  }
+  .metric-chip {
+    font-size: 0.7rem;
+    padding: 7px 12px;
+  }
+  .contact-hero-metrics {
+    gap: 8px;
+  }
+  .metric-big-num {
+    font-size: 2.5rem;
+  }
+  .metric-big-unit strong {
+    font-size: 1.05rem;
+  }
+  .spec-val,
+  .spec-val.spec-green {
+    font-size: 0.92rem;
+  }
+  .pill-opt {
+    padding: 10px 14px;
+    font-size: 0.86rem;
+  }
+  .config-label {
+    font-size: 0.95rem;
+  }
+  .form-main-heading {
+    font-size: clamp(1.45rem, 6.4vw, 1.9rem);
+  }
+  .form-lead {
+    font-size: 0.96rem;
+  }
+  .expect-main-heading {
+    font-size: clamp(1.45rem, 6.4vw, 2rem);
+  }
+  .expect-sub {
+    font-size: 0.98rem;
+  }
+  .sla-steps-grid,
+  .hubs-grid,
+  .contact-hours-grid {
+    gap: 14px;
+  }
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 22px;
+  }
+  .form-submit-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .form-privacy-note {
+    justify-content: center;
+    text-align: center;
+  }
+  .contact-faq-q {
+    padding: 15px 16px;
+    font-size: 0.98rem;
+  }
+  .contact-faq-a p {
+    padding: 0 16px 16px;
+    font-size: 0.94rem;
+  }
+  .contact-map {
+    height: 300px;
+  }
+  .contact-map-tag {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    max-width: calc(100% - 20px);
+    padding: 9px 12px;
+    font-size: 0.72rem;
+    gap: 6px;
+    border-radius: 12px;
+  }
+  .contact-map-tag .material-symbols-outlined {
+    font-size: 18px;
+  }
+  .contact-hero-badge {
+    padding: 10px 14px;
+  }
+  .contact-hero-badge strong {
+    font-size: 0.78rem;
+  }
+  .contact-hero-badge small {
+    font-size: 0.66rem;
+  }
+
+  /* Login */
+  .login-wrapper {
+    padding: 22px 12px 42px;
+  }
+  .login-card {
+    border-radius: 24px;
+  }
+  .login-promo {
+    padding: 32px 20px;
+  }
+  .login-formwrap {
+    padding: 30px 18px;
+  }
+  .login-promo-img {
+    height: 168px;
+  }
+  .login-promo-title {
+    font-size: clamp(1.5rem, 6.6vw, 1.9rem);
+  }
+  .login-points li {
+    font-size: 0.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: small phones (≤ 420px) — stack rows that cannot fit side-by-side
+   -------------------------------------------------------------------------- */
+@media (max-width: 420px) {
+  /* Contact */
+  .contact-page-shell {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .form-input-grid {
+    gap: 12px;
+  }
+  .form-field-wrap input,
+  .form-field-wrap textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  .goal-checkboxes {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Login */
+  .login-role-selector {
+    grid-template-columns: 1fr;
+  }
+  .login-role-tab {
+    padding: 12px;
+  }
+  .login-social {
+    grid-template-columns: 1fr;
+  }
+  .login-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .login-floating-chip {
+    font-size: 0.64rem;
+    padding: 5px 10px;
+  }
+  .login-floating-chip.chip-top {
+    top: 8px;
+    right: 8px;
+  }
+  .login-floating-chip.chip-bottom {
+    bottom: 8px;
+    left: 8px;
+  }
+  .login-trust-pill {
+    padding: 10px 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Extra-tiny devices (≤ 340px): defensive minimums only
+   -------------------------------------------------------------------------- */
+@media (max-width: 340px) {
+  .contact-hero-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .channel-footer {
+    font-size: 0.8rem;
+  }
+  .login-title {
+    font-size: 1.45rem;
+  }
 }

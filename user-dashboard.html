@@ -35,6 +35,16 @@
     <div class="dash-frame">
       <!-- SIDEBAR -->
       <aside class="dash-sidebar" id="dashSidebar">
+        <!-- Mobile drawer header: brand + close (X) button -->
+        <div class="dash-sidebar-head">
+          <div class="dash-sidebar-brand">
+            <div class="logo-mark"><span class="material-symbols-outlined">solar_power</span></div>
+            <span class="dash-sidebar-brand-name">Stackly Energy</span>
+          </div>
+          <button type="button" class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close navigation menu">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
         <div class="dash-sidebar-label">Overview</div>
         <button class="dash-nav-item active" data-panel="ud-home"><span class="material-symbols-outlined">dashboard</span> Overview</button>
         <button class="dash-nav-item" data-panel="ud-telemetry"><span class="material-symbols-outlined">monitoring</span> Live Telemetry</button>
@@ -68,7 +78,7 @@
               <p>Your renewable system is streaming live. Use the sidebar to explore every section.</p>
             </div>
             <div class="dash-hero-actions">
-              <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a>
+              <!-- <a href="index.html" class="dash-btn"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Back to Site</a> -->
               <button class="dash-btn primary" data-goto="ud-support"><span class="material-symbols-outlined" style="font-size:18px;">support_agent</span> Get Support</button>
             </div>
           </div>
