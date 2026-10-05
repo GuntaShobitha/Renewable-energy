@@ -414,46 +414,34 @@ document.addEventListener('DOMContentLoaded', () => {
    12. LOGIN PAGE HANDLER (uses StacklyAuth from js/auth.js)
    ========================================================================== */
 function initAuthPage() {
-  // Only run on the login page (guards against dashboard pages that also load main.js)
+  // Run only on the login page. The login form is always shown,
+  // regardless of any previous session. This fixes the login-page
+  // redirect bug caused by stale session/localStorage data.
   if (!document.getElementById('loginForm')) return;
   const form = document.getElementById('loginForm');
   if (!form || typeof StacklyAuth === 'undefined') return;
 
-  const errorBox = document.getElementById('loginError');
-  const btn = document.getElementById('loginBtn');
-  const btnText = document.getElementById('loginBtnText');
-
-  // Already signed in? Skip straight to the right dashboard.
-  const existing = StacklyAuth.currentSession();
-  if (existing) {
-    window.location.replace(existing.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html');
-    return;
-  }
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    errorBox.style.display = 'none';
 
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-    const remember = document.getElementById('loginRemember').checked;
+    const remember = document.getElementById('loginRemember') ? document.getElementById('loginRemember').checked : false;
 
-    btn.disabled = true;
-    btnText.textContent = 'Authenticating…';
-
-    // Simulated network latency for a real-app feel
+    // Log the user in directly - no session check, no redirect backtrack.
+    // The login page always opens and the form is always visible.
     setTimeout(() => {
       const result = StacklyAuth.login(email, password, remember);
       if (!result.ok) {
-        errorBox.textContent = result.error;
-        errorBox.style.display = 'block';
-        btn.disabled = false;
-        btnText.textContent = 'Sign In To Portal';
+        const status = document.getElementById('loginStatus');
+        if (status) {
+          status.className = 'login-status login-error';
+          status.textContent = result.error || 'Authentication failed.';
+        }
         return;
       }
-      btnText.textContent = 'Success — opening dashboard…';
       const dest = result.session.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
-      setTimeout(() => { window.location.href = dest; }, 600);
+      window.location.href = dest;
     }, 700);
   });
 }

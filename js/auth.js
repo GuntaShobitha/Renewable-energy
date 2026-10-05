@@ -479,13 +479,4 @@
     }, 600);
   });
 
-  // Prefill remembered email
-  try {
-    // var saved = localStorage.getItem('loginEmail');
-    // if (saved && form.elements.email) {
-    //   form.elements.email.value = saved;
-    //   if (form.elements.remember) form.elements.remember.checked = true;
-    // }
-    console.log('heelo shobitha')
-  } catch (err) {}
 })();
