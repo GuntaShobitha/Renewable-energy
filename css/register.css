@@ -1,0 +1,160 @@
+/* ==========================================================================
+   STACKLY ENERGY — REGISTER PAGE EXTRA STYLES
+   Mirrors the login page fields but for the creation form.
+   ========================================================================== */
+.register-error {
+  display: block;
+  font-size: 0.74rem;
+  color: rgba(248, 113, 113, 0.85);
+  margin-top: 4px;
+  min-height: 0;
+  transition: opacity 0.2s;
+}
+
+.login-field-error input {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25) !important;
+}
+
+.login-field input.invalid {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25);
+}
+
+.login-form .login-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-field input:focus {
+  outline: none;
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.25);
+}
+
+.login-field input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.login-field .input-wrap {
+  position: relative;
+}
+
+.login-field .input-wrap .input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.login-field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px rgba(2, 20, 14, 0.95) inset;
+  -webkit-text-fill-color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.login-field input.invalid {
+  border-color: #f87171;
+  animation: fieldShake 0.3s ease;
+}
+
+@keyframes fieldShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+.login-row .login-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: normal;
+  line-height: 1.4;
+}
+
+.login-row .login-remember input {
+  width: auto;
+  margin: 0;
+  accent-color: #7dd3fc;
+}
+
+.login-row .login-forgot {
+  font-size: 0.82rem;
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.login-row .login-forgot:hover {
+  text-decoration: underline;
+}
+
+.register-error {
+  min-height: 0;
+}
+
+.login-form .login-field {
+  position: relative;
+  border-radius: 12px;
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.login-form .login-field input {
+  border-radius: 12px;
+  padding: 13px 16px 13px 44px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-size: 0.92rem;
+  width: 100%;
+}
+
+.login-form .login-field .login-field-error {
+  display: none;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #f87171;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.76rem;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.login-form .login-field .login-field-error::before {
+  content: '⚠';
+  margin-right: 6px;
+}
+
+.login-form .login-field.login-field-error .login-field-error {
+  display: block;
+}
+
+.login-form .login-field.login-field-error input {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25) !important;
+}
+
+.login-field input.invalid {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25);
+}

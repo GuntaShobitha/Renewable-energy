@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Stackly Energy</title>
+  <meta name="description" content="Create a free Stackly Energy account. Set up your client dashboard and start monitoring your renewable system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/register.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+<body class="page-login">
+
+  <!-- UNIVERSAL FIXED NAVBAR -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="logo">
+          <img src="./img/logo-dark.webp" class="logo-dark" width="180" height="40" alt="Stackly Energy Logo">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="login.html" class="nav-login">Login</a>
+          <a href="contact.html" class="btn btn-primary btn-sm">
+            <span>Get a Quote</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <a href="index.html" class="logo" style="margin-bottom: 36px;">
+        <img src="./img/logo-dark.webp" class="logo-dark" width="180" height="40" alt="Stackly Energy Logo">
+      </a>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-bottom" style="margin-top: 32px;">
+      <a href="login.html" class="btn btn-outline-dark" style="width: 100%; margin-bottom: 12px;">Back to Login</a>
+      <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
+    </div>
+  </aside>
+
+  <!-- REGISTER CARD -->
+  <div class="login-wrapper">
+    <main class="login-card">
+      <section class="login-promo">
+        <div class="login-glow-aura"></div>
+        <div class="login-promo-inner">
+          <div class="login-badge-pill">
+            <span class="live-dot"></span>
+            <span>Account Activated in Minutes</span>
+          </div>
+
+          <h2 class="login-promo-title">Set up your energy dashboard</h2>
+          <p class="login-promo-text">
+            Create your free Stackly Energy account. Track live generation, battery state-of-charge,
+            billing and support from a single client portal.
+          </p>
+
+          <div class="login-img-container">
+            <img class="login-promo-img" src="./img/hero-home.webp" alt="Modern home solar installation">
+            <div class="login-floating-chip chip-top">
+              <span class="live-dot"></span>
+              <span>Live telemetry on sign-up</span>
+            </div>
+            <div class="login-floating-chip chip-bottom">
+              <span class="material-symbols-outlined">shield_check</span>
+              <span>AES-level session security</span>
+            </div>
+          </div>
+
+          <ul class="login-points">
+            <li><span class="material-symbols-outlined">check_circle</span> <span>You can log in with the same email as your portal account.</span></li>
+            <li><span class="material-symbols-outlined">check_circle</span> <span>Auto-registers as a Client / User account.</span></li>
+            <li><span class="material-symbols-outlined">check_circle</span> <span>Manage devices, analytics, billing and support from the dashboard.</span></li>
+          </ul>
+
+          <div class="login-trust-pill">
+            <img src="./img/avatar-priya.webp" alt="Priya N." class="login-trust-avatar">
+            <div>
+              <div class="trust-quote">"I received my dashboard the same day I created the account."</div>
+              <small class="trust-author">Priya N. — Solar Household Owner</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="login-formwrap">
+        <div class="login-formbox">
+          <div class="login-top-row">
+            <a href="login.html" class="login-back">
+              <span class="material-symbols-outlined">arrow_back</span>
+              <span>Back to Login</span>
+            </a>
+          </div>
+
+          <h1 class="login-title">Create Your Account</h1>
+          <p class="login-sub" style="margin-bottom:24px;">Fill in your details — no credit card required.</p>
+
+          <form class="login-form" id="registerForm" novalidate>
+
+            <div class="login-role-wrap">
+            <span class="login-role-heading">Select Account Role</span>
+            <div class="login-role-selector" role="tablist" aria-label="Select role">
+              <button type="button" class="login-role-tab active" data-role="user" role="tab" aria-selected="true">
+                <span class="material-symbols-outlined">person</span>
+                <div class="role-tab-text">
+                  <strong>Client / User</strong>
+                  <small>Home &amp; Business Owner</small>
+                </div>
+              </button>
+
+              <button type="button" class="login-role-tab" data-role="admin" role="tab" aria-selected="false">
+                <span class="material-symbols-outlined">admin_panel_settings</span>
+                <div class="role-tab-text">
+                  <strong>Administrator</strong>
+                  <small>Grid &amp; Fleet Operations</small>
+                </div>
+              </button>
+            </div>
+
+            <!-- Role Context Alert Notice -->
+            <!-- <div id="loginRoleNotice" class="login-role-notice notice-user">
+              <span class="material-symbols-outlined">solar_power</span>
+              <span><strong>Customer Gateway:</strong> Live generation, battery state-of-charge, and utility statements.</span>
+            </div> -->
+          </div>
+            <input type="hidden" name="role" id="registerRole" value="user">
+
+            <label class="login-field">
+              <span>Full Name</span>
+              <div class="input-wrap">
+                <span class="material-symbols-outlined input-icon">person</span>
+                <input type="text" name="fullName" id="registerName" placeholder="e.g. Aria Chen" autocomplete="name" required>
+              </div>
+              <div class="register-error" id="registerNameError"></div>
+            </label>
+
+            <label class="login-field">
+              <span>Account Email Address</span>
+              <div class="input-wrap">
+                <span class="material-symbols-outlined input-icon">mail</span>
+                <input type="email" name="email" id="registerEmail" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+              <div class="register-error" id="registerEmailError"></div>
+            </label>
+
+            <label class="login-field">
+              <span>Password</span>
+              <div class="input-wrap">
+                <span class="material-symbols-outlined input-icon">key</span>
+                <input type="password" name="password" id="registerPassword" placeholder="Min 4 characters" autocomplete="new-password" required>
+              </div>
+              <div class="register-error" id="registerPasswordError"></div>
+            </label>
+
+            <div style="justify-content:space-between; align-items:center;">
+              <label class="login-remember" style="white-space:nowrap;">
+                <input type="checkbox" name="acceptTerms" id="acceptTerms">
+                <span>I agree to the <a href="#" style="color:#7dd3fc;">Terms of Service</a> &amp; <a href="#" style="color:#7dd3fc;">Privacy Policy</a></span>
+              </label>
+              <a href="login.html" class="login-forgot" style="font-size:0.82rem;">Already have an account? Login</a>
+            </div>
+
+            <div class="register-error" style="display:block; font-size:0.82rem; color:rgba(248,113,113,0.85); margin-bottom:10px;" id="registerTermsError"></div>
+
+            <p class="login-status" id="registerStatus" role="status"></p>
+
+            <button type="submit" class="btn btn-primary login-submit" id="registerBtn">
+              <span>Create Account</span>
+              <span class="material-symbols-outlined">person_add</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="login.html" class="logo">
+            <img src="./img/logo-dark.webp" class="logo-dark" width="180" height="40" alt="Stackly Energy Logo">
+          </a>
+          <p class="footer-desc">
+            Clean energy systems engineered for zero carbon footprints and complete grid resilience.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><span class="material-symbols-outlined">work</span></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="blog.html" class="footer-link">Blog &amp; Insights</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Access Gateways</h4>
+          <ul class="footer-nav-list">
+            <li><a href="login.html" class="footer-link">Client Portal Login</a></li>
+            <li><a href="register.html" class="footer-link">Create Client Account</a></li>
+            <li><a href="admin-dashboard.html" class="footer-link">Operations Center</a></li>
+            <li><a href="user-dashboard.html" class="footer-link">Energy Telemetry</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Support</h4>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span> <span>hello@stacklyenergy.com</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">phone</span> <span>+1 (800) 555-0142</span></div>
+          <div class="footer-contact-item"><span class="material-symbols-outlined">location_on</span> <span>100 Renewable Way, Clean Energy Park, CA 94107</span></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Energy. Built with architectural renewable precision.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="login.html">Client Portal</a>
+          <a href="404.html">404 Page</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/auth.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/register.js"></script>
+</body>
+</html>
