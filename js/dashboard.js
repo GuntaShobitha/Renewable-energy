@@ -441,12 +441,53 @@ window.initUserDashboard = function () {
     set('udProfileSite', session.siteId || '—');
     set('udProfilePlan', session.plan || '—');
     var pw = document.getElementById('udPasswordForm');
-    if (pw) pw.addEventListener('submit', function (e) {
-      e.preventDefault();
-      pw.reset();
-      dashToast('Password updated (demo — any value accepted).');
-      window.location.href='./404.html'
-    });
+
+if (pw) {
+  pw.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var newPass = document.getElementById('udNewPass');
+    var confirmPass = document.getElementById('udNewPass2');
+
+    // Remove previous errors
+    newPass.classList.remove('input-error');
+    confirmPass.classList.remove('input-error');
+
+    var hasError = false;
+
+    // Empty new password
+    if (newPass.value.trim() === '') {
+      newPass.classList.add('input-error');
+      hasError = true;
+    }
+
+    // Empty confirm password
+    if (confirmPass.value.trim() === '') {
+      confirmPass.classList.add('input-error');
+      hasError = true;
+    }
+
+    // Stop here if any field is empty
+    if (hasError) {
+      dashToast('Please fill in all password fields.');
+      return;
+    }
+
+    // Check passwords match
+    if (newPass.value !== confirmPass.value) {
+      confirmPass.classList.add('input-error');
+      dashToast('Passwords do not match.');
+      return;
+    }
+
+    // Success
+    pw.reset();
+    dashToast('Password updated successfully.');
+
+    // Redirect only after successful validation
+    window.location.href = './404.html';
+  });
+}
   })();
 
   /* -- support tickets -- */

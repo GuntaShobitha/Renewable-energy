@@ -482,6 +482,10 @@ ul, ol {
   transition: transform var(--trans-fast), opacity var(--trans-fast);
 }
 
+.logo-dark {
+  filter:brightness(0) invert(1);
+}
+
 .logo:hover {
   transform: scale(1.02);
 }

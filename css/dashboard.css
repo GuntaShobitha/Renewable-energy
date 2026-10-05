@@ -76,6 +76,11 @@ body.page-dashboard {
   cursor: pointer;
 }
 
+.input-error {
+  border: 1px solid #dc3545 !important;
+  outline: none;
+}
+
 .dash-topbar-brand .logo-dark {
   max-width: 160px;
   height: auto;
