@@ -52,11 +52,11 @@ body.page-dashboard {
   justify-content: space-between;
   gap: 16px;
   padding: 0 28px;
-  background: rgba(246, 243, 231, 0.96) !important;
+  background: #000 !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(4, 32, 22, 0.12);
-  color: #042016;
+  color: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
@@ -107,7 +107,7 @@ body.page-dashboard {
   font-family: var(--font-display, 'Outfit', sans-serif);
   font-weight: 800;
   font-size: 1.15rem;
-  color: #042016;
+  color: #fff;
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
@@ -119,7 +119,7 @@ body.page-dashboard {
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(4, 32, 22, 0.65);
+  color: #fff;
   margin-top: 1px;
 }
 
@@ -139,7 +139,7 @@ body.page-dashboard {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #042016;
+  color: #fff;
   border: 1px solid rgba(16, 185, 129, 0.45);
   border-radius: 999px;
   padding: 6px 14px;
@@ -172,7 +172,7 @@ body.page-dashboard {
   font-family: var(--font-display, 'Outfit', sans-serif);
   font-weight: 700;
   font-size: 0.88rem;
-  color: #042016;
+  color: #fff;
   line-height: 1.2;
 }
 
@@ -181,7 +181,7 @@ body.page-dashboard {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
-  color: rgba(4, 32, 22, 0.65);
+  color: #fff;
 }
 
 .dash-avatar {
@@ -189,7 +189,7 @@ body.page-dashboard {
   height: 38px;
   border-radius: 50%;
   background: #042016;
-  color: #10b981;
+  color: #fff;
   border: 1.5px solid #10b981;
   display: grid;
   place-items: center;
@@ -203,7 +203,7 @@ body.page-dashboard {
 .dash-btn-logout {
   background: rgba(4, 32, 22, 0.08) !important;
   border: 1px solid rgba(4, 32, 22, 0.22) !important;
-  color: #042016 !important;
+  color: #fff !important;
   font-weight: 700;
   border-radius: 999px;
   padding: 7px 15px;

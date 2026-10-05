@@ -168,6 +168,7 @@ ul, ol {
   vertical-align: middle;
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  color: #fff;
 }
 
 /* ==========================================================================
@@ -181,7 +182,7 @@ ul, ol {
   margin-right: auto;
   padding-left: clamp(20px, 4vw, 48px);
   padding-right: clamp(20px, 4vw, 48px);
-  padding-bottom: 20px;
+ 
 }
 
 .section {
@@ -441,7 +442,7 @@ ul, ol {
   right: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(4, 32, 22, 0.90);
+  /* background-color: rgba(4, 32, 22, 0.90); */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(16, 185, 129, 0.22);
@@ -451,7 +452,7 @@ ul, ol {
 }
 
 .site-header.scrolled {
-  background-color: rgba(2, 20, 14, 0.97);
+  /* background-color: rgba(2, 20, 14, 0.97); */
   border-bottom-color: rgba(16, 185, 129, 0.45);
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(16, 185, 129, 0.12);
 }
@@ -536,7 +537,8 @@ ul, ol {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
+  color: #fff;
+  /* color: rgba(255, 255, 255, 0.78); */
   position: relative;
   padding: 8px 0;
   transition: color var(--trans-fast), transform var(--trans-fast);
@@ -1029,7 +1031,7 @@ ul, ol {
   font-size: clamp(1.4rem, 2vw, 1.85rem);
   font-weight: 800;
   text-transform: uppercase;
-  color: var(--bg-primary);
+  color: #fff;
   margin-bottom: 10px;
   line-height: 1.15;
 }
@@ -1377,7 +1379,7 @@ ul, ol {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: #fff;
 }
 
 .solution-tab-item .tab-desc {
@@ -1466,7 +1468,7 @@ ul, ol {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bg-primary);
+  color: #fff;
 }
 
 /* Clean Telemetry SVG Chart Container */
@@ -1877,6 +1879,8 @@ ul, ol {
   line-height: 1.6;
   max-width: 320px;
   margin-bottom: 24px;
+  padding-top: 20px;
+  padding-left: 30px;
 }
 
 .footer-col-title {
@@ -2657,7 +2661,7 @@ ul, ol {
 }
 
 .page-home .display-2 {
-  color: var(--bg-primary);
+  color:#fff;
 }
 
 .page-home .lead-text {
@@ -2719,7 +2723,7 @@ ul, ol {
 }
 
 .page-home .choose-reason-body h4 {
-  color: var(--bg-primary);
+  color: #fff;
 }
 
 .page-home .choose-reason-body p {
@@ -2856,6 +2860,7 @@ ul, ol {
 .footer-socials {
     display: flex;
     gap: 0.75rem;
+    padding-left: 30px;
 }
 
 .footer-social-link {
@@ -4927,7 +4932,7 @@ body.page-exit {
   gap: 32px;
   margin-bottom: 40px;
 }
-.blog-section-head p { max-width: 340px; text-align: right; font-size: 0.8rem; }
+.blog-section-head p { max-width: 340px; text-align: right; font-size: 0.8rem; padding-right:10px; color: #fff; }
 
 /* ---------- Buttons ---------- */
 .blog-btn {
@@ -5230,7 +5235,7 @@ body.page-exit {
   .blog-hero, .blog-featured, .blog-split, .blog-newsletter { grid-template-columns: 1fr; gap: 32px; }
   .blog-hero-img, .blog-featured-img, .blog-split-img { order: -1; }
   .blog-section-head { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .blog-section-head p { text-align: left; }
+  .blog-section-head p { text-align: left; color: #fff; }
   .blog-author-grid { grid-template-columns: 1fr; max-width: 480px; }
   .blog-guide-grid { grid-template-columns: 1fr; max-width: 480px; }
   .blog-hero-text p, .blog-featured-text p, .blog-split-text p { font-size: 0.85rem; }
@@ -5489,8 +5494,8 @@ body.page-exit {
 .login-sun{position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ebd98e 0%,#f2c454 45%,#e8a03c 100%)}
 .login-promo-inner{position:relative;padding:54px 56px 40px;display:flex;flex-direction:column;align-items:flex-start;max-width:500px}
 .login-promo-logo{height:28px;width:auto;margin-bottom:0}
-.login-promo-title{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-.04em;line-height:1.02;font-size:clamp(28px,2.9vw,34px);max-width:230px;margin-top:0}
-.login-promo-text{font-size:13px;line-height:1.6;margin:22px 0 20px;max-width:200px;color:#e6ecd9}
+.login-promo-title{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-.04em;line-height:1.02;font-size:clamp(28px,2.9vw,34px);margin-top:0}
+.login-promo-text{font-size:13px;line-height:1.6;margin:22px 0 20px;color:#e6ecd9}
 .login-promo-img{width:421px;max-width:100%;aspect-ratio:421/150;object-fit:cover;border-radius:18px}
 .login-points{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;font-size:12px}
 .login-points li::before{content:"✓ "}
@@ -6824,7 +6829,7 @@ body.page-exit {
   right: 0 !important;
   width: 100% !important;
   z-index: 1000 !important;
-  background-color: rgba(246, 243, 231, 0.95) !important; /* Architectural Cream Glassmorphism */
+   /* Architectural Cream Glassmorphism */
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
   border-bottom: 1px solid rgba(4, 32, 22, 0.12) !important;
@@ -6835,7 +6840,7 @@ body.page-exit {
 }
 
 .site-header.scrolled {
-  background-color: rgba(240, 236, 222, 0.98) !important;
+  background-color: #000 !important;
   border-bottom-color: rgba(4, 32, 22, 0.2) !important;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.22) !important;
 }
@@ -6896,7 +6901,7 @@ body:not(.page-dashboard), .page-home, .page-contact, .page-login, .page-service
   font-weight: 700 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: #042016 !important; /* Crisp Deep Dark Green on Cream */
+  color: #fff !important; /* Crisp Deep Dark Green on Cream */
   transition: color var(--trans-fast), transform var(--trans-fast) !important;
 }
 
@@ -6916,9 +6921,9 @@ body:not(.page-dashboard), .page-home, .page-contact, .page-login, .page-service
 
 /* Login pill button on cream navbar */
 .site-header .nav-login {
-  color: #042016 !important;
+  color: #fff !important;
   border: 1.5px solid rgba(4, 32, 22, 0.3) !important;
-  background: rgba(255, 255, 255, 0.55) !important;
+  /* background: rgba(255, 255, 255, 0.55) !important; */
   font-weight: 700 !important;
   transition: all var(--trans-fast) !important;
 }

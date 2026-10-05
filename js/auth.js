@@ -178,15 +178,28 @@
     } catch (err) { return null; }
   }
 
-  function writeSession(session, remember) {
+  // function writeSession(session, remember) {
+  //   var raw = JSON.stringify(session);
+  //   if (remember) {
+  //     localStorage.setItem(STORAGE.session, raw);
+  //   } else {
+  //     sessionStorage.setItem(STORAGE.session, raw);
+  //   }
+  //   broadcast('session:changed', session);
+  // }
+
+
+  function writeSession(session) {
     var raw = JSON.stringify(session);
-    if (remember) {
-      localStorage.setItem(STORAGE.session, raw);
-    } else {
-      sessionStorage.setItem(STORAGE.session, raw);
-    }
+
+    // Session exists only while the browser tab/session is active
+    sessionStorage.setItem(STORAGE.session, raw);
+
+    // Make sure an old persistent session is removed
+    localStorage.removeItem(STORAGE.session);
+
     broadcast('session:changed', session);
-  }
+}
 
   /**
    * Login with email + password (>= 4 chars) and optional role override.
@@ -226,7 +239,7 @@
       plan: user.plan,
       loginAt: new Date().toISOString()
     };
-    writeSession(session, !!remember);
+    writeSession(session);
     return { ok: true, user: user, session: session };
   }
 
@@ -376,7 +389,7 @@
       if (form.elements.password) form.elements.password.value = 'admin123';
       if (status) {
         status.className = 'login-status';
-        status.textContent = 'Admin credentials filled. Ready to log in.';
+        status.textContent = 'Login Sucesss';
       }
     });
   }
@@ -389,7 +402,7 @@
       if (form.elements.password) form.elements.password.value = 'user123';
       if (status) {
         status.className = 'login-status';
-        status.textContent = 'Client credentials filled. Ready to log in.';
+        status.textContent = 'Login Success.';
       }
     });
   }
@@ -448,11 +461,11 @@
 
     var targetRole = authResult.user.role || selectedRole;
     var dest = targetRole === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
-    var targetLabel = targetRole === 'admin' ? 'Grid Administrator Portal' : 'Customer System Dashboard';
+    // var targetLabel = targetRole === 'admin' ? 'Grid Administrator Portal' : 'Customer System Dashboard';
 
     if (status) {
       status.classList.add('login-ok');
-      status.innerHTML = '<span class="login-spinner"></span> Authenticated as <strong>' + (targetRole === 'admin' ? 'Admin' : 'User') + '</strong>. Redirecting to ' + targetLabel + '…';
+      status.innerHTML = '<span class="login-spinner"></span> Login Success <strong>';
     }
 
     var submitBtn = form.querySelector('.login-submit');
@@ -468,10 +481,11 @@
 
   // Prefill remembered email
   try {
-    var saved = localStorage.getItem('loginEmail');
-    if (saved && form.elements.email) {
-      form.elements.email.value = saved;
-      if (form.elements.remember) form.elements.remember.checked = true;
-    }
+    // var saved = localStorage.getItem('loginEmail');
+    // if (saved && form.elements.email) {
+    //   form.elements.email.value = saved;
+    //   if (form.elements.remember) form.elements.remember.checked = true;
+    // }
+    console.log('heelo shobitha')
   } catch (err) {}
 })();
