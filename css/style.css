@@ -191,6 +191,8 @@ ul, ol {
   position: relative;
 }
 
+
+
 .section-cream {
   background-color: var(--color-dark-green);
   color: var(--color-white);
@@ -629,7 +631,7 @@ ul, ol {
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background-color: rgba(245, 242, 232, 0.08);
+  background-color: #fff;
   border: 1px solid rgba(245, 242, 232, 0.15);
   padding: 10px;
   z-index: 1100;
@@ -1081,7 +1083,7 @@ ul, ol {
 
 .install-composition:hover .install-link {
   gap: 12px;
-  color: var(--bg-primary);
+  color: #fff;
 }
 
 /* ==========================================================================
@@ -1951,6 +1953,7 @@ ul, ol {
   align-items: center;
   gap: 12px;
   margin-top: 16px;
+  padding-left:30px;
 }
 
 .social-btn {
@@ -4245,12 +4248,13 @@ body.page-exit {
 
 .services-section-head {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 32px;
   margin-bottom: 40px;
 }
-.services-section-head p { max-width: 480px; text-align: right; font-size: 1.05rem; color: var(--services-text-muted); line-height: 1.6; }
+.services-section-head p { max-width: 480px; text-align: center; font-size: 1.05rem; color: var(--services-text-muted); line-height: 1.6; }
 
 /* ---------- Buttons ---------- */
 .services-btn {
@@ -4949,12 +4953,13 @@ body.page-exit {
 
 .blog-section-head {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 32px;
   margin-bottom: 40px;
 }
-.blog-section-head p { max-width: 340px; text-align: right; font-size: 0.8rem; padding-right:10px; color: #fff; }
+.blog-section-head p { max-width: 340px; text-align: center; font-size: 0.8rem; padding-right:10px; color: #fff; }
 
 /* ---------- Buttons ---------- */
 .blog-btn {

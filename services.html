@@ -39,7 +39,7 @@
         <!-- Right: Actions -->
         <div class="nav-actions">
           <a href="login.html" class="nav-login">Login</a>
-          <a href="contact.html" class="btn btn-primary btn-sm">
+          <a href="./404.html" class="btn btn-primary btn-sm">
             <span>Get a Quote</span>
             <span class="material-symbols-outlined">arrow_forward</span>
           </a>
@@ -610,33 +610,33 @@
 
   <div class="services-pills">
 
-    <div class="services-pill">
-      <strong>25 yrs</strong>
-      <span>Output guarantee</span>
-      <p>
-        Protection tied to the expected energy production of the installed
-        system.
-      </p>
-    </div>
-
-    <div class="services-pill">
-      <strong>10 yrs</strong>
-      <span>Workmanship warranty</span>
-      <p>
-        Coverage for qualifying installation-related workmanship issues.
-      </p>
-    </div>
-
-    <div class="services-pill">
-      <strong>24/7</strong>
-      <span>System monitoring</span>
-      <p>
-        Ongoing visibility into system performance helps identify potential
-        issues early.
-      </p>
-    </div>
-
+  <div class="services-pill">
+    <strong><span class="counter" style="font-size: 35px; font-weight: 600; color: #10b981" data-target="25">0</span> yrs</strong>
+    <span>Output guarantee</span>
+    <p>
+      Protection tied to the expected energy production of the installed
+      system.
+    </p>
   </div>
+
+  <div class="services-pill">
+    <strong><span class="counter" style="font-size: 35px; font-weight: 600; color: #10b981" data-target="10">0</span> yrs</strong>
+    <span>Workmanship warranty</span>
+    <p>
+      Coverage for qualifying installation-related workmanship issues.
+    </p>
+  </div>
+
+  <div class="services-pill">
+    <strong><span class="counter" style="font-size: 35px; font-weight: 600; color: #10b981" data-target="24">0</span>/7</strong>
+    <span>System monitoring</span>
+    <p>
+      Ongoing visibility into system performance helps identify potential
+      issues early.
+    </p>
+  </div>
+
+</div>
 
 </section>
 
@@ -759,5 +759,61 @@
     </div>
   </footer>
 <script src="./js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const counters = document.querySelectorAll(".counter");
+
+  const startCounting = (counter) => {
+    const target = Number(counter.dataset.target);
+    const duration = 1500; // 1.5 seconds
+    const startTime = performance.now();
+
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Smooth counting
+      const currentValue = Math.floor(progress * target);
+
+      counter.textContent = currentValue;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = target;
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+
+          counters.forEach((counter) => {
+            startCounting(counter);
+          });
+
+          // Run only once
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      threshold: 0.4
+    }
+  );
+
+  const servicesPills = document.querySelector(".services-pills");
+
+  if (servicesPills) {
+    observer.observe(servicesPills);
+  }
+
+});
+</script>
 </body>
 </html>
