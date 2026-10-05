@@ -66,6 +66,7 @@ function initPanelRouter() {
     if (backdrop) backdrop.classList.remove('show');
     document.body.classList.remove('dash-nav-open');
     setToggleState(false);
+    if (window.lenis) window.lenis.start();
   }
 
   function openDrawer() {
@@ -73,6 +74,7 @@ function initPanelRouter() {
     if (backdrop) backdrop.classList.add('show');
     document.body.classList.add('dash-nav-open');
     setToggleState(true);
+    if (window.lenis) window.lenis.stop();
   }
 
   if (toggle) {
@@ -106,7 +108,12 @@ function initPanelRouter() {
       btns[j].classList.toggle('active', btns[j].getAttribute('data-panel') === panelId);
     }
     closeDrawer();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 0.8 });
+      setTimeout(function () { if (window.lenis) window.lenis.resize(); }, 120);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     // redraw charts in the newly visible panel
     window.dispatchEvent(new Event('resize'));
   }

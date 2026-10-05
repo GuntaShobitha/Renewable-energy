@@ -107,6 +107,79 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* ==========================================================================
+   CUSTOM THIN LUXURY SCROLLBAR (PRIMARY EMERALD COLOR)
+   Cross-browser sleek scrollbar: ~7px wide with primary green accent.
+   ========================================================================== */
+/* Standard Firefox */
+html, * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-green, #10b981) rgba(2, 20, 14, 0.85);
+}
+
+/* WebKit / Chromium (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(2, 20, 14, 0.88);
+  border-left: 1px solid rgba(16, 185, 129, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green, #10b981);
+  border-radius: 9999px;
+  border: 1.5px solid rgba(2, 20, 14, 0.88);
+  background-clip: padding-box;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green-neon, #00e676);
+  border: 1px solid rgba(2, 20, 14, 0.88);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-green-dark, #059669);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(2, 20, 14, 0.88);
+}
+
+/* ==========================================================================
+   LENIS SMOOTH SCROLL ENGINE CORE STYLES
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip !important;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Accessible offset when scrolling to sections */
+section,
+[id] {
+  scroll-margin-top: 96px;
+}
+
 body {
   background-color: var(--color-dark-green);
   color: var(--color-white);

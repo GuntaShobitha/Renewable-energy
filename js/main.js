@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLenis();
   initPreloader();
   initNavbar();
   initMobileDrawer();
@@ -22,6 +23,212 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
+   0. LENIS SMOOTH SCROLL ENGINE & SECTION ANIMATIONS
+   Silky 60fps/120fps hardware-accelerated momentum scrolling across all pages.
+   ========================================================================== */
+function initLenis() {
+  // Respect user preference for reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return null;
+  }
+
+  // Fallback: If Lenis script is not yet available, load it dynamically and re-init
+  if (typeof Lenis === 'undefined') {
+    if (!document.querySelector('script[data-lenis-loader]')) {
+      const script = document.createElement('script');
+      script.setAttribute('data-lenis-loader', '1');
+      script.src = 'js/lenis.min.js';
+      script.onload = () => {
+        if (typeof Lenis !== 'undefined') initLenis();
+      };
+      document.head.appendChild(script);
+    }
+    return null;
+  }
+
+  // Guard against duplicate initialization
+  if (window.lenis && typeof window.lenis.raf === 'function') {
+    return window.lenis;
+  }
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential luxury ease-out
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 1.6,
+    infinite: false,
+    autoResize: true,
+    overscroll: true,
+  });
+
+  window.lenis = lenis;
+
+  // Add Lenis classes to root
+  document.documentElement.classList.add('lenis', 'lenis-smooth');
+
+  // Dedicated RAF animation loop
+  let rafId;
+  function raf(time) {
+    lenis.raf(time);
+    rafId = requestAnimationFrame(raf);
+  }
+  rafId = requestAnimationFrame(raf);
+
+  // Sync scroll events with reading progress bar, navbar, and section animations
+  lenis.on('scroll', (e) => {
+    // 1. Reading progress bar in header
+    const progressBar = document.querySelector('.site-scroll-progress');
+    if (progressBar && e.limit > 0) {
+      const pct = Math.min(100, Math.max(0, (e.scroll / e.limit) * 100));
+      progressBar.style.width = pct.toFixed(2) + '%';
+    }
+
+    // 2. Header scrolled state
+    const header = document.querySelector('.site-header');
+    if (header) {
+      if (e.scroll > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // 3. Section micro-parallax & smooth depth
+    animateSectionsOnScroll(e);
+  });
+
+  // Smooth anchor navigation for all in-page section links
+  initSmoothAnchorScrolling(lenis);
+
+  // Protect internal scrollable containers (drawers, tables, sidebars)
+  initScrollPreventContainers();
+
+  // Resize when DOM or images load
+  window.addEventListener('load', () => lenis.resize());
+  window.addEventListener('resize', () => lenis.resize());
+
+  return lenis;
+}
+
+/**
+ * Hardware-accelerated section micro-parallax & depth effect
+ */
+function animateSectionsOnScroll(e) {
+  const viewHeight = window.innerHeight;
+  const sections = document.querySelectorAll('section, .dash-panel.active, main.dash-content');
+
+  for (let i = 0; i < sections.length; i++) {
+    const sec = sections[i];
+    const rect = sec.getBoundingClientRect();
+
+    // Check if section is inside or near viewport
+    if (rect.bottom > -80 && rect.top < viewHeight + 80) {
+      const totalDist = viewHeight + rect.height;
+      const progress = Math.min(1, Math.max(0, (viewHeight - rect.top) / totalDist));
+      sec.style.setProperty('--sec-progress', progress.toFixed(3));
+
+      // Subtle, GPU-composited 3D parallax on section visuals
+      const parallaxEls = sec.querySelectorAll('.hero-media-wrapper, .solutions-media-frame, .choose-media-frame, .about-hero-media, .services-case-media, .about-story-media, [data-parallax]');
+      if (parallaxEls.length) {
+        const offset = ((progress - 0.5) * -30).toFixed(1);
+        for (let j = 0; j < parallaxEls.length; j++) {
+          parallaxEls[j].style.transform = `translate3d(0, ${offset}px, 0)`;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Smooth anchor scrolling for all section jump links
+ */
+function initSmoothAnchorScrolling(lenis) {
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href]');
+    if (!anchor) return;
+
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+
+    let hash = '';
+    if (href.startsWith('#')) {
+      hash = href;
+    } else {
+      try {
+        const linkUrl = new URL(anchor.href, window.location.href);
+        const currentUrl = new URL(window.location.href);
+        if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname && linkUrl.hash) {
+          hash = linkUrl.hash;
+        }
+      } catch (_) {}
+    }
+
+    if (hash && hash !== '#') {
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+
+        // Close mobile drawer if open
+        const drawer = document.querySelector('.mobile-drawer');
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const backdrop = document.querySelector('.mobile-drawer-backdrop');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          if (toggleBtn) toggleBtn.classList.remove('active');
+          if (backdrop) backdrop.classList.remove('show');
+          document.body.style.overflow = '';
+          lenis.start();
+        }
+
+        const header = document.querySelector('.site-header, .dash-topbar');
+        const headerOffset = header ? header.offsetHeight + 16 : 80;
+
+        lenis.scrollTo(target, {
+          offset: -headerOffset,
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+
+        try {
+          history.pushState(null, '', hash);
+        } catch (_) {}
+      }
+    }
+  });
+
+  // Handle initial page load with anchor hash in URL
+  if (window.location.hash) {
+    setTimeout(() => {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        const header = document.querySelector('.site-header, .dash-topbar');
+        const headerOffset = header ? header.offsetHeight + 16 : 80;
+        lenis.scrollTo(target, {
+          offset: -headerOffset,
+          duration: 1.0,
+          immediate: false
+        });
+      }
+    }, 250);
+  }
+}
+
+/**
+ * Prevent Lenis smooth scroll on scrollable sub-panels (tables, drawers, modals)
+ */
+function initScrollPreventContainers() {
+  const containers = document.querySelectorAll(
+    '.mobile-drawer, .dash-table-wrap, .dash-sidebar-nav, .dash-sidebar, .modal-card, [data-lenis-prevent]'
+  );
+  containers.forEach(el => {
+    el.setAttribute('data-lenis-prevent', '');
+  });
+}
+
+/* ==========================================================================
    1. NAVBAR SCROLL EFFECT & READING PROGRESS
    ========================================================================== */
 function initNavbar() {
@@ -36,22 +243,26 @@ function initNavbar() {
     header.appendChild(progressBar);
   }
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    if (scrollY > 20) {
+  const handleScroll = (scrollY, customPct) => {
+    const y = typeof scrollY === 'number' ? scrollY : (window.scrollY || window.pageYOffset);
+    if (y > 20) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
 
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (docHeight > 0) {
-      const progressPercent = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
-      progressBar.style.width = progressPercent + '%';
+    if (typeof customPct === 'number') {
+      progressBar.style.width = Math.min(100, Math.max(0, customPct)) + '%';
+    } else {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        const progressPercent = Math.min(100, Math.max(0, (y / docHeight) * 100));
+        progressBar.style.width = progressPercent + '%';
+      }
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('scroll', () => handleScroll(), { passive: true });
   handleScroll();
 }
 
@@ -65,11 +276,17 @@ function initMobileDrawer() {
 
   if (!toggleBtn || !drawer || !backdrop) return;
 
+  drawer.setAttribute('data-lenis-prevent', '');
+
   const toggleDrawer = () => {
     const isOpen = drawer.classList.toggle('open');
     toggleBtn.classList.toggle('active', isOpen);
     backdrop.classList.toggle('show', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (window.lenis) {
+      if (isOpen) window.lenis.stop();
+      else window.lenis.start();
+    }
   };
 
   const closeDrawer = () => {
@@ -77,6 +294,7 @@ function initMobileDrawer() {
     toggleBtn.classList.remove('active');
     backdrop.classList.remove('show');
     document.body.style.overflow = '';
+    if (window.lenis) window.lenis.start();
   };
 
   toggleBtn.addEventListener('click', toggleDrawer);
@@ -204,6 +422,7 @@ function initSolutionsTabs() {
         setTimeout(() => {
           displayImage.src = data.image;
           displayImage.style.opacity = '1';
+          if (window.lenis) window.lenis.resize();
         }, 200);
       }
     });
@@ -268,6 +487,7 @@ function initFaqAccordion() {
       if (!isActive) {
         item.classList.add('active');
       }
+      setTimeout(() => { if (window.lenis) window.lenis.resize(); }, 320);
     });
   });
 }
@@ -483,7 +703,7 @@ function initPreloader() {
       <div class="preloader-pct">0%</div>
     </div>`;
   document.body.appendChild(overlay);
-
+  if (window.lenis) window.lenis.stop();
 
   const bar = overlay.querySelector('.preloader-bar span');
   const pct = overlay.querySelector('.preloader-pct');
@@ -505,6 +725,10 @@ function initPreloader() {
     setTimeout(() => {
       overlay.classList.add('done');
       document.documentElement.classList.add('app-ready');
+      if (window.lenis) {
+        window.lenis.start();
+        window.lenis.resize();
+      }
       setTimeout(() => overlay.remove(), 600);
     }, 180);
   };
@@ -625,6 +849,15 @@ function initPageTransitions() {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     if (typeof StacklyAuth !== 'undefined' && link.closest('[data-logout]')) return;
 
+    // Check if link targets current page with a hash (e.g. index.html#install)
+    try {
+      const linkUrl = new URL(link.href, window.location.href);
+      const currentUrl = new URL(window.location.href);
+      if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname && linkUrl.hash) {
+        return; // Allow Lenis smooth anchor scroll to take over
+      }
+    } catch (_) {}
+
     e.preventDefault();
     document.body.classList.add('page-exit');
     setTimeout(() => { window.location.href = href; }, 200);
@@ -712,6 +945,7 @@ function initParticles() {  const page = document.querySelector('.error-page');
         item.classList.add('services-open');
         btn.setAttribute('aria-expanded', 'true');
       }
+      setTimeout(function () { if (window.lenis) window.lenis.resize(); }, 320);
     });
   });
 })();
